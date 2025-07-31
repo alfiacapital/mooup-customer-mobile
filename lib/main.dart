@@ -8,7 +8,7 @@ import 'package:foodyman/presentation/theme/theme.dart';
 import 'domain/di/dependency_manager.dart';
 import 'presentation/app_widget.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:smartlook/smartlook.dart'; 
+import 'package:flutter_uxcam/flutter_uxcam.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
@@ -18,13 +18,18 @@ void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Firebase.initializeApp();
+
+
+  FlutterUxcam.optIntoSchematicRecordings(); /* Confirm that you have user 
+  permission for screen recording */
+  FlutterUxConfig config = FlutterUxConfig(
+    userAppKey: "bt15m9ef61j13lx-eu",
+    enableAutomaticScreenNameTagging: false);
+  FlutterUxcam.startWithConfiguration(config);
+
+
+
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-
-  // Smartlook.setupAndStartRecording('fe7978d3b0a4b6609df9d966a04ccb9346e8a012'); 
-  Smartlook.setupAndStartRecording(
-      SetupOptionsBuilder('fe7978d3b0a4b6609df9d966a04ccb9346e8a012').build(),
-  );
-
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
       overlays: SystemUiOverlay.values);
   SystemChrome.setPreferredOrientations(

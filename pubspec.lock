@@ -768,6 +768,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_uxcam:
+    dependency: "direct main"
+    description:
+      name: flutter_uxcam
+      sha256: d7ae70fce91eea4dc608f8d859a87c03073312bf034559325b1f5c1ef65d8e07
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.7.0"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -1676,14 +1684,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0+1"
-  smartlook:
-    dependency: "direct main"
-    description:
-      name: smartlook
-      sha256: bf2b22dbae8b68e3db0a520fadcd524b40685ef98d7637de4e8529305afc1873
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.1"
   smooth_page_indicator:
     dependency: "direct main"
     description:
