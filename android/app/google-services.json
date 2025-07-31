@@ -1,0 +1,113 @@
+{
+  "project_info": {
+    "project_number": "272135315042",
+    "project_id": "mooup-web",
+    "storage_bucket": "mooup-web.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272135315042:android:966bbf61e5152918343b3b",
+        "android_client_info": {
+          "package_name": "com.mooup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "272135315042-9km57ct39co06mc71hpvdot03lchucmt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mooup",
+            "certificate_hash": "ba291fad675dcb54bc5bfaa8604b4425ffe06d8c"
+          }
+        },
+        {
+          "client_id": "272135315042-j4jkgs3c9phri7eoicjokpqhi7hi1qd6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mooup",
+            "certificate_hash": "222aee7c43dc4f56b29e89280e8a16465d0a2b7b"
+          }
+        },
+        {
+          "client_id": "272135315042-0anmg5bqj0hkpaekncov5q2ut6alhbtg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0QDCOOpkOWDmCejNBDOkcbm6Yfk8t_Ac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "272135315042-0anmg5bqj0hkpaekncov5q2ut6alhbtg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272135315042:android:bb58bc816f587dc6343b3b",
+        "android_client_info": {
+          "package_name": "com.mooup.deliveryman"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "272135315042-0anmg5bqj0hkpaekncov5q2ut6alhbtg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0QDCOOpkOWDmCejNBDOkcbm6Yfk8t_Ac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "272135315042-0anmg5bqj0hkpaekncov5q2ut6alhbtg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272135315042:android:828d77cbff6f49bc343b3b",
+        "android_client_info": {
+          "package_name": "com.mooup.manager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "272135315042-0anmg5bqj0hkpaekncov5q2ut6alhbtg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0QDCOOpkOWDmCejNBDOkcbm6Yfk8t_Ac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "272135315042-0anmg5bqj0hkpaekncov5q2ut6alhbtg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
