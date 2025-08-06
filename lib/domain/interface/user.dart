@@ -37,4 +37,6 @@ abstract class UserRepositoryFacade {
   Future<ApiResult<WalletHistoriesResponse>> getWalletHistories(int page);
 
   Future<ApiResult<void>> updateFirebaseToken(String? token);
+
+  Future<ApiResult<ProfileResponse>> updatePhone(String phone);
 }

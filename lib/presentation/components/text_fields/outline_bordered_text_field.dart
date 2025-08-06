@@ -23,6 +23,7 @@ class OutlinedBorderTextField extends StatelessWidget {
   final TextCapitalization? textCapitalization;
   final TextInputAction? textInputAction;
   final List<TextInputFormatter>? inputFormatters;
+  final Widget? prefix;
 
   const OutlinedBorderTextField({
     super.key,
@@ -43,6 +44,7 @@ class OutlinedBorderTextField extends StatelessWidget {
     this.textInputAction,
     this.inputFormatters,
     this.hint,
+    this.prefix,
   });
 
   @override
@@ -88,6 +90,7 @@ class OutlinedBorderTextField extends StatelessWidget {
               textCapitalization ?? TextCapitalization.sentences,
           textInputAction: textInputAction,
           decoration: InputDecoration(
+            prefix: prefix,
             suffixIconConstraints:
                 BoxConstraints(maxHeight: 30.r, maxWidth: 30.r),
             suffixIcon: suffixIcon,

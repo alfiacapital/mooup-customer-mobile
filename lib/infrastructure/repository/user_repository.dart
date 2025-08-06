@@ -137,6 +137,26 @@ class UserRepository implements UserRepositoryFacade {
   }
 
   @override
+  Future<ApiResult<ProfileResponse>> updatePhone(String phone) async {
+    try {
+      final client = dioHttp.client(requireAuth: true);
+      final response = await client.put(
+        '/api/v1/dashboard/user/profile/update/phone',
+        data: {"phone": phone},
+      );
+      return ApiResult.success(
+        data: ProfileResponse.fromJson(response.data),
+      );
+    } catch (e) {
+      debugPrint('==> update phone failure: $e');
+      return ApiResult.failure(
+        error: AppHelpers.errorHandler(e),
+        statusCode: NetworkExceptions.getDioStatus(e),
+      );
+    }
+  }
+
+  @override
   Future<ApiResult<WalletHistoriesResponse>> getWalletHistories(
     int page,
   ) async {

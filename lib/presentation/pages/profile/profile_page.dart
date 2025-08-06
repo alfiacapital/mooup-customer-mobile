@@ -34,6 +34,7 @@ import 'package:foodyman/application/edit_profile/edit_profile_provider.dart';
 import 'language_page.dart';
 import 'reservation_shops.dart';
 import 'widgets/profile_item.dart';
+import 'package:foodyman/application/app_widget/app_provider.dart';
 
 @RoutePage()
 class ProfilePage extends ConsumerStatefulWidget {

@@ -167,4 +167,46 @@ class EditProfileNotifier extends StateNotifier<EditProfileState> {
       }
     }
   }
+
+  Future<void> updatePhone(BuildContext context, String phone) async {
+    final connected = await AppConnectivity.connectivity();
+    if (!connected) {
+      if (context.mounted) {
+        AppHelpers.showCheckTopSnackBar(
+          context,
+          AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
+        );
+      }
+      return;
+    }
+    state = state.copyWith(isLoading: true, isSuccess: false);
+    final response = await _userRepository.updatePhone(phone);
+    response.when(
+      success: (data) {
+        LocalStorage.setUser(data.data);
+        if (context.mounted) {
+          Navigator.pop(context);
+          AppHelpers.showCheckTopSnackBarDone(
+            context,
+            'Phone number updated successfully.',
+          );
+        }
+        state = state.copyWith(
+          userData: data.data,
+          isLoading: false,
+          isSuccess: true,
+          phone: data.data?.phone ?? '',
+        );
+      },
+      failure: (failure, status) {
+        state = state.copyWith(isLoading: false);
+        if (context.mounted) {
+          AppHelpers.showCheckTopSnackBar(
+            context,
+            AppHelpers.getTranslation(status.toString()),
+          );
+        }
+      },
+    );
+  }
 }

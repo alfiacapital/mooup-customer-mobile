@@ -38,6 +38,7 @@ import 'widgets/card_and_promo.dart';
 import 'widgets/delivery_info.dart';
 import 'widgets/order_button.dart';
 import 'widgets/order_info.dart';
+import 'package:foodyman/application/edit_profile/edit_profile_provider.dart';
 
 class OrderCheck extends StatefulWidget {
   final bool isActive;
@@ -105,7 +106,16 @@ class _OrderCheckState extends State<OrderCheck> {
           AppHelpers.getPhoneRequired()) {
         AppHelpers.showCustomModalBottomSheet(
             context: context,
-            modal: const PhoneVerify(),
+            modal: Consumer(
+              builder: (context, ref, _) {
+                return PhoneVerify(
+                  initialPhone: LocalStorage.getUser()?.phone ?? '',
+                  onSave: (newPhone) async {
+                    await ref.read(editProfileProvider.notifier).updatePhone(context, newPhone);
+                  },
+                );
+              },
+            ),
             isDarkMode: false,
             paddingTop: MediaQuery.paddingOf(context).top);
         return;

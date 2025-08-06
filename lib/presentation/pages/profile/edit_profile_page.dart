@@ -235,11 +235,16 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                 validation: AppValidators.isNotEmptyValidator,
                                 onTap: () {
                                   AppHelpers.showCustomModalBottomSheet(
-                                      context: context,
-                                      modal: const PhoneVerify(),
-                                      isDarkMode: false,
-                                      paddingTop:
-                                          MediaQuery.paddingOf(context).top);
+                                    context: context,
+                                    modal: PhoneVerify(
+                                      initialPhone: user?.phone ?? '',
+                                      onSave: (newPhone) async {
+                                        await ref.read(editProfileProvider.notifier).updatePhone(context, newPhone);
+                                      },
+                                    ),
+                                    isDarkMode: false,
+                                    paddingTop: MediaQuery.paddingOf(context).top,
+                                  );
                                 },
                               ),
                               34.verticalSpace,

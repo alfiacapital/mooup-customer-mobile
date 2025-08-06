@@ -164,10 +164,17 @@ class _OrderDeliveryState extends State<OrderDelivery> {
                 readOnly: true,
                 onTap: () {
                   AppHelpers.showCustomModalBottomSheet(
-                      context: context,
-                      modal: const PhoneVerify(),
-                      isDarkMode: false,
-                      paddingTop: MediaQuery.paddingOf(context).top);
+                    context: context,
+                    modal: PhoneVerify(
+                      initialPhone: userPhoneNumber.text,
+                      onSave: (newPhone) async {
+                        userPhoneNumber.text = newPhone;
+                        Navigator.pop(context);
+                      },
+                    ),
+                    isDarkMode: false,
+                    paddingTop: MediaQuery.paddingOf(context).top,
+                  );
                 },
               ),
               12.verticalSpace,
