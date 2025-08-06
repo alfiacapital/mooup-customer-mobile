@@ -34,7 +34,7 @@ class ShopTabBarItem extends StatelessWidget {
           duration: const Duration(milliseconds: 300),
           decoration: BoxDecoration(
             color: isActive ? AppStyle.primary : AppStyle.white,
-            borderRadius: BorderRadius.circular(10.r),
+            borderRadius: BorderRadius.circular(24.r),
             boxShadow: [
               BoxShadow(
                 color: AppStyle.white.withOpacity(0.07),

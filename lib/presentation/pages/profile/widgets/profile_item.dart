@@ -31,7 +31,7 @@ class ProfileItem extends StatelessWidget {
           width: double.infinity,
           decoration: BoxDecoration(
               color: AppStyle.white,
-              borderRadius: BorderRadius.circular(10.r)),
+              borderRadius: BorderRadius.circular(24.r)),
           child: Padding(
             padding: EdgeInsets.all(16.r),
             child: Row(

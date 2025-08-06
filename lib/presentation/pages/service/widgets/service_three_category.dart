@@ -46,7 +46,7 @@ class ServiceThreeCategory extends StatelessWidget {
                         padding: REdgeInsets.only(right: 12),
                         child: AnimationButtonEffect(
                     child: InkWell(
-                        borderRadius: BorderRadius.circular(14.r),
+                        borderRadius: BorderRadius.circular(24.r),
                         onTap: () {
                           AppHelpers.showCustomModalBottomDragSheet(
                             context: context,
@@ -68,7 +68,7 @@ class ServiceThreeCategory extends StatelessWidget {
                             ),
                             isDarkMode: false,
                             isDrag: false,
-                            radius: 12,
+                            radius: 24,
                           );
                         },
                         child: Container(
@@ -77,7 +77,7 @@ class ServiceThreeCategory extends StatelessWidget {
                               horizontal: 6.r, vertical: 4.r),
                           decoration: BoxDecoration(
                             color: AppStyle.black,
-                            borderRadius: BorderRadius.circular(14.r),
+                            borderRadius: BorderRadius.circular(24.r),
                           ),
                           child: Center(
                             child: SvgPicture.asset(

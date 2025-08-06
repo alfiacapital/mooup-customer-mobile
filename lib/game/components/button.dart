@@ -24,7 +24,7 @@ class ButtonWidget extends StatelessWidget {
         padding: EdgeInsets.all(6.r),
         decoration: BoxDecoration(
             color: AppStyle.newStoreDataBorder,
-            borderRadius: BorderRadius.circular(8.0)),
+            borderRadius: BorderRadius.circular(24.0)),
         child: IconButton(
             color: AppStyle.black,
             onPressed: onPressed,

@@ -404,7 +404,7 @@ abstract class AppHelpers {
     required BuildContext context,
     required Widget modal,
     required bool isDarkMode,
-    double radius = 16,
+    double radius = 24,
     bool isDrag = true,
     bool isDismissible = true,
     double paddingTop = 200,

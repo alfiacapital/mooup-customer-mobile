@@ -56,7 +56,7 @@ class TileBoardWidget extends StatelessWidget {
                     height: tileSize,
                     decoration: BoxDecoration(
                         color: tileColors[tile.value],
-                        borderRadius: BorderRadius.circular(6.0)),
+                        borderRadius: BorderRadius.circular(24.0)),
                     child: Center(
                         child: Text(
                       '${tile.value}',

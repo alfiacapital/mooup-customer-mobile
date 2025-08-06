@@ -195,7 +195,7 @@ class MarketTwoItem extends StatelessWidget {
       padding: REdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
         color: AppStyle.bgGrey,
-        borderRadius: BorderRadius.circular(12.r),
+        borderRadius: BorderRadius.circular(24.r),
       ),
       child: Column(
         children: [

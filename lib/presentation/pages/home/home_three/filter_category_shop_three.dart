@@ -73,7 +73,7 @@ class FilterCategoryShopThree extends StatelessWidget {
                               horizontal: 16.r, vertical: 6.r),
                           decoration: BoxDecoration(
                             color: AppStyle.bgGrey,
-                            borderRadius: BorderRadius.circular(12.r),
+                            borderRadius: BorderRadius.circular(24.r),
                           ),
                           child: Row(
                             children: [

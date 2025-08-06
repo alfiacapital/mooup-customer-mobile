@@ -19,7 +19,7 @@ class ServiceTwoCategoriesItem extends StatelessWidget {
           padding: REdgeInsets.symmetric(horizontal: 12),
           decoration: BoxDecoration(
             color: AppStyle.white,
-            borderRadius: BorderRadius.circular(16.r),
+            borderRadius: BorderRadius.circular(24.r),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

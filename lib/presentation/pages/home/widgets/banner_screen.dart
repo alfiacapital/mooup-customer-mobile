@@ -31,8 +31,8 @@ class BannerScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppStyle.white,
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(8.r),
-          topRight: Radius.circular(8.r),
+          topLeft: Radius.circular(24.r),
+          topRight: Radius.circular(24.r),
         ),
       ),
       padding: EdgeInsets.only(bottom: MediaQuery.paddingOf(context).bottom),
@@ -44,8 +44,8 @@ class BannerScreen extends StatelessWidget {
             width: MediaQuery.sizeOf(context).width,
             child: ClipRRect(
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(8.r),
-                topRight: Radius.circular(8.r),
+                topLeft: Radius.circular(24.r),
+                topRight: Radius.circular(24.r),
               ),
               child: CustomNetworkImage(
                 url: image,

@@ -43,7 +43,7 @@ class RecommendShopShimmer extends StatelessWidget {
                         decoration: BoxDecoration(
                             color: AppStyle.shimmerBase,
                             borderRadius:
-                                BorderRadius.circular(10.r)),
+                                BorderRadius.circular(24.r)),
                       ),
                     ),
                   ),

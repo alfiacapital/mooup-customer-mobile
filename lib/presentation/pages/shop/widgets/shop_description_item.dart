@@ -14,7 +14,7 @@ class ShopDescriptionItem extends StatelessWidget {
       height: 54+48.r,
       decoration: BoxDecoration(
           color: AppStyle.bgGrey,
-          borderRadius: BorderRadius.circular(10.r)),
+          borderRadius: BorderRadius.circular(24.r)),
       padding: EdgeInsets.all(12.r),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

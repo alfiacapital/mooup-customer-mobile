@@ -27,7 +27,7 @@ class ShopSeeAll extends StatelessWidget {
               ),
               decoration: BoxDecoration(
                 color: AppStyle.white,
-                borderRadius: BorderRadius.circular(12.r),
+                borderRadius: BorderRadius.circular(24.r),
                 border: Border.all(
                     color: AppStyle.outlineButtonBorder.withOpacity(0.5),
                     width: 1.2),

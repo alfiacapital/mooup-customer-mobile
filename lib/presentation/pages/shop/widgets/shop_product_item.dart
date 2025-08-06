@@ -21,7 +21,7 @@ class ShopProductItem extends StatelessWidget {
       margin: EdgeInsets.all(4.r),
       decoration: BoxDecoration(
           color: AppStyle.white,
-          borderRadius: BorderRadius.circular(10.r)),
+          borderRadius: BorderRadius.circular(24.r)),
       child: Padding(
         padding: EdgeInsets.all(14.r),
         child: Column(
@@ -32,7 +32,7 @@ class ShopProductItem extends StatelessWidget {
                 url: product.img ?? "",
                 height: 100.h,
                 width: double.infinity,
-                radius: 0),
+                radius: 24.0),
             8.verticalSpace,
             Text(
               product.translation?.title ?? "",

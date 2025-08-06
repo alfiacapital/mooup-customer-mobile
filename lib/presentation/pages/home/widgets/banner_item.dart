@@ -37,7 +37,7 @@ class BannerItem extends StatelessWidget {
           decoration: BoxDecoration(
             color: AppStyle.white,
             borderRadius: BorderRadius.all(
-              Radius.circular(8.r),
+              Radius.circular(24.r),
             ),
           ),
           child: CustomNetworkImage(
@@ -45,7 +45,7 @@ class BannerItem extends StatelessWidget {
             url: banner.img ?? "",
             height: double.infinity,
             width: double.infinity,
-            radius: 8.r,
+            radius: 24.r,
           )),
     );
   }

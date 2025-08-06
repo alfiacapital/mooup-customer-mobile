@@ -31,7 +31,7 @@ class RecommendedTwoItem extends StatelessWidget {
         height: 190.h,
         decoration: BoxDecoration(
             color: AppStyle.recommendBg,
-            borderRadius: BorderRadius.circular(10.r)),
+            borderRadius: BorderRadius.circular(24.r)),
         child: Stack(
           children: [
             CustomNetworkImage(

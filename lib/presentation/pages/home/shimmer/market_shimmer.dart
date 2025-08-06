@@ -22,7 +22,7 @@ class MarketShimmer extends StatelessWidget {
       height: 130.h,
       decoration: BoxDecoration(
           color: AppStyle.shimmerBase,
-          borderRadius: BorderRadius.circular(10.r)),
+          borderRadius: BorderRadius.circular(24.r)),
     ) : Container(
       margin: isSimpleShop
           ? EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h)
@@ -31,7 +31,7 @@ class MarketShimmer extends StatelessWidget {
       height: 260.h,
       decoration: BoxDecoration(
           color: AppStyle.shimmerBase,
-          borderRadius: BorderRadius.circular(10.r)),
+          borderRadius: BorderRadius.circular(24.r)),
     );
   }
 }

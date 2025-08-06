@@ -29,7 +29,7 @@ class CategoryShimmer extends StatelessWidget {
                     margin: EdgeInsets.only(left: 8.w,),
                     decoration: BoxDecoration(
                       color: AppStyle.shimmerBase,
-                      borderRadius: BorderRadius.circular(10.r),
+                      borderRadius: BorderRadius.circular(24.r),
                     ),
                   ),
                 ),

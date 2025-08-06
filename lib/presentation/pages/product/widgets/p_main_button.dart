@@ -55,7 +55,7 @@ class ProductMainButton extends StatelessWidget {
               Container(
                 height: 50.h,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.r),
+                    borderRadius: BorderRadius.circular(24.r),
                     border: Border.all(color: AppStyle.textGrey)),
                 child: Row(
                   children: [

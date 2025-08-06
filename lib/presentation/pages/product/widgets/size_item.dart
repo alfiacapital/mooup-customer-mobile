@@ -28,7 +28,7 @@ class SizeItem extends StatelessWidget {
           width: double.infinity,
           decoration: BoxDecoration(
               color: AppStyle.white,
-              borderRadius: BorderRadius.circular(10.r)),
+              borderRadius: BorderRadius.circular(24.r)),
           child: Column(
             children: [
               Row(

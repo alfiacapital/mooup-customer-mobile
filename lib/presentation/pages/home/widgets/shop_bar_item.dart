@@ -41,7 +41,7 @@ class ShopBarItem extends StatelessWidget {
                 url: story?.url ?? "",
                 height: 164.h,
                 width: 110.w,
-                radius: 8.r,
+                radius: 24.r,
               ),
             ),
             Align(

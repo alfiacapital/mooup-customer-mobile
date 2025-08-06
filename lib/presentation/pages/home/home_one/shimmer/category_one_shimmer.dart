@@ -31,9 +31,8 @@ class CategoryOneShimmer extends StatelessWidget {
                       left: 8.w,
                     ),
                     decoration: BoxDecoration(
-                      color: AppStyle.shimmerBase,
-                      borderRadius: BorderRadius.circular(10.r),
-                    ),
+                        color: AppStyle.white,
+                        borderRadius: BorderRadius.circular(24.r)),
                   ),
                 ),
               ),

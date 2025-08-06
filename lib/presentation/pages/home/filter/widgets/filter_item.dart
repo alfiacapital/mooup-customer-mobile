@@ -40,7 +40,7 @@ class FilterItem extends StatelessWidget {
           EdgeInsets.only(left: 18.w, right: 18.w, top: 18.h, bottom: 10.h),
       decoration: BoxDecoration(
           color: AppStyle.white.withOpacity(0.9),
-          borderRadius: BorderRadius.circular(10.r)),
+          borderRadius: BorderRadius.circular(24.r)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -63,7 +63,7 @@ class FilterItem extends StatelessWidget {
                             vertical: 10.h, horizontal: 16.w),
                         decoration: BoxDecoration(
                             borderRadius:
-                                BorderRadius.circular(10.r),
+                                BorderRadius.circular(24.r),
                             color: ((e.runtimeType == TakeModel)
                                     ? (currentItem == (e as TakeModel).id ||
                                         currentItemTwo == e.id)

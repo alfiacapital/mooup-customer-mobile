@@ -51,7 +51,7 @@ class DoorThree extends StatelessWidget {
                     width: double.infinity,
                     decoration: BoxDecoration(
                         color: AppStyle.doorColor,
-                        borderRadius: BorderRadius.circular(16.r)),
+                        borderRadius: BorderRadius.circular(24.r)),
                   ),
                   Positioned(
                       right: 16.r,

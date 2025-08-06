@@ -42,7 +42,7 @@ class MarketItem extends StatelessWidget {
               height: 260.h,
               decoration: BoxDecoration(
                   color: AppStyle.white,
-                  borderRadius: BorderRadius.circular(10.r)),
+                  borderRadius: BorderRadius.circular(24.r)),
               child: Stack(
                 children: [
                   Column(
@@ -53,8 +53,8 @@ class MarketItem extends StatelessWidget {
                         height: 118.h,
                         child: ClipRRect(
                           borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10.r),
-                            topRight: Radius.circular(10.r),
+                            topLeft: Radius.circular(24.r),
+                            topRight: Radius.circular(24.r),
                           ),
                           child: CustomNetworkImage(
                             url: shop.backgroundImg ?? '',
@@ -193,7 +193,7 @@ class MarketItem extends StatelessWidget {
       padding: EdgeInsets.all(16.r),
       decoration: BoxDecoration(
           color: AppStyle.white,
-          borderRadius: BorderRadius.circular(10.r),
+          borderRadius: BorderRadius.circular(24.r),
           border: Border.all(color: AppStyle.borderColor)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

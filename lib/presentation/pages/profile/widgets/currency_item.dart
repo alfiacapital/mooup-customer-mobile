@@ -19,7 +19,7 @@ class CurrencyItem extends StatelessWidget {
           decoration: BoxDecoration(
               color: AppStyle.white,
               borderRadius:
-              BorderRadius.circular(10.r)),
+              BorderRadius.circular(24.r)),
           child: Padding(
             padding: EdgeInsets.all(18.r),
             child: Row(

@@ -23,7 +23,7 @@ class CustomButton extends StatelessWidget {
     this.background = AppStyle.primary,
     this.textColor = AppStyle.black,
     this.weight = double.infinity,
-    this.radius = 8,
+    this.radius = 24,
     this.icon,
     this.borderColor = AppStyle.transparent,
   });

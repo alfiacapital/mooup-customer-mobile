@@ -22,7 +22,7 @@ class WProductExtras extends ConsumerWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         color: state.typedExtras.isEmpty ? AppStyle.transparent : AppStyle.white,
-        borderRadius: BorderRadius.circular(10.r),
+        borderRadius: BorderRadius.circular(24.r),
       ),
       padding: REdgeInsets.all(18),
       child: Column(
@@ -37,7 +37,7 @@ class WProductExtras extends ConsumerWidget {
               final TypedExtra typedExtra = state.typedExtras[index];
               return Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.r),
+                  borderRadius: BorderRadius.circular(24.r),
                   color:  AppStyle.white,
                 ),
                 padding: REdgeInsets.symmetric(horizontal: 12, vertical: 14),

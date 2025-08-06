@@ -21,13 +21,13 @@ class CustomTabBar extends StatelessWidget {
       height: 50.h,
       decoration: BoxDecoration(
           color: AppStyle.transparent,
-          borderRadius: BorderRadius.circular(10.r),
+          borderRadius: BorderRadius.circular(24.r),
           border: Border.all(color: AppStyle.tabBarBorderColor)),
       child: TabBar(
           isScrollable: isScrollable,
           controller: tabController,
           indicator: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.r), color: AppStyle.black),
+              borderRadius: BorderRadius.circular(24.r), color: AppStyle.black),
           labelColor: AppStyle.white,
           unselectedLabelColor: AppStyle.black,
           unselectedLabelStyle: AppStyle.interRegular(

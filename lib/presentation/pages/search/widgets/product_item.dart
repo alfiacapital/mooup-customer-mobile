@@ -36,7 +36,7 @@ class ProductItem extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             color: AppStyle.white,
-            borderRadius: BorderRadius.circular(10.r),
+            borderRadius: BorderRadius.circular(24.r),
             boxShadow: [
               BoxShadow(
                 color: AppStyle.white.withOpacity(0.04),

@@ -58,7 +58,7 @@ class Score extends StatelessWidget {
       padding: padding ??
           const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       decoration: BoxDecoration(
-          color: AppStyle.iconButtonBack, borderRadius: BorderRadius.circular(8.0)),
+          color: AppStyle.iconButtonBack, borderRadius: BorderRadius.circular(24.0)),
       child: Column(children: [
         Text(
           label.toUpperCase(),

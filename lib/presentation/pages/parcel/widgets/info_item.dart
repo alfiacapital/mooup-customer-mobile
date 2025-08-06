@@ -24,7 +24,7 @@ class InfoItem extends StatelessWidget {
         width: MediaQuery.sizeOf(context).width / 2 - 24.r,
         height: isLarge ? 230.r : 168.r,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.r),
+            borderRadius: BorderRadius.circular(24.r),
             image: DecorationImage(
                 image: AssetImage(AppConstants.infoImage[index]),
                 fit: BoxFit.cover)),

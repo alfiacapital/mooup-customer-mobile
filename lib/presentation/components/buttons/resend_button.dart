@@ -27,7 +27,7 @@ class ResendButton extends StatelessWidget {
         elevation: 0,
         shadowColor: AppStyle.transparent,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(24),
         ),
         minimumSize: Size(97.r, 46.r),
         backgroundColor: AppStyle.black,

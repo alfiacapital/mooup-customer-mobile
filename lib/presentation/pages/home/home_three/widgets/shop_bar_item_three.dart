@@ -52,7 +52,7 @@ class ShopBarItemThree extends StatelessWidget {
                   ],
                 ),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.r),
+                  borderRadius: BorderRadius.circular(24.r),
                 ),
               ),
             )),

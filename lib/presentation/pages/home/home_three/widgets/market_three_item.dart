@@ -43,7 +43,7 @@ class MarketThreeItem extends StatelessWidget {
               // ),
               decoration: BoxDecoration(
                   color: AppStyle.bgGrey,
-                  borderRadius: BorderRadius.circular(10.r)),
+                  borderRadius: BorderRadius.circular(24.r)),
               child: Stack(
                 children: [
                   Column(

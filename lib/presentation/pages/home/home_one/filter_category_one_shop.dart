@@ -70,7 +70,7 @@ class FilterCategoryOneShop extends StatelessWidget {
                               EdgeInsets.symmetric(horizontal: 16.r, vertical: 6.r),
                           decoration: BoxDecoration(
                               color: AppStyle.white,
-                              borderRadius: BorderRadius.circular(10.r)),
+                              borderRadius: BorderRadius.circular(24.r)),
                           child: Row(
                             children: [
                               SvgPicture.asset("assets/svgs/filter.svg"),

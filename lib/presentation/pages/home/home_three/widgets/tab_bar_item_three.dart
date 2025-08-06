@@ -27,7 +27,7 @@ class TabBarItemThree extends StatelessWidget {
           color: isShopTabBar
               ? (currentIndex == index ? AppStyle.primary : AppStyle.bgGrey)
               : AppStyle.bgGrey,
-          borderRadius: BorderRadius.circular(10.r),
+          borderRadius: BorderRadius.circular(24.r),
           boxShadow: [
             BoxShadow(
               color: AppStyle.bgGrey.withOpacity(0.07),

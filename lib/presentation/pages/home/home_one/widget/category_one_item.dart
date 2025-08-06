@@ -28,7 +28,7 @@ class CategoryOneItem extends StatelessWidget {
             width: 72.r,
             height: 72.r,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.r),
+                borderRadius: BorderRadius.circular(24.r),
                 color: isActive ? AppStyle.primary : AppStyle.white),
             child: InkWell(
               onTap: onTap,

@@ -82,7 +82,7 @@ class _ExploreThreeState extends State<ExploreThree> {
                           isDarkMode: false);
                     },
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(24),
                       child: CustomNetworkImage(
                         url: widget.list[index].img ?? "",
                         height: double.infinity,

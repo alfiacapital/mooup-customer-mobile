@@ -26,7 +26,7 @@ class CardWidget extends StatelessWidget {
               fit: BoxFit.contain),
           color: AppStyle.white,
           borderRadius: BorderRadius.all(
-            Radius.circular(10.r),
+            Radius.circular(24.r),
           ),
           boxShadow: [
             BoxShadow(

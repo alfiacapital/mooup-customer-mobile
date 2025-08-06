@@ -101,7 +101,7 @@ class DeliveryBanner extends StatelessWidget {
                           width: 150.r,
                           height: 50.r,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
+                              borderRadius: BorderRadius.circular(24),
                               border: Border.all(color: AppStyle.black)),
                           child: Center(
                             child: Text(

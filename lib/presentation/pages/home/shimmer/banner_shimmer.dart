@@ -31,7 +31,7 @@ class BannerShimmer extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: AppStyle.shimmerBase,
                     borderRadius: BorderRadius.all(
-                      Radius.circular(8.r),
+                      Radius.circular(24.r),
                     ),
                   ),
                 ),

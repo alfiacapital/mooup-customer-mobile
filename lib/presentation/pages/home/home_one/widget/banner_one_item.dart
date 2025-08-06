@@ -32,7 +32,7 @@ class BannerOneItem extends StatelessWidget {
           decoration: BoxDecoration(
             color: AppStyle.white,
             borderRadius: BorderRadius.all(
-              Radius.circular(20.r),
+              Radius.circular(24.r),
             ),
           ),
           child: CustomNetworkImage(
