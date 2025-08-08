@@ -39,19 +39,34 @@ class EditProfileScreen extends ConsumerStatefulWidget {
 class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
   final formKey = GlobalKey<FormState>();
   late TextEditingController birthDay;
+  late TextEditingController emailController;
+  late TextEditingController firstNameController;
+  late TextEditingController lastNameController;
+  late TextEditingController phoneController;
 
   @override
   void initState() {
+    final userData = ref.read(profileProvider).userData;
     birthDay = TextEditingController(
         text: TimeService.dateFormatYMD(DateTime.tryParse(
-            ref.read(profileProvider).userData?.birthday ?? "")));
+            userData?.birthday ?? "")));
+    emailController = TextEditingController(text: userData?.email ?? "");
+    firstNameController = TextEditingController(text: userData?.firstname ?? "");
+    lastNameController = TextEditingController(text: userData?.lastname ?? "");
+    phoneController = TextEditingController(text: userData?.phone ?? "");
+    
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       ref
           .read(editProfileProvider.notifier)
-          .setPhone(ref.read(profileProvider).userData?.phone ?? "");
+          .setPhone(userData?.phone ?? "");
       ref.read(editProfileProvider.notifier).setBirth(TimeService.dateFormatYMD(
           DateTime.tryParse(
-              ref.read(profileProvider).userData?.birthday ?? "")));
+              userData?.birthday ?? "")));
+      // Initialize other form fields to prevent them from being cleared
+      ref.read(editProfileProvider.notifier).setEmail(userData?.email ?? "");
+      ref.read(editProfileProvider.notifier).setFirstName(userData?.firstname ?? "");
+      ref.read(editProfileProvider.notifier).setLastName(userData?.lastname ?? "");
+      ref.read(editProfileProvider.notifier).setGender(userData?.gender ?? "");
     });
     super.initState();
   }
@@ -59,7 +74,23 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
   @override
   void dispose() {
     birthDay.dispose();
+    emailController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
+    phoneController.dispose();
     super.dispose();
+  }
+
+  void _updateControllers(ProfileData? userData) {
+    if (userData != null) {
+      // Update all controllers with new user data
+      emailController.text = userData.email ?? "";
+      firstNameController.text = userData.firstname ?? "";
+      lastNameController.text = userData.lastname ?? "";
+      phoneController.text = userData.phone ?? "";
+      birthDay.text = TimeService.dateFormatYMD(DateTime.tryParse(
+          userData.birthday ?? ""));
+    }
   }
 
   @override
@@ -68,11 +99,19 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
     final event = ref.read(editProfileProvider.notifier);
     final user = ref.watch(profileProvider).userData;
     final state = ref.watch(editProfileProvider);
+    
+    // Update controllers when user data changes
+    ref.listen(profileProvider, (previous, next) {
+      if (next.userData != null) {
+        _updateControllers(next.userData);
+      }
+    });
     ref.listen(editProfileProvider, (previous, next) {
       if (next.isSuccess && (previous?.isSuccess ?? false) != next.isSuccess) {
-        ref
-            .read(profileProvider.notifier)
-            .setUser(next.userData ?? ProfileData());
+        // Update controllers with new user data
+        if (next.userData != null) {
+          _updateControllers(next.userData);
+        }
       }
     });
     return Directionality(
@@ -181,7 +220,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                     user?.email ?? ''),
                                 label: AppHelpers.getTranslation(TrKeys.email)
                                     .toUpperCase(),
-                                initialText: user?.email ?? "",
+                                textController: emailController,
                                 validation: AppValidators.emailCheck,
                                 onChanged: event.setEmail,
                               ),
@@ -198,7 +237,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                       label: AppHelpers.getTranslation(
                                               TrKeys.firstname)
                                           .toUpperCase(),
-                                      initialText: user?.firstname ?? "",
+                                      textController: firstNameController,
                                       validation:
                                           AppValidators.isNotEmptyValidator,
                                       onChanged: (s) {
@@ -214,7 +253,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                       label: AppHelpers.getTranslation(
                                               TrKeys.surname)
                                           .toUpperCase(),
-                                      initialText: user?.lastname ?? "",
+                                      textController: lastNameController,
                                       validation:
                                           AppValidators.isNotEmptyValidator,
                                       onChanged: (s) {
@@ -231,7 +270,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                         TrKeys.phoneNumber)
                                     .toUpperCase(),
                                 hint: "+1 990 000 00 00",
-                                initialText: user?.phone ?? "",
+                                textController: phoneController,
                                 validation: AppValidators.isNotEmptyValidator,
                                 onTap: () {
                                   AppHelpers.showCustomModalBottomSheet(

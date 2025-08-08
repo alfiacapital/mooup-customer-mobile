@@ -13,13 +13,15 @@ import 'package:foodyman/infrastructure/services/tr_keys.dart';
 import 'package:foodyman/presentation/theme/theme.dart';
 import 'package:foodyman/infrastructure/services/local_storage.dart';
 import 'package:foodyman/infrastructure/services/marker_image_cropper.dart';
+import 'package:foodyman/application/profile/profile_provider.dart';
 import 'edit_profile_state.dart';
 
 class EditProfileNotifier extends StateNotifier<EditProfileState> {
   final UserRepositoryFacade _userRepository;
   final GalleryRepositoryFacade _galleryRepository;
+  final Ref _ref;
 
-  EditProfileNotifier(this._userRepository, this._galleryRepository)
+  EditProfileNotifier(this._userRepository, this._galleryRepository, this._ref)
       : super(const EditProfileState());
 
   void setUser(ProfileData user) {
@@ -111,12 +113,39 @@ class EditProfileNotifier extends StateNotifier<EditProfileState> {
       ));
       response.when(
         success: (data) {
-          LocalStorage.setUser(data.data);
+          // Get current user data from profile provider
+          final currentUser = _ref.read(profileProvider).userData;
+          
+          // Create updated user data by preserving existing data and updating with new data
+          final updatedUser = currentUser?.copyWith(
+            firstname: data.data?.firstname ?? currentUser?.firstname,
+            lastname: data.data?.lastname ?? currentUser?.lastname,
+            email: data.data?.email ?? currentUser?.email,
+            phone: data.data?.phone ?? currentUser?.phone,
+            birthday: data.data?.birthday ?? currentUser?.birthday,
+            gender: data.data?.gender ?? currentUser?.gender,
+            img: data.data?.img ?? currentUser?.img,
+          ) ?? data.data;
+          
+          LocalStorage.setUser(updatedUser);
           Navigator.pop(context);
+          // Update profile provider immediately
+          if (updatedUser != null) {
+            _ref.read(profileProvider.notifier).setUser(updatedUser);
+          }
+          // Update edit profile state with new data
           state = state.copyWith(
-            userData: data.data,
+            userData: updatedUser,
             isLoading: false,
             isSuccess: true,
+            // Update all form fields with the new user data
+            email: updatedUser?.email ?? '',
+            firstName: updatedUser?.firstname ?? '',
+            lastName: updatedUser?.lastname ?? '',
+            phone: updatedUser?.phone ?? '',
+            birth: updatedUser?.birthday ?? '',
+            gender: updatedUser?.gender ?? '',
+            url: updatedUser?.img ?? '',
           );
         },
         failure: (failure, status) {
@@ -183,7 +212,15 @@ class EditProfileNotifier extends StateNotifier<EditProfileState> {
     final response = await _userRepository.updatePhone(phone);
     response.when(
       success: (data) {
-        LocalStorage.setUser(data.data);
+        // Get current user data from profile provider
+        final currentUser = _ref.read(profileProvider).userData;
+        
+        // Create updated user data by preserving existing data and updating phone
+        final updatedUser = currentUser?.copyWith(
+          phone: data.data?.phone ?? currentUser?.phone,
+        ) ?? data.data;
+        
+        LocalStorage.setUser(updatedUser);
         if (context.mounted) {
           Navigator.pop(context);
           AppHelpers.showCheckTopSnackBarDone(
@@ -191,11 +228,23 @@ class EditProfileNotifier extends StateNotifier<EditProfileState> {
             'Phone number updated successfully.',
           );
         }
+        // Update profile provider immediately with complete user data
+        if (updatedUser != null) {
+          _ref.read(profileProvider.notifier).setUser(updatedUser);
+        }
+        // Update edit profile state with new data
         state = state.copyWith(
-          userData: data.data,
+          userData: updatedUser,
           isLoading: false,
           isSuccess: true,
-          phone: data.data?.phone ?? '',
+          phone: updatedUser?.phone ?? '',
+          // Preserve existing form data
+          email: state.email.isNotEmpty ? state.email : (updatedUser?.email ?? ''),
+          firstName: state.firstName.isNotEmpty ? state.firstName : (updatedUser?.firstname ?? ''),
+          lastName: state.lastName.isNotEmpty ? state.lastName : (updatedUser?.lastname ?? ''),
+          birth: state.birth.isNotEmpty ? state.birth : (updatedUser?.birthday ?? ''),
+          gender: state.gender.isNotEmpty ? state.gender : (updatedUser?.gender ?? ''),
+          url: state.url.isNotEmpty ? state.url : (updatedUser?.img ?? ''),
         );
       },
       failure: (failure, status) {

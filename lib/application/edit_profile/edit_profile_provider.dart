@@ -8,5 +8,5 @@ import 'edit_profile_state.dart';
 
 
 final editProfileProvider = StateNotifierProvider<EditProfileNotifier, EditProfileState>(
-  (ref) => EditProfileNotifier(userRepository,galleryRepository),
+  (ref) => EditProfileNotifier(userRepository, galleryRepository, ref),
 );

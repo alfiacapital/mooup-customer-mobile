@@ -63,6 +63,7 @@ class _PhoneVerifyState extends ConsumerState<PhoneVerify> {
     }
     setState(() { _loading = true; _error = null; });
     await Future.sync(() => widget.onSave('+212$phone'));
+    
     setState(() { _loading = false; });
   }
 
