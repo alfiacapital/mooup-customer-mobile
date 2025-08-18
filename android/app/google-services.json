@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "272135315042-gb9bfcup6f37frslp7dmpj9b2c38db1l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mooup",
+            "certificate_hash": "960161a0daa147da451d5313436cb8ae8e7cf1a1"
+          }
+        },
+        {
           "client_id": "272135315042-j4jkgs3c9phri7eoicjokpqhi7hi1qd6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

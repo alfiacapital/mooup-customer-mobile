@@ -32,8 +32,9 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "com.foodyman"
-    compileSdkVersion 34
+    namespace "com.mooup"
+    compileSdkVersion 35
+    buildToolsVersion "35.0.1"
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -53,7 +54,7 @@ android {
         applicationId "com.mooup"
         minSdkVersion 23
         multiDexEnabled true
-        targetSdkVersion 34
+        targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }

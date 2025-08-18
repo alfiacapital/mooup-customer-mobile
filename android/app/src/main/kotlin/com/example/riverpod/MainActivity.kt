@@ -1,4 +1,4 @@
-package com.foodyman
+package com.mooup
 
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.android.FlutterFragmentActivity

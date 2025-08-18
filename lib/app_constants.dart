@@ -16,7 +16,7 @@ abstract class AppConstants {
   static const String routingKey =
       '5b3ce3597851110001cf62480384c1db92764d1b8959761ea2510ac8';
   static const String androidPackageName = 'com.mooup';
-  static const String iosPackageName = 'com.foodyman.customer';
+  static const String iosPackageName = 'com.mooup';
   static const bool isDemo = false;
   static const bool isPhoneFirebase = true;
   static const int scheduleInterval = 60;
