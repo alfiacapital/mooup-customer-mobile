@@ -351,12 +351,12 @@ class RegisterPage extends ConsumerWidget {
                                         event.loginWithApple(context);
                                       },
                                       title: "Apple"),
-                                SocialButton(
-                                    iconData: FlutterRemix.facebook_fill,
-                                    onPressed: () {
-                                      event.loginWithFacebook(context);
-                                    },
-                                    title: "Facebook"),
+                                // SocialButton(
+                                //     iconData: FlutterRemix.facebook_fill,
+                                //     onPressed: () {
+                                //       event.loginWithFacebook(context);
+                                //     },
+                                //     title: "Facebook"),
                                 SocialButton(
                                     iconData: FlutterRemix.google_fill,
                                     onPressed: () {
