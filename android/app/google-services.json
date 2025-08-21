@@ -14,11 +14,35 @@
       },
       "oauth_client": [
         {
+          "client_id": "272135315042-1iau8tu8ust6n4q1f71vn23ne1lm7m24.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mooup",
+            "certificate_hash": "64314633adf9f72602a7d9438664cb4335a6d807"
+          }
+        },
+        {
+          "client_id": "272135315042-27clhna57uorfcdpjajsnr27p2r2kohq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mooup",
+            "certificate_hash": "22e054c08fb91fcbe3cf09119280e5743a68ecbe"
+          }
+        },
+        {
           "client_id": "272135315042-9km57ct39co06mc71hpvdot03lchucmt.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.mooup",
             "certificate_hash": "ba291fad675dcb54bc5bfaa8604b4425ffe06d8c"
+          }
+        },
+        {
+          "client_id": "272135315042-gb9bfcup6f37frslp7dmpj9b2c38db1l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mooup",
+            "certificate_hash": "960161a0daa147da451d5313436cb8ae8e7cf1a1"
           }
         },
         {
@@ -45,6 +69,13 @@
             {
               "client_id": "272135315042-0anmg5bqj0hkpaekncov5q2ut6alhbtg.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "272135315042-hd253ii2pgs87v8uuj50urhlbp4d3ha7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mooup"
+              }
             }
           ]
         }
@@ -74,6 +105,13 @@
             {
               "client_id": "272135315042-0anmg5bqj0hkpaekncov5q2ut6alhbtg.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "272135315042-hd253ii2pgs87v8uuj50urhlbp4d3ha7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mooup"
+              }
             }
           ]
         }
@@ -103,6 +141,13 @@
             {
               "client_id": "272135315042-0anmg5bqj0hkpaekncov5q2ut6alhbtg.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "272135315042-hd253ii2pgs87v8uuj50urhlbp4d3ha7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mooup"
+              }
             }
           ]
         }

@@ -11,6 +11,7 @@ import 'package:foodyman/presentation/theme/app_style.dart';
 
 import 'components/custom_range_slider.dart';
 import 'routes/app_router.dart';
+import 'package:foodyman/infrastructure/services/deep_links.dart';
 
 class AppWidget extends ConsumerWidget {
   AppWidget({super.key});
@@ -37,6 +38,13 @@ class AppWidget extends ConsumerWidget {
           if (LocalStorage.getTranslations().isEmpty) fetchSetting()
         ]),
         builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
+          // Initialize deep link handling after app is fully loaded
+          if (snapshot.connectionState == ConnectionState.done) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              DeepLinksHandler.instance.initialize(appRouter);
+            });
+          }
+          
           return ScreenUtilInit(
             useInheritedMediaQuery: false,
             designSize: const Size(375, 812),

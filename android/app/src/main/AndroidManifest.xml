@@ -65,12 +65,21 @@
 
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
-                <data
-                    android:host="mooup.ma"
-                    android:scheme="https" />
-                <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="mooup.ma" />
+                <data android:scheme="https" android:host="open.mooup.ma" />
             </intent-filter>
+
+            <!-- Optional: narrow matching to only restaurant paths if you prefer -->
+            <!--
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="open.mooup.ma" android:pathPrefix="/restaurant" />
+            </intent-filter>
+            -->
 
 
         </activity>

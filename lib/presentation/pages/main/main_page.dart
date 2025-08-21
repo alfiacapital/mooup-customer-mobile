@@ -38,6 +38,8 @@ import 'widgets/bottom_navigator_item.dart';
 import 'package:proste_indexed_stack/proste_indexed_stack.dart';
 import 'widgets/bottom_navigator_one.dart';
 import 'widgets/bottom_navigator_two.dart';
+import 'dart:async';
+import 'package:foodyman/infrastructure/services/deep_links.dart';
 
 @RoutePage()
 class MainPage extends StatefulWidget {
@@ -133,6 +135,14 @@ class _MainPageState extends State<MainPage> {
         });
       }
     });
+    
+    // Process any pending custom deep links after Firebase has handled its links
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Timer(const Duration(seconds: 1), () {
+        DeepLinksHandler.instance.processPendingLink();
+      });
+    });
+    
     super.initState();
   }
 
