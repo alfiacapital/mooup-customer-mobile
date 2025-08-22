@@ -8,15 +8,37 @@ import 'package:foodyman/application/app_widget/app_provider.dart';
 import 'package:foodyman/domain/di/dependency_manager.dart';
 import 'package:foodyman/infrastructure/services/local_storage.dart';
 import 'package:foodyman/presentation/theme/app_style.dart';
+import 'package:app_links/app_links.dart';
 
 import 'components/custom_range_slider.dart';
 import 'routes/app_router.dart';
 import 'package:foodyman/infrastructure/services/deep_links.dart';
 
+// Custom route information provider that always starts at splash
+class FixedRouteInformationProvider extends RouteInformationProvider {
+  @override
+  RouteInformation get value => const RouteInformation(location: '/');
+  
+  @override
+  void addListener(VoidCallback listener) {
+    // No-op - we never change
+  }
+  
+  @override
+  void removeListener(VoidCallback listener) {
+    // No-op - we never change
+  }
+}
+
 class AppWidget extends ConsumerWidget {
   AppWidget({super.key});
 
   final appRouter = AppRouter();
+  
+  // Custom route information provider that always starts at splash
+  RouteInformationProvider _createRouteInformationProvider() {
+    return FixedRouteInformationProvider();
+  }
 
   Future fetchSetting() async {
     final connect = await Connectivity().checkConnectivity();
@@ -38,10 +60,14 @@ class AppWidget extends ConsumerWidget {
           if (LocalStorage.getTranslations().isEmpty) fetchSetting()
         ]),
         builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
-          // Initialize deep link handling after app is fully loaded
+          // Initialize deep link handling when app is ready
           if (snapshot.connectionState == ConnectionState.done) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
-              DeepLinksHandler.instance.initialize(appRouter);
+              // Initialize deep links after the app is set up
+              // Add a delay to ensure the router is fully initialized
+              Future.delayed(const Duration(milliseconds: 1000), () {
+                DeepLinksHandler.instance.initialize(appRouter);
+              });
             });
           }
           
@@ -62,6 +88,7 @@ class AppWidget extends ConsumerWidget {
                   debugShowCheckedModeBanner: false,
                   routerDelegate: appRouter.delegate(),
                   routeInformationParser: appRouter.defaultRouteParser(),
+                  routeInformationProvider: _createRouteInformationProvider(),
                   locale: Locale(state.activeLanguage?.locale ?? 'en'),
                   theme: ThemeData(
                     useMaterial3: false,

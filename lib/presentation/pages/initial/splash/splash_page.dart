@@ -18,14 +18,20 @@ class _SplashPageState extends ConsumerState<SplashPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      // Simple approach: just proceed with normal splash logic
+      // The deep link handler will handle navigation if needed
+      debugPrint('SplashPage: Starting splash logic');
       ref.read(splashProvider.notifier).getTranslations(context);
       ref.read(splashProvider.notifier).getToken(context, goMain: () {
+        debugPrint('SplashPage: goMain called - navigating to MainRoute');
         FlutterNativeSplash.remove();
         context.replaceRoute(const MainRoute());
       }, goLogin: () {
+        debugPrint('SplashPage: goLogin called - navigating to LoginRoute');
         FlutterNativeSplash.remove();
         context.replaceRoute(const LoginRoute());
       }, goNoInternet: () {
+        debugPrint('SplashPage: goNoInternet called - navigating to NoConnectionRoute');
         FlutterNativeSplash.remove();
         context.replaceRoute(const NoConnectionRoute());
       });

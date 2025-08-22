@@ -9,6 +9,7 @@ import 'domain/di/dependency_manager.dart';
 import 'presentation/app_widget.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_uxcam/flutter_uxcam.dart';
+import 'package:app_links/app_links.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
@@ -19,6 +20,18 @@ void main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Firebase.initializeApp();
 
+  // Check for deep links at app startup to prevent router errors
+  try {
+    final appLinks = AppLinks();
+    final initialUri = await appLinks.getInitialLink();
+    if (initialUri != null) {
+      debugPrint('Main: Found initial deep link: $initialUri');
+      // Store the deep link for later processing
+      // This prevents the router from trying to resolve an invalid route
+    }
+  } catch (e) {
+    debugPrint('Main: Error checking initial deep link: $e');
+  }
 
   FlutterUxcam.optIntoSchematicRecordings(); /* Confirm that you have user 
   permission for screen recording */
