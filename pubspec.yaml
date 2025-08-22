@@ -73,6 +73,9 @@ dependencies:
   image_picker: ^1.0.7
   image_cropper: ^8.0.2
   cached_network_image: ^3.3.1
+  video_player: ^2.8.3
+  chewie: ^1.7.4
+  video_thumbnail: ^0.5.3
 
   #maps:
   geocoding: ^3.0.0

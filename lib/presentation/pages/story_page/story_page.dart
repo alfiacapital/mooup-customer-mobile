@@ -1,8 +1,3 @@
-import 'dart:convert';
-import 'dart:io';
-import 'dart:math';
-import 'dart:typed_data';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -11,9 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-import 'package:webview_flutter_android/webview_flutter_android.dart';
-import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 import 'package:foodyman/application/home/home_provider.dart';
 import 'package:foodyman/infrastructure/models/data/story_data.dart';
 import 'package:foodyman/infrastructure/services/app_helpers.dart';
@@ -21,17 +13,10 @@ import 'package:foodyman/infrastructure/services/tr_keys.dart';
 import 'package:foodyman/presentation/components/buttons/custom_button.dart';
 import 'package:foodyman/presentation/components/loading.dart';
 import 'package:foodyman/presentation/components/shop_avarat.dart';
+import 'package:foodyman/presentation/components/video_story_widget.dart';
 import 'package:foodyman/presentation/routes/app_router.dart';
 import 'package:foodyman/presentation/theme/app_style.dart';
 
-bool isVideo(String? url) {
-  if (url == null) return false;
-  final lower = url.toLowerCase();
-  return lower.endsWith(".mp4") ||
-      lower.endsWith(".mov") ||
-      lower.endsWith(".webm") ||
-      lower.endsWith(".mkv");
-}
 
 @RoutePage()
 class StoryListPage extends StatefulWidget {
@@ -62,19 +47,20 @@ class _StoryListPageState extends State<StoryListPage> {
   @override
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, child) {
-      final stories = ref.watch(homeProvider).story;
       return PageView.builder(
         controller: pageController,
-        itemCount: stories?.length ?? 0,
+        itemCount: ref.watch(homeProvider).story?.length ?? 0,
         physics: const PageScrollPhysics(),
         itemBuilder: (context, index) {
           return StoryPage(
-            story: stories?[index],
+            story: ref.watch(homeProvider).story?[index],
             nextPage: () {
-              if (index == (stories?.length ?? 0) - 2) {
-                ref.read(homeProvider.notifier).fetchStorePage(context, widget.controller);
+              if (index == ref.watch(homeProvider).story!.length - 2) {
+                ref
+                    .read(homeProvider.notifier)
+                    .fetchStorePage(context, widget.controller);
               }
-              if (index != (stories?.length ?? 0) - 1) {
+              if (index != ref.watch(homeProvider).story!.length - 1) {
                 pageController!.animateToPage(++index,
                     duration: const Duration(milliseconds: 500),
                     curve: Curves.easeIn);
@@ -105,7 +91,11 @@ class StoryPage extends StatefulWidget {
   final VoidCallback nextPage;
   final VoidCallback prevPage;
 
-  const StoryPage({super.key, required this.story, required this.nextPage, required this.prevPage});
+  const StoryPage(
+      {super.key,
+      required this.story,
+      required this.nextPage,
+      required this.prevPage});
 
   @override
   State<StoryPage> createState() => _StoryPageState();
@@ -113,47 +103,173 @@ class StoryPage extends StatefulWidget {
 
 class _StoryPageState extends State<StoryPage> with TickerProviderStateMixin {
   late AnimationController controller;
+  final pageController = PageController(initialPage: 0);
   GlobalKey imageKey = GlobalKey();
   int currentIndex = 0;
-
-  // WebView controller & last loaded url
-  WebViewController? _webViewController;
-  Key _videoWebKey = UniqueKey();
-  String? _lastLoadedVideoUrl;
-
-  void _updateCurrentIndex(int newIndex) {
-    currentIndex = newIndex;
-    controller.reset();
-    controller.forward();
-    _webViewController = null;      // <-- Reset controller
-    _videoWebKey = UniqueKey();     // <-- Reset key
-    _lastLoadedVideoUrl = null;     // <-- Reset last loaded URL
-    setState(() {});
-  }
+  double videoProgress = 0.0;
 
   @override
   void initState() {
-    // default duration 7 seconds (for images). Video will update duration via JS channel.
-    controller = AnimationController(vsync: this, duration: const Duration(seconds: 7))
-      ..addListener(() {
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 7),
+    )..addListener(() {
         if (controller.status == AnimationStatus.completed) {
-          if (currentIndex == widget.story!.length - 1) {
-            widget.nextPage();
-          } else {
-            _updateCurrentIndex(currentIndex + 1);
-          }
+          _advanceToNextStory();
         }
         setState(() {});
       });
-
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      controller.forward();
+      _startStoryTimer();
     });
-
-    // NOTE: in webview_flutter v4.x we don't set WebView.platform here manually.
-    // The platform interface is picked from the webview_flutter_android / wkwebview packages.
-
     super.initState();
+  }
+
+  void _startStoryTimer() {
+    final currentStory = widget.story?[currentIndex];
+    if (currentStory?.fileType == 'video') {
+      // For videos, don't start the timer - let video control timing
+      print('Video story detected, not starting timer');
+      return;
+    }
+    print('Image story detected, starting timer');
+    controller.forward();
+  }
+
+  void _advanceToNextStory() {
+    final currentStory = widget.story?[currentIndex];
+    if (currentStory?.fileType == 'video') {
+      // For videos, don't auto-advance - let video control timing
+      print('Video story - not auto-advancing');
+      return;
+    }
+    
+    if (currentIndex == widget.story!.length - 1) {
+      widget.nextPage();
+    } else {
+      currentIndex++;
+      controller.reset();
+      _startStoryTimer();
+      setState(() {});
+    }
+  }
+
+  void _resetAndStartTimer() {
+    final currentStory = widget.story?[currentIndex];
+    if (currentStory?.fileType == 'video') {
+      // For videos, reset timer but don't start it
+      print('Video story - resetting timer but not starting');
+      setState(() {
+        videoProgress = 0.0; // Reset video progress
+      });
+      controller.reset();
+      return;
+    }
+    
+    print('Image story - resetting and starting timer');
+    setState(() {
+      videoProgress = 0.0; // Reset video progress
+    });
+    controller.reset();
+    _startStoryTimer();
+  }
+
+  void _onStoryChanged() {
+    // Reset timer when story changes
+    _resetAndStartTimer();
+  }
+
+  bool _canGoToNextStory() {
+    return currentIndex < widget.story!.length - 1;
+  }
+
+  bool _canGoToPreviousStory() {
+    return currentIndex > 0;
+  }
+
+  bool _isFromSameShop(int index) {
+    if (index < 0 || index >= widget.story!.length) return false;
+    final currentStory = widget.story![currentIndex];
+    final targetStory = widget.story![index];
+    return currentStory?.shopId == targetStory?.shopId;
+  }
+
+  List<int> _getShopBoundaries() {
+    List<int> boundaries = [];
+    if (widget.story == null || widget.story!.isEmpty) return boundaries;
+    
+    int? currentShopId;
+    for (int i = 0; i < widget.story!.length; i++) {
+      final story = widget.story![i];
+      if (story?.shopId != currentShopId) {
+        if (currentShopId != null) {
+          boundaries.add(i - 1);
+        }
+        currentShopId = story?.shopId;
+      }
+    }
+    if (widget.story!.isNotEmpty) {
+      boundaries.add(widget.story!.length - 1);
+    }
+    return boundaries;
+  }
+
+
+
+  void _skipToNextStory() {
+    if (currentIndex < widget.story!.length - 1) {
+      final currentStory = widget.story![currentIndex];
+      final nextStory = widget.story![currentIndex + 1];
+      final isShopChange = currentStory?.shopId != nextStory?.shopId;
+      
+      currentIndex++;
+      _resetAndStartTimer();
+      
+      // Show shop transition indicator if switching shops
+      if (isShopChange) {
+        _showShopTransitionIndicator(nextStory?.title ?? "");
+      }
+      
+      setState(() {});
+    } else {
+      widget.nextPage();
+    }
+  }
+
+  void _goToPreviousStory() {
+    if (currentIndex > 0) {
+      final currentStory = widget.story![currentIndex];
+      final prevStory = widget.story![currentIndex - 1];
+      final isShopChange = currentStory?.shopId != prevStory?.shopId;
+      
+      currentIndex--;
+      _resetAndStartTimer();
+      
+      // Show shop transition indicator if switching shops
+      if (isShopChange) {
+        _showShopTransitionIndicator(prevStory?.title ?? "");
+      }
+      
+      setState(() {});
+    } else {
+      widget.prevPage();
+    }
+  }
+
+  void _showShopTransitionIndicator(String shopName) {
+    // Show a brief indicator when switching between shops
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Now viewing: $shopName'),
+        duration: const Duration(seconds: 2),
+        backgroundColor: AppStyle.primary,
+        behavior: SnackBarBehavior.floating,
+        margin: EdgeInsets.all(16.w),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.r),
+        ),
+      ),
+    );
   }
 
   @override
@@ -163,22 +279,237 @@ class _StoryPageState extends State<StoryPage> with TickerProviderStateMixin {
   }
 
   @override
-  void didUpdateWidget(covariant StoryPage oldWidget) {
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Handle any dependency changes
+  }
+
+  @override
+  void didUpdateWidget(StoryPage oldWidget) {
     super.didUpdateWidget(oldWidget);
-    // If the story list changes, reset everything
+    // Check if the story list changed
     if (oldWidget.story != widget.story) {
-      currentIndex = 0;
-      _webViewController = null;
-      _videoWebKey = UniqueKey();
-      _lastLoadedVideoUrl = null;
+      _onStoryChanged();
     }
   }
 
-  // Build the top progress bars (keeps same code structure as original)
-  Widget buildTopProgressBars() {
-    final count = widget.story?.length ?? 0;
-    return Align(
-      alignment: Alignment.topCenter,
+
+
+
+
+
+
+  void _onVideoProgressUpdate(double progress) {
+    setState(() {
+      videoProgress = progress;
+    });
+  }
+
+  void _onVideoStoryCompleted() {
+    print('Video story completed, advancing to next story');
+    setState(() {
+      videoProgress = 0.0; // Reset video progress
+    });
+    if (currentIndex == widget.story!.length - 1) {
+      // Last story, go to next page
+      widget.nextPage();
+    } else {
+      // Go to next story
+      currentIndex++;
+      _resetAndStartTimer();
+      setState(() {});
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // Check if stories are available
+    if (widget.story == null || widget.story!.isEmpty) {
+      return Scaffold(
+        backgroundColor: AppStyle.textGrey,
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.photo_library,
+                color: AppStyle.white,
+                size: 64.r,
+              ),
+              16.verticalSpace,
+              Text(
+                'No stories available',
+                style: AppStyle.interNormal(
+                  color: AppStyle.white,
+                  size: 18.sp,
+                ),
+              ),
+              8.verticalSpace,
+              Text(
+                'Tap to go back',
+                style: AppStyle.interNormal(
+                  color: AppStyle.white,
+                  size: 14.sp,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    return Stack(
+      children: [
+        // Content based on story type (image or video)
+        _buildStoryContent(),
+        // Progress bars at the top
+        _buildProgressBars(),
+        // Navigation controls (left/right taps)
+        _buildNavigationControls(),
+        // Header with shop info and close button
+        _buildHeader(),
+        // Order button at bottom
+        _buildOrderButton(),
+      ],
+    );
+  }
+
+  Widget _buildStoryContent() {
+    final currentStory = widget.story?[currentIndex];
+    if (currentStory == null) return const SizedBox.shrink();
+
+    // Validate story content
+    if (!_isValidStory(currentStory)) {
+      return _buildInvalidStoryWidget();
+    }
+
+    // Check if it's a video story
+    if (currentStory.fileType == 'video') {
+      print('Building video story: ${currentStory.url}');
+      return VideoStoryWidget(
+        story: currentStory,
+        onVideoEnd: () {
+          print('Video ended, advancing to next story');
+          _onVideoStoryCompleted();
+        },
+        onProgressUpdate: _onVideoProgressUpdate,
+        isActive: true, // Always active for videos
+      );
+    }
+
+    print('Building image story: ${currentStory.url}');
+    // Image story - use existing CachedNetworkImage logic
+    return CachedNetworkImage(
+      imageUrl: currentStory.url ?? "",
+      width: MediaQuery.sizeOf(context).width,
+      height: MediaQuery.sizeOf(context).height,
+      fit: BoxFit.cover,
+      imageBuilder: (context, image) {
+        return Container(
+          width: double.infinity,
+          height: double.infinity,
+          decoration: BoxDecoration(
+            image: DecorationImage(image: image, fit: BoxFit.fitWidth),
+          ),
+        );
+      },
+      progressIndicatorBuilder: (context, url, progress) {
+        return const Loading();
+      },
+      errorWidget: (context, url, error) {
+        return _buildErrorWidget();
+      },
+    );
+  }
+
+  bool _isValidStory(StoryModel story) {
+    return story.url != null && story.url!.isNotEmpty;
+  }
+
+  Widget _buildInvalidStoryWidget() {
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      decoration: BoxDecoration(
+        color: AppStyle.textGrey,
+        borderRadius: BorderRadius.all(
+          Radius.circular(16.r),
+        ),
+      ),
+      alignment: Alignment.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.broken_image,
+            color: AppStyle.white,
+            size: 32.r,
+          ),
+          8.verticalSpace,
+          Text(
+            'Invalid story content',
+            style: AppStyle.interNormal(color: AppStyle.white),
+          ),
+          8.verticalSpace,
+          GestureDetector(
+            onTap: () {
+              // Skip to next story
+              _skipToNextStory();
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+              decoration: BoxDecoration(
+                color: AppStyle.primary,
+                borderRadius: BorderRadius.circular(20.r),
+              ),
+              child: Text(
+                'Skip',
+                style: AppStyle.interNormal(
+                  color: AppStyle.white,
+                  size: 14.sp,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildErrorWidget() {
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      decoration: BoxDecoration(
+        color: AppStyle.textGrey,
+        borderRadius: BorderRadius.all(
+          Radius.circular(16.r),
+        ),
+      ),
+      alignment: Alignment.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            FlutterRemix.image_line,
+            color: AppStyle.white,
+            size: 32.r,
+          ),
+          8.verticalSpace,
+          Text(
+            AppHelpers.getTranslation(TrKeys.notFound),
+            style: AppStyle.interNormal(color: AppStyle.white),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _buildProgressBars() {
+    return Positioned(
+      top: 0,
+      left: 0,
+      right: 0,
       child: SafeArea(
         child: Container(
           height: 4.h,
@@ -187,34 +518,62 @@ class _StoryPageState extends State<StoryPage> with TickerProviderStateMixin {
           margin: EdgeInsets.only(left: 20.w, top: 10.h),
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: count,
+              itemCount: widget.story?.length ?? 0,
               itemBuilder: (context, index) {
+                final story = widget.story?[index];
+                final isVideo = story?.fileType == 'video';
+                final isCurrentStory = currentIndex == index;
+                final isCompleted = currentIndex > index;
+                final isFromSameShop = _isFromSameShop(index);
+                
                 return AnimatedContainer(
                   margin: EdgeInsets.only(right: 8.w),
                   height: 4.h,
                   width: (MediaQuery.sizeOf(context).width -
-                          (36.w + ((count == 1 ? count : (count - 1)) * 8.w))) /
-                      count,
+                          (36.w +
+                              ((widget.story!.length == 1
+                                      ? widget.story!.length
+                                      : (widget.story!.length -
+                                          1)) *
+                                  8.w))) /
+                      widget.story!.length,
                   decoration: BoxDecoration(
-                    color: currentIndex >= index ? AppStyle.primary : AppStyle.white,
-                    borderRadius: BorderRadius.all(Radius.circular(122.r)),
+                    color: currentIndex >= index
+                        ? (isFromSameShop ? AppStyle.primary : AppStyle.primary.withOpacity(0.7))
+                        : AppStyle.white,
+                    borderRadius:
+                        BorderRadius.all(Radius.circular(122.r)),
+                    border: !isFromSameShop && index > 0
+                        ? Border(
+                            left: BorderSide(
+                              color: AppStyle.white,
+                              width: 2.w,
+                            ),
+                          )
+                        : null,
                   ),
                   duration: const Duration(milliseconds: 500),
-                  child: currentIndex == index
+                  child: isCurrentStory
                       ? ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(122.r)),
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(122.r)),
                           child: LinearProgressIndicator(
-                            value: controller.value,
-                            valueColor: const AlwaysStoppedAnimation<Color>(AppStyle.primary),
+                            value: isVideo ? videoProgress : controller.value,
+                            valueColor:
+                                const AlwaysStoppedAnimation<Color>(
+                                    AppStyle.primary),
                             backgroundColor: AppStyle.white,
                           ),
                         )
-                      : currentIndex > index
+                      : isCompleted
                           ? ClipRRect(
-                              borderRadius: BorderRadius.all(Radius.circular(122.r)),
+                              borderRadius: BorderRadius.all(
+                                  Radius.circular(122.r)),
                               child: const LinearProgressIndicator(
                                 value: 1,
-                                valueColor: AlwaysStoppedAnimation<Color>(AppStyle.primary),
+                                valueColor:
+                                    AlwaysStoppedAnimation<Color>(
+                                        AppStyle.primary),
                                 backgroundColor: AppStyle.white,
                               ),
                             )
@@ -226,330 +585,159 @@ class _StoryPageState extends State<StoryPage> with TickerProviderStateMixin {
     );
   }
 
-  // HTML for video player with JS bridge
-  String _videoHtml(String src) {
-    // small JS bridge: sends 'duration:xxx', 'time:yyy', 'ended'
-    final escaped = src.replaceAll("'", "\\'");
-    return '''
-      <html>
-      <head>
-        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-        <style> html,body{margin:0;padding:0;background:black;height:100%;} video{display:block;width:100%;height:100%;object-fit:cover;} </style>
-      </head>
-      <body>
-        <video id="storyVideo" autoplay playsinline muted webkit-playsinline>
-          <source src="$escaped" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <script>
-          var video = document.getElementById('storyVideo');
-          video.onended = function() { VideoChannel.postMessage('ended'); };
-          video.onloadedmetadata = function() { VideoChannel.postMessage('duration:' + video.duration); };
-          video.ontimeupdate = function() { VideoChannel.postMessage('time:' + video.currentTime); };
-          // try autoplay on user gesture if needed
-          document.addEventListener('visibilitychange', function() {
-            if (!document.hidden) { video.play().catch(()=>{}); }
-          });
-        </script>
-      </body>
-      </html>
-    ''';
-  }
-
-  // Create and return a WebViewController configured with JS channel
-  WebViewController _createControllerForVideo(String html, void Function(String) onMessage) {
-    late final PlatformWebViewControllerCreationParams params;
-    if (WebViewPlatform.instance is WebKitWebViewPlatform) {
-      params = WebKitWebViewControllerCreationParams();
-    } else {
-      params = AndroidWebViewControllerCreationParams();
-    }
-
-    final controller = WebViewController.fromPlatformCreationParams(params)
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..addJavaScriptChannel('VideoChannel', onMessageReceived: (message) {
-        onMessage(message.message);
-      })
-      ..setBackgroundColor(const Color(0x00000000))
-      ..loadHtmlString(html);
-
-    // Android-specific settings (if platform supports)
-    if (controller.platform is AndroidWebViewController) {
-      try {
-        (controller.platform as AndroidWebViewController).setMediaPlaybackRequiresUserGesture(false);
-      } catch (_) {}
-    }
-
-    return controller;
-  }
-
-  // Handle messages from WebView video JS
-  void _handleVideoMessage(String message) {
-    try {
-      if (message == 'ended') {
-        // same behavior as controller completion
-        if (currentIndex == widget.story!.length - 1) {
-          widget.nextPage();
-        } else {
-          _updateCurrentIndex(currentIndex + 1);
-        }
-        return;
-      }
-
-      if (message.startsWith('duration:')) {
-        final parts = message.split(':');
-        if (parts.length >= 2) {
-          final d = double.tryParse(parts[1]) ?? 7.0;
-          controller.duration = Duration(milliseconds: (d * 1000).round());
-          controller.reset();
-          controller.forward();
-          setState(() {});
-        }
-        return;
-      }
-
-      if (message.startsWith('time:')) {
-        final parts = message.split(':');
-        if (parts.length >= 2) {
-          final t = double.tryParse(parts[1]) ?? 0.0;
-          final durMs = controller.duration?.inMilliseconds ?? 7000;
-          if (durMs > 0) {
-            final v = (t * 1000) / durMs;
-            controller.value = v.clamp(0.0, 1.0);
-            // controller listener will call setState
-          }
-        }
-        return;
-      }
-    } catch (e) {
-      // ignore parsing errors
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final currentUrl = widget.story?[currentIndex]?.url ?? "";
-    final isVideoFile = isVideo(currentUrl);
-
-    // If it's a video and we don't have a controller for this URL (or URL changed), create one
-    if (isVideoFile && (_webViewController == null || _lastLoadedVideoUrl != currentUrl)) {
-      final html = _videoHtml(currentUrl);
-      _webViewController = _createControllerForVideo(html, _handleVideoMessage);
-      _videoWebKey = UniqueKey();
-      _lastLoadedVideoUrl = currentUrl;
-    }
-
-    return Stack(
-      children: [
-        // Video branch
-        if (isVideoFile && _webViewController != null)
-          SizedBox(
-            width: MediaQuery.sizeOf(context).width,
-            height: MediaQuery.sizeOf(context).height,
-            child: WebViewWidget(
-              key: _videoWebKey,
-              controller: _webViewController!,
+  Widget _buildNavigationControls() {
+    return Positioned.fill(
+      child: Row(
+        children: [
+          GestureDetector(
+            onLongPressStart: (s) {
+              if (widget.story?[currentIndex]?.fileType != 'video') {
+                controller.stop();
+              }
+            },
+            onLongPressEnd: (s) {
+              if (widget.story?[currentIndex]?.fileType != 'video') {
+                controller.forward();
+              }
+            },
+            onTap: () {
+              _goToPreviousStory();
+            },
+            child: Container(
+              width: MediaQuery.sizeOf(context).width / 2,
+              height: MediaQuery.sizeOf(context).height,
+              color: AppStyle.transparent,
             ),
-          )
-        else
-          // Image branch (keeps original CachedNetworkImage usage and imageBuilder)
-          CachedNetworkImage(
-            imageUrl: currentUrl,
-            width: MediaQuery.sizeOf(context).width,
-            height: MediaQuery.sizeOf(context).height,
-            fit: BoxFit.cover,
-            imageBuilder: (context, image) {
-              return Stack(
-                key: imageKey,
-                children: [
-                  Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(image: image, fit: BoxFit.fitWidth),
-                    ),
-                  ),
-                  // Top progress bars (same structure as original)
-                  buildTopProgressBars(),
-                ],
-              );
-            },
-            progressIndicatorBuilder: (context, url, progress) {
-              return const Loading();
-            },
-            errorWidget: (context, url, error) {
-              return Stack(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: AppStyle.textGrey,
-                      borderRadius: BorderRadius.all(Radius.circular(16.r)),
-                    ),
-                    alignment: Alignment.center,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          FlutterRemix.image_line,
-                          color: AppStyle.white,
-                          size: 32.r,
-                        ),
-                        8.verticalSpace,
-                        Text(
-                          AppHelpers.getTranslation(TrKeys.notFound),
-                          style: AppStyle.interNormal(color: AppStyle.white),
-                        )
-                      ],
-                    ),
-                  ),
-                  // keep top progress bars even on error (matches original)
-                  buildTopProgressBars(),
-                ],
-              );
-            },
           ),
-
-        // Gesture areas (prev / next) - same as original but use runJavaScript now
-        Row(
-          children: [
-            GestureDetector(
-              onLongPressStart: (s) {
+          GestureDetector(
+            onLongPressStart: (s) {
+              if (widget.story?[currentIndex]?.fileType != 'video') {
                 controller.stop();
-                // try to pause video via JS
-                if (isVideoFile && _webViewController != null) {
-                  try {
-                    _webViewController!.runJavaScript('document.getElementById("storyVideo")?.pause();');
-                  } catch (_) {}
-                }
-              },
-              onLongPressEnd: (s) {
+              }
+            },
+            onLongPressEnd: (s) {
+              if (widget.story?[currentIndex]?.fileType != 'video') {
                 controller.forward();
-                if (isVideoFile && _webViewController != null) {
-                  try {
-                    _webViewController!.runJavaScript('document.getElementById("storyVideo")?.play();');
-                  } catch (_) {}
-                }
-              },
-              onTap: () {
-                if (currentIndex != 0) {
-                  _updateCurrentIndex(currentIndex - 1);
-                } else {
-                  widget.prevPage();
-                }
-              },
-              child: Container(
-                width: MediaQuery.sizeOf(context).width / 2,
-                height: MediaQuery.sizeOf(context).height,
-                color: AppStyle.transparent,
-              ),
+              }
+            },
+            onTap: () {
+              _skipToNextStory();
+            },
+            child: Container(
+              width: MediaQuery.sizeOf(context).width / 2,
+              height: MediaQuery.sizeOf(context).height,
+              color: AppStyle.transparent,
             ),
-            GestureDetector(
-              onLongPressStart: (s) {
-                controller.stop();
-                if (isVideoFile && _webViewController != null) {
-                  try {
-                    _webViewController!.runJavaScript('document.getElementById("storyVideo")?.pause();');
-                  } catch (_) {}
-                }
-              },
-              onLongPressEnd: (s) {
-                controller.forward();
-                if (isVideoFile && _webViewController != null) {
-                  try {
-                    _webViewController!.runJavaScript('document.getElementById("storyVideo")?.play();');
-                  } catch (_) {}
-                }
-              },
-              onTap: () {
-                if (currentIndex != widget.story!.length - 1) {
-                  _updateCurrentIndex(currentIndex + 1);
-                } else {
-                  widget.nextPage();
-                }
-              },
-              child: Container(
-                width: MediaQuery.sizeOf(context).width / 2,
-                height: MediaQuery.sizeOf(context).height,
-                color: AppStyle.transparent,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
+      ),
+    );
+  }
 
-        // Top-left row (avatar, title, time) - kept same as original
-        Align(
-          alignment: Alignment.topLeft,
-          child: SafeArea(
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 16.w),
-              child: Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      context.pushRoute(ShopRoute(shopId: (widget.story?.first?.shopId ?? 0).toString()));
-                    },
-                    child: Row(
-                      children: [
-                        6.horizontalSpace,
-                        ShopAvatar(
-                          shopImage: widget.story?.first?.logoImg ?? "",
-                          size: 46.r,
-                          padding: 5.r,
-                          bgColor: AppStyle.tabBarBorderColor.withOpacity(0.6),
-                        ),
-                        6.horizontalSpace,
-                        Text(
-                          widget.story?.first?.title ?? "",
-                          style: AppStyle.interNormal(size: 14.sp, color: AppStyle.white),
-                        ),
-                        6.horizontalSpace,
-                        Text(
-                          Jiffy.parseFromDateTime(widget.story?[currentIndex]?.createdAt ?? DateTime.now()).fromNow(),
-                          style: AppStyle.interNormal(size: 10.sp, color: AppStyle.white),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Spacer(),
-                  GestureDetector(
-                    onTap: () {
-                      context.maybePop();
-                    },
-                    child: Container(
-                      color: AppStyle.transparent,
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 8.r, bottom: 8.r, left: 8.r, right: 4.r),
-                        child: const Icon(
-                          Icons.close,
-                          color: AppStyle.white,
+  Widget _buildHeader() {
+    final currentStory = widget.story?[currentIndex];
+    final shopTitle = currentStory?.title ?? widget.story?.first?.title ?? "";
+    final shopLogo = currentStory?.logoImg ?? widget.story?.first?.logoImg ?? "";
+    final shopId = currentStory?.shopId ?? widget.story?.first?.shopId ?? 0;
+    
+    return Positioned(
+      top: 0,
+      left: 0,
+      right: 0,
+      child: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 16.w),
+          child: Row(
+            children: [
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    context.pushRoute(ShopRoute(
+                        shopId: shopId.toString()));
+                  },
+                  child: Row(
+                    children: [
+                      6.horizontalSpace,
+                      ShopAvatar(
+                        shopImage: shopLogo,
+                        size: 46.r,
+                        padding: 5.r,
+                        bgColor: AppStyle.tabBarBorderColor.withOpacity(0.6),
+                      ),
+                      6.horizontalSpace,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              shopTitle,
+                              style: AppStyle.interNormal(
+                                  size: 14.sp, color: AppStyle.white),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            if (widget.story != null && widget.story!.length > 1)
+                              Text(
+                                '${currentIndex + 1}/${widget.story!.length}',
+                                style: AppStyle.interNormal(
+                                    size: 10.sp, color: AppStyle.white.withOpacity(0.8)),
+                              ),
+                          ],
                         ),
                       ),
+                      6.horizontalSpace,
+                      Text(
+                        Jiffy.parseFromDateTime(currentStory?.createdAt ?? DateTime.now()).fromNow(),
+                        style: AppStyle.interNormal(
+                            size: 10.sp, color: AppStyle.white),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  context.maybePop();
+                },
+                child: Container(
+                  color: AppStyle.transparent,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        top: 8.r, bottom: 8.r, left: 8.r, right: 4.r),
+                    child: const Icon(
+                      Icons.close,
+                      color: AppStyle.white,
                     ),
                   ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
         ),
+      ),
+    );
+  }
 
-        // Order button (keeps original style)
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: SafeArea(
-            child: Padding(
-              padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 32.h),
-              child: CustomButton(
-                title: AppHelpers.getTranslation(TrKeys.order),
-                onPressed: () {
-                  context.pushRoute(ShopRoute(
-                      shopId: (widget.story?[currentIndex]?.shopId ?? 0).toString(),
-                      productId: widget.story?[currentIndex]?.productUuid ?? ""));
-                },
-              ),
-            ),
+  Widget _buildOrderButton() {
+    return Positioned(
+      bottom: 0,
+      left: 0,
+      right: 0,
+      child: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.only(left: 24.w,right: 24.w,bottom: 32.h),
+          child: CustomButton(
+            title: AppHelpers.getTranslation(TrKeys.order),
+            onPressed: () {
+              context.pushRoute(ShopRoute(
+                  shopId:
+                      (widget.story?[currentIndex]?.shopId ?? 0).toString(),
+                  productId:
+                      widget.story?[currentIndex]?.productUuid ?? ""));
+            },
           ),
         ),
-      ],
+      ),
     );
   }
 }

@@ -2,10 +2,11 @@ import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_remix/flutter_remix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:foodyman/infrastructure/models/data/story_data.dart';
-import 'package:foodyman/presentation/components/custom_network_image.dart';
+import 'package:foodyman/presentation/components/story_thumbnail.dart';
 import 'package:foodyman/presentation/components/shop_avarat.dart';
 import 'package:foodyman/presentation/routes/app_router.dart';
 import 'package:foodyman/presentation/theme/theme.dart';
@@ -37,8 +38,8 @@ class ShopBarItem extends StatelessWidget {
             SizedBox(
               height: 164.h,
               width: 110.w,
-              child: CustomNetworkImage(
-                url: story?.url ?? "",
+              child: StoryThumbnail(
+                story: story,
                 height: 164.h,
                 width: 110.w,
                 radius: 24.r,
