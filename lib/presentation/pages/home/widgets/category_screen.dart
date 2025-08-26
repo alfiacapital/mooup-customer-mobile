@@ -27,9 +27,9 @@ class CategoryScreen extends StatelessWidget {
     return state.isCategoryLoading
         ? const CategoryShimmer()
         : Container(
-            height: state.categories.isNotEmpty ? 90.h : 0,
+            height: state.categories.isNotEmpty ? 130.h : 0,
             margin:
-                EdgeInsets.only(bottom: state.categories.isNotEmpty ? 26.h : 0),
+                EdgeInsets.only(bottom: state.categories.isNotEmpty ? 10.h : 0),
             child: SmartRefresher(
               scrollDirection: Axis.horizontal,
               enablePullDown: false,
@@ -52,17 +52,23 @@ class CategoryScreen extends StatelessWidget {
                       child: SlideAnimation(
                         verticalOffset: 50.0,
                         child: FadeInAnimation(
-                          child:  CategoryBarItem(
-                            index: index,
-                            image: state.categories[index].img ?? "",
-                            title: state.categories[index].translation?.title ?? "",
-                            isActive: state.selectIndexCategory == index,
-                            onTap: () {
-                              event.setSelectCategory(index, context);
-                              restaurantController.resetNoData();
-                            },
-                          )),
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              left: index == 0 ? 0 : 12.r,
+                            ),
+                            child: CategoryBarItem(
+                              index: index,
+                              image: state.categories[index].img ?? "",
+                              title: state.categories[index].translation?.title ?? "",
+                              isActive: state.selectIndexCategory == index,
+                              onTap: () {
+                                event.setSelectCategory(index, context);
+                                restaurantController.resetNoData();
+                              },
+                            ),
+                          ),
                         ),
+                      ),
                     );
                   },
                 ),

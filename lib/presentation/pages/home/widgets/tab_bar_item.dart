@@ -22,11 +22,11 @@ class CategoryBarItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: 100.r,
-        height: 100.r,
+        height: 120.r,
         padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: isActive ? AppStyle.primary : AppStyle.white),
+        // decoration: BoxDecoration(
+        //     shape: BoxShape.circle,
+        //     color: isActive ? AppStyle.primary : AppStyle.white),
         child: InkWell(
           onTap: onTap,
           child: Column(
@@ -35,22 +35,29 @@ class CategoryBarItem extends StatelessWidget {
               CustomNetworkImage(
                 fit: BoxFit.contain,
                 url: image,
-                height: 48.r,
-                width: 48.r,
+                height: 90.r,
+                width: 90.r,
                 radius: 0,
               ),
-              4.verticalSpace,
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 6.r),
-                child: Text(
-                  title,
-                  style: AppStyle.interNormal(
-                    size: 12,
-                    color: AppStyle.black,
+              6.verticalSpace,
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 6.r),
+                  child: Text(
+                    title.isNotEmpty ? title : "No Title",
+                    style: isActive 
+                      ? AppStyle.interNoSemi(
+                          size: 12,
+                          color: AppStyle.primary,
+                        )
+                      : AppStyle.interNormal(
+                          size: 12,
+                          color: AppStyle.black,
+                        ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
                   ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.center,
                 ),
               ),
             ],
