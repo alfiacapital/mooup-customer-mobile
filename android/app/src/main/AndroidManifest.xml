@@ -63,13 +63,20 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
 
+            <!-- App Links for open.mooup.ma domain -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="open.mooup.ma" />
+            </intent-filter>
+            
+            <!-- App Links for mooup.ma domain -->
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https" android:host="mooup.ma" />
-                <data android:scheme="https" android:host="open.mooup.ma" />
-                <!-- Don't specify a specific path to prevent route resolution errors -->
             </intent-filter>
 
             <!-- Optional: narrow matching to only restaurant paths if you prefer -->

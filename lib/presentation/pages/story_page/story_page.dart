@@ -64,7 +64,9 @@ class _StoryListPageState extends State<StoryListPage> {
                 pageController!.animateToPage(++index,
                     duration: const Duration(milliseconds: 500),
                     curve: Curves.easeIn);
-                setState(() {});
+                if (mounted) {
+                  setState(() {});
+                }
               } else {
                 context.maybePop();
               }
@@ -74,7 +76,9 @@ class _StoryListPageState extends State<StoryListPage> {
                 pageController!.animateToPage(--index,
                     duration: const Duration(milliseconds: 500),
                     curve: Curves.easeIn);
-                setState(() {});
+                if (mounted) {
+                  setState(() {});
+                }
               } else {
                 context.maybePop();
               }
@@ -107,6 +111,7 @@ class _StoryPageState extends State<StoryPage> with TickerProviderStateMixin {
   GlobalKey imageKey = GlobalKey();
   int currentIndex = 0;
   double videoProgress = 0.0;
+  bool _forceVideoPause = false;
 
   @override
   void initState() {
@@ -117,7 +122,9 @@ class _StoryPageState extends State<StoryPage> with TickerProviderStateMixin {
         if (controller.status == AnimationStatus.completed) {
           _advanceToNextStory();
         }
-        setState(() {});
+        if (mounted) {
+          setState(() {});
+        }
       });
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _startStoryTimer();
@@ -150,17 +157,22 @@ class _StoryPageState extends State<StoryPage> with TickerProviderStateMixin {
       currentIndex++;
       controller.reset();
       _startStoryTimer();
-      setState(() {});
+      if (mounted) {
+        setState(() {});
+      }
     }
   }
 
   void _resetAndStartTimer() {
+    if (!mounted) return;
+    
     final currentStory = widget.story?[currentIndex];
     if (currentStory?.fileType == 'video') {
       // For videos, reset timer but don't start it
       print('Video story - resetting timer but not starting');
       setState(() {
         videoProgress = 0.0; // Reset video progress
+        _forceVideoPause = false; // Reset force pause flag
       });
       controller.reset();
       return;
@@ -169,14 +181,24 @@ class _StoryPageState extends State<StoryPage> with TickerProviderStateMixin {
     print('Image story - resetting and starting timer');
     setState(() {
       videoProgress = 0.0; // Reset video progress
+      _forceVideoPause = false; // Reset force pause flag
     });
     controller.reset();
     _startStoryTimer();
   }
 
   void _onStoryChanged() {
+    if (!mounted) return;
+    
     // Reset timer when story changes
     _resetAndStartTimer();
+    
+    // Reset force pause flag when story changes
+    if (mounted) {
+      setState(() {
+        _forceVideoPause = false;
+      });
+    }
   }
 
   bool _canGoToNextStory() {
@@ -230,7 +252,9 @@ class _StoryPageState extends State<StoryPage> with TickerProviderStateMixin {
         _showShopTransitionIndicator(nextStory?.title ?? "");
       }
       
-      setState(() {});
+      if (mounted) {
+        setState(() {});
+      }
     } else {
       widget.nextPage();
     }
@@ -250,7 +274,9 @@ class _StoryPageState extends State<StoryPage> with TickerProviderStateMixin {
         _showShopTransitionIndicator(prevStory?.title ?? "");
       }
       
-      setState(() {});
+      if (mounted) {
+        setState(() {});
+      }
     } else {
       widget.prevPage();
     }
@@ -274,6 +300,8 @@ class _StoryPageState extends State<StoryPage> with TickerProviderStateMixin {
 
   @override
   void dispose() {
+    // Stop all playback and clean up resources
+    _stopStoryPlayback();
     controller.dispose();
     super.dispose();
   }
@@ -300,12 +328,15 @@ class _StoryPageState extends State<StoryPage> with TickerProviderStateMixin {
 
 
   void _onVideoProgressUpdate(double progress) {
+    if (!mounted) return;
     setState(() {
       videoProgress = progress;
     });
   }
 
   void _onVideoStoryCompleted() {
+    if (!mounted) return;
+    
     print('Video story completed, advancing to next story');
     setState(() {
       videoProgress = 0.0; // Reset video progress
@@ -317,7 +348,9 @@ class _StoryPageState extends State<StoryPage> with TickerProviderStateMixin {
       // Go to next story
       currentIndex++;
       _resetAndStartTimer();
-      setState(() {});
+      if (mounted) {
+        setState(() {});
+      }
     }
   }
 
@@ -393,7 +426,7 @@ class _StoryPageState extends State<StoryPage> with TickerProviderStateMixin {
           _onVideoStoryCompleted();
         },
         onProgressUpdate: _onVideoProgressUpdate,
-        isActive: true, // Always active for videos
+        isActive: !_forceVideoPause, // Pause video if force pause is set
       );
     }
 
@@ -652,8 +685,21 @@ class _StoryPageState extends State<StoryPage> with TickerProviderStateMixin {
               Expanded(
                 child: GestureDetector(
                   onTap: () {
+                    // Stop story playback before navigation
+                    _stopStoryPlayback();
+                    
+                    // Get the shop info before closing
+                    final shopIdString = shopId.toString();
+                    
+                    // Navigate directly without popping first
+                    // This prevents the disposal error
                     context.pushRoute(ShopRoute(
-                        shopId: shopId.toString()));
+                        shopId: shopIdString)).then((_) {
+                      // Only pop the story page after returning from shop
+                      if (mounted) {
+                        Navigator.of(context).pop();
+                      }
+                    });
                   },
                   child: Row(
                     children: [
@@ -729,15 +775,69 @@ class _StoryPageState extends State<StoryPage> with TickerProviderStateMixin {
           child: CustomButton(
             title: AppHelpers.getTranslation(TrKeys.order),
             onPressed: () {
+              // Stop all story playback before navigation
+              _stopStoryPlayback();
+              
+              // Get the shop and product info before closing
+              final shopId = (widget.story?[currentIndex]?.shopId ?? 0).toString();
+              final productId = widget.story?[currentIndex]?.productUuid ?? "";
+              
+              // Navigate directly without popping first
+              // This prevents the disposal error
               context.pushRoute(ShopRoute(
-                  shopId:
-                      (widget.story?[currentIndex]?.shopId ?? 0).toString(),
-                  productId:
-                      widget.story?[currentIndex]?.productUuid ?? ""));
+                  shopId: shopId,
+                  productId: productId)).then((_) {
+                // Only pop the story page after returning from shop
+                if (mounted) {
+                  Navigator.of(context).pop();
+                }
+              });
             },
           ),
         ),
       ),
     );
+  }
+
+  // Stop all story playback (video, audio, timers)
+  void _stopStoryPlayback() {
+    // Check if widget is still mounted before calling setState
+    if (!mounted) return;
+    
+    // Stop the story timer
+    controller.stop();
+    
+    // Reset video progress
+    setState(() {
+      videoProgress = 0.0;
+    });
+    
+    // Pause video if it's currently playing
+    _pauseCurrentVideo();
+    
+    // Cancel any ongoing operations
+    // This ensures all story-related activities are stopped
+    
+    print('Story playback stopped - navigating to shop');
+  }
+
+  // Pause the current video story if it's playing
+  void _pauseCurrentVideo() {
+    // Check if widget is still mounted before calling setState
+    if (!mounted) return;
+    
+    final currentStory = widget.story?[currentIndex];
+    if (currentStory?.fileType == 'video') {
+      // For video stories, we need to pause the video immediately
+      // The VideoStoryWidget will be disposed when the story page is closed
+      // but we can add a flag to pause it immediately
+      setState(() {
+        // Force stop any video playback by setting a flag
+        // This will be used by the VideoStoryWidget to pause immediately
+        _forceVideoPause = true;
+      });
+      
+      print('Video story paused');
+    }
   }
 }
