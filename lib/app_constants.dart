@@ -10,7 +10,7 @@ abstract class AppConstants {
   static const String drawingBaseUrl = 'https://api.openrouteservice.org';
   static const String googleApiKey = 'AIzaSyAHRmgmpeKUnf-D-zZng2ePF6ltAe761IQ';
   static const String adminPageUrl = 'https://dash.mooup.ma';
-  static const String webUrl = 'https://mooup.ma';
+  static const String webUrl = 'https://app.mooup.ma';
   static const String firebaseWebKey = '';
   static const String uriPrefix = 'https://mooup.ma';
   static const String routingKey =

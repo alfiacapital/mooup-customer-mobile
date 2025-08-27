@@ -209,7 +209,18 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
                                 ),
                               ),
                               GestureDetector(
-                                onTap: () => event.shareProduct(),
+                                onTap: () {
+                                  final shopData = ref.watch(shopProvider).shopData;
+                                  if (shopData?.type != null && shopData?.id != null) {
+                                    event.shareProduct(
+                                      shopType: shopData!.type,
+                                      shopId: shopData.id,
+                                    );
+                                  } else {
+                                    // Fallback: share without shop data
+                                    event.shareProduct();
+                                  }
+                                },
                                 child: Container(
                                   width: 40.w,
                                   height: 40.w,

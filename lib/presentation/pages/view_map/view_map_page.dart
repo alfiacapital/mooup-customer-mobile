@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_interpolation_to_compose_strings, use_build_context_synchronously
+import 'dart:ui';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_remix/flutter_remix.dart';
@@ -293,15 +294,171 @@ class _ViewMapPageState extends ConsumerState<ViewMapPage> {
                   ),
                 ),
                 AnimatedPositioned(
-                  top: MediaQuery.paddingOf(context).top + 24,
+                  top: MediaQuery.paddingOf(context).top + 10,
                   left: 24,
                   right: 24,
                   duration: const Duration(milliseconds: 500),
-                  child: Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: isDarkMode ? AppStyle.mainBackDark : AppStyle.white,
+                      borderRadius: BorderRadius.circular(50.r),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 10,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: InkWell(
+                      onTap: () async {
+                        // Open the delivery address modal directly
+                        if (!state.isScrolling) {
+                          // First, automatically open the search modal
+                          final placeId = await context.pushRoute(const MapSearchRoute());
+                          
+                          if (placeId != null) {
+                            // If user selected a location from search, update the map
+                            final res = await googlePlace.details.get(placeId.toString());
+                            try {
+                              final List<Placemark> placemarks = await placemarkFromCoordinates(
+                                res?.result?.geometry?.location?.lat ?? latLng.latitude,
+                                res?.result?.geometry?.location?.lng ?? latLng.longitude,
+                              );
+
+                              if (placemarks.isNotEmpty) {
+                                final Placemark pos = placemarks[0];
+                                final List<String> addressData = [];
+                                addressData.add(pos.locality!);
+                                if (pos.subLocality != null && pos.subLocality!.isNotEmpty) {
+                                  addressData.add(pos.subLocality!);
+                                }
+                                if (pos.thoroughfare != null && pos.thoroughfare!.isNotEmpty) {
+                                  addressData.add(pos.thoroughfare!);
+                                }
+                                addressData.add(pos.name!);
+                                final String placeName = addressData.join(', ');
+                                controller.text = placeName;
+                              }
+                            } catch (e) {
+                              controller.text = '';
+                            }
+
+                            // Update map position to searched location
+                            if (res?.result?.geometry?.location != null) {
+                                                             final newLatLng = LatLng(
+                                 res!.result!.geometry!.location!.lat ?? 0.0,
+                                 res.result!.geometry!.location!.lng ?? 0.0,
+                               );
+                              latLng = newLatLng;
+                              googleMapController?.animateCamera(
+                                CameraUpdate.newLatLngZoom(newLatLng, 17),
+                              );
+                              
+                              // Update the place data
+                              event.changePlace(
+                                AddressNewModel(
+                                  address: AddressInformation(address: controller.text),
+                                  location: [newLatLng.latitude, newLatLng.longitude],
+                                ),
+                              );
+                            }
+                          }
+                          
+                          // Then open the delivery address modal for additional details
+                          if (context.mounted) {
+                            AppHelpers.showCustomModalBottomSheet(
+                              paddingTop: -50,
+                              context: context,
+                              modal: ViewMapModal(
+                                controller: controller,
+                                address: widget.address,
+                                latLng: latLng,
+                                isShopLocation: widget.isShopLocation,
+                                onSearch: () async {
+                                  final placeId = await context.pushRoute(const MapSearchRoute());
+                                  if (placeId != null) {
+                                    final res = await googlePlace.details.get(placeId.toString());
+                                    try {
+                                      final List<Placemark> placemarks = await placemarkFromCoordinates(
+                                        res?.result?.geometry?.location?.lat ?? latLng.latitude,
+                                        res?.result?.geometry?.location?.lng ?? latLng.longitude,
+                                      );
+
+                                      if (placemarks.isNotEmpty) {
+                                        final Placemark pos = placemarks[0];
+                                        final List<String> addressData = [];
+                                        addressData.add(pos.locality!);
+                                        if (pos.subLocality != null && pos.subLocality!.isNotEmpty) {
+                                          addressData.add(pos.subLocality!);
+                                        }
+                                        if (pos.thoroughfare != null && pos.thoroughfare!.isNotEmpty) {
+                                          addressData.add(pos.thoroughfare!);
+                                        }
+                                        addressData.add(pos.name!);
+                                        final String placeName = addressData.join(', ');
+                                        controller.text = placeName;
+                                      }
+                                    } catch (e) {
+                                      controller.text = '';
+                                    }
+
+                                    googleMapController!.animateCamera(
+                                        CameraUpdate.newLatLngZoom(
+                                            LatLng(
+                                                res?.result?.geometry?.location?.lat ?? latLng.latitude,
+                                                res?.result?.geometry?.location?.lng ?? latLng.longitude),
+                                            15));
+                                    event.changePlace(
+                                      AddressNewModel(
+                                        address: AddressInformation(address: controller.text),
+                                        location: [
+                                          cameraPosition?.target.latitude ?? latLng.latitude,
+                                          cameraPosition?.target.longitude ?? latLng.longitude
+                                        ],
+                                      ),
+                                    );
+                                  }
+                                },
+                              ),
+                              isDarkMode: isDarkMode);
+                          }
+                        }
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.search,
+                              color: AppStyle.textGrey,
+                              size: 25.r,
+                            ),
+                            12.horizontalSpace,
+                            Expanded(
                     child: Text(
-                      controller.text,
-                      style: AppStyle.interNormal(size: 16),
-                      textAlign: TextAlign.center,
+                                controller.text.isEmpty 
+                                    ? AppHelpers.getTranslation(TrKeys.search)
+                                    : controller.text,
+                                style: AppStyle.interNormal(
+                                  size: 16,
+                                  color: controller.text.isEmpty 
+                                      ? AppStyle.textGrey 
+                                      : (isDarkMode ? AppStyle.white : AppStyle.black),
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            if (controller.text.isNotEmpty)
+                              Icon(
+                                Icons.keyboard_arrow_down,
+                                color: AppStyle.textGrey,
+                                size: 20.r,
+                              ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -380,20 +537,17 @@ class _ViewMapPageState extends ConsumerState<ViewMapPage> {
                         child: Opacity(
                           opacity: state.isScrolling ? 0.5 : 1,
                           child: CustomButton(
-                            isLoading:controller.text.isEmpty ,
+                            isLoading: controller.text.isEmpty,
                             title: AppHelpers.getTranslation(TrKeys.apply),
                             onPressed: () {
-
-                              if(widget.isParcel){
-                                Navigator.pop(context,AddressNewModel(
+                              if (widget.isParcel) {
+                                Navigator.pop(context, AddressNewModel(
                                   address: AddressInformation(
                                       address: controller.text),
                                   location: [
-                                    cameraPosition
-                                        ?.target.latitude ??
+                                    cameraPosition?.target.latitude ??
                                         latLng.latitude,
-                                    cameraPosition
-                                        ?.target.longitude ??
+                                    cameraPosition?.target.longitude ??
                                         latLng.longitude
                                   ],
                                 ));
@@ -451,16 +605,14 @@ class _ViewMapPageState extends ConsumerState<ViewMapPage> {
                                             controller.text = '';
                                           }
 
+                                        if (res?.result?.geometry?.location != null) {
                                           googleMapController!.animateCamera(
                                               CameraUpdate.newLatLngZoom(
                                                   LatLng(
-                                                      res?.result?.geometry
-                                                              ?.location?.lat ??
-                                                          latLng.latitude,
-                                                      res?.result?.geometry
-                                                              ?.location?.lng ??
-                                                          latLng.longitude),
+                                                      res!.result!.geometry!.location!.lat ?? latLng.latitude,
+                                                      res.result!.geometry!.location!.lng ?? latLng.longitude),
                                                   15));
+                                        }
                                           event.changePlace(
                                             AddressNewModel(
                                               address: AddressInformation(

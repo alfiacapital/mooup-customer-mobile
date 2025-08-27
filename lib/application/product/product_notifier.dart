@@ -375,46 +375,115 @@ class ProductNotifier extends StateNotifier<ProductState> {
     state = state.copyWith(activeImageUrl: url);
   }
 
-  generateShareLink(String? shopType, int? shopId) async {
-    final productLink =
-        '${AppConstants.webUrl}/shop/$shopId?product=${state.productData?.uuid}/';
-
-    const dynamicLink =
-        'https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=${AppConstants.firebaseWebKey}';
-
-    final dataShare = {
-      "dynamicLinkInfo": {
-        "domainUriPrefix": AppConstants.uriPrefix,
-        "link": productLink,
-        "androidInfo": {
-          "androidPackageName": AppConstants.androidPackageName,
-          "androidFallbackLink":
-              "${AppConstants.webUrl}/shop/$shopId?product=${state.productData?.uuid}"
-        },
-        "iosInfo": {
-          "iosBundleId": AppConstants.iosPackageName,
-          "iosFallbackLink":
-              "${AppConstants.webUrl}/shop/$shopId?product=${state.productData?.uuid}"
-        },
-        "socialMetaTagInfo": {
-          "socialTitle": "${state.productData?.translation?.title}",
-          "socialDescription": "${state.productData?.translation?.description}",
-          "socialImageLink": '${state.productData?.img}',
-        }
+  Future<void> generateShareLink(String? shopType, int? shopId) async {
+    try {
+      if (shopType == null || shopId == null || state.productData?.uuid == null) {
+        debugPrint("Missing required data for share link generation");
+        return;
       }
-    };
 
-    final res =
-        await http.post(Uri.parse(dynamicLink), body: jsonEncode(dataShare));
-    shareLink = jsonDecode(res.body)['shortLink'];
-    debugPrint("share link product_notifier: $shareLink \n$dataShare");
+      // Check if Firebase API key is available
+      if (AppConstants.firebaseWebKey.isEmpty) {
+        debugPrint("Firebase API key is not configured, skipping dynamic link generation");
+        return;
+      }
 
+      final productLink =
+          '${AppConstants.webUrl}/shop/$shopId?product=${state.productData?.uuid}/';
+
+      const dynamicLink =
+          'https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=${AppConstants.firebaseWebKey}';
+
+      final dataShare = {
+        "dynamicLinkInfo": {
+          "domainUriPrefix": AppConstants.uriPrefix,
+          "link": productLink,
+          "androidInfo": {
+            "androidPackageName": AppConstants.androidPackageName,
+            "androidFallbackLink":
+                "${AppConstants.webUrl}/shop/$shopId?product=${state.productData?.uuid}"
+          },
+          "iosInfo": {
+            "iosBundleId": AppConstants.iosPackageName,
+            "iosFallbackLink":
+                "${AppConstants.webUrl}/shop/$shopId?product=${state.productData?.uuid}"
+          },
+          "socialMetaTagInfo": {
+            "socialTitle": "${state.productData?.translation?.title}",
+            "socialDescription": "${state.productData?.translation?.description}",
+            "socialImageLink": '${state.productData?.img}',
+          }
+        }
+      };
+
+      final res = await http.post(
+        Uri.parse(dynamicLink), 
+        body: jsonEncode(dataShare),
+        headers: {'Content-Type': 'application/json'},
+      );
+
+      if (res.statusCode == 200) {
+        final responseBody = jsonDecode(res.body);
+        if (responseBody['shortLink'] != null) {
+          shareLink = responseBody['shortLink'];
+          debugPrint("share link product_notifier: $shareLink");
+        } else {
+          debugPrint("No shortLink in response: $responseBody");
+        }
+      } else {
+        debugPrint("Failed to generate share link. Status: ${res.statusCode}, Body: ${res.body}");
+      }
+    } catch (e) {
+      debugPrint("Error generating share link: $e");
+    }
   }
 
-  Future shareProduct() async {
-    await Share.share(shareLink ?? '',
-      subject: state.productData?.translation?.title ?? "Foodyman",
-      // title: state.productData?.translation?.description ?? "",
-    );
+  Future<void> shareProduct({String? shopType, int? shopId}) async {
+    debugPrint("shareProduct called with shopType: $shopType, shopId: $shopId");
+    
+    // Use provided shopType and shopId, or fall back to product state
+    final finalShopType = shopType ?? state.productData?.shop?.type;
+    final finalShopId = shopId ?? state.productData?.shopId;
+    
+    debugPrint("Final shop data - type: $finalShopType, id: $finalShopId");
+    debugPrint("Current shareLink: $shareLink");
+    
+    // Check if shareLink is empty or null, generate it if needed
+    if (shareLink == null || shareLink!.isEmpty) {
+      debugPrint("Share link is empty, attempting to generate new one");
+      if (finalShopType != null && finalShopId != null) {
+        await generateShareLink(finalShopType, finalShopId);
+        debugPrint("Generated share link: $shareLink");
+      } else {
+        debugPrint("Cannot generate share link - missing shop data");
+      }
+    }
+    
+    // Check again if we have a valid share link
+    if (shareLink != null && shareLink!.isNotEmpty) {
+      debugPrint("Sharing with dynamic link: $shareLink");
+      await Share.share(shareLink!,
+        subject: state.productData?.translation?.title ?? "Foodyman",
+        // title: state.productData?.translation?.description ?? "",
+      );
+    } else {
+      debugPrint("Using fallback sharing method");
+      // Fallback: share basic product info with direct link if dynamic link generation fails
+      final productTitle = state.productData?.translation?.title ?? "Product";
+      final productDescription = state.productData?.translation?.description ?? "";
+      
+      String fallbackText = "$productTitle\n\n$productDescription";
+      
+      // Add direct product link if we have shop info
+      if (finalShopId != null && state.productData?.uuid != null) {
+        final directLink = '${AppConstants.webUrl}/shop/$finalShopId?product=${state.productData?.uuid}';
+        fallbackText += "\n\nView product: $directLink";
+        debugPrint("Added direct link to fallback: $directLink");
+      }
+      
+      await Share.share(fallbackText,
+        subject: productTitle,
+      );
+    }
   }
 }
