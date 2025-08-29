@@ -690,42 +690,60 @@ class ShopOrderNotifier extends StateNotifier<ShopOrderState> {
   }
 
   generateShareLink(String shopName, String shopLogo, String? type) async {
-    final productLink =
-        "${AppConstants.webUrl}/group/${state.cart?.shopId}?g=${state.cart?.id}&o=${state.cart?.ownerId}&t=${type ?? 'shop'}";
-
-    const dynamicLink =
-        'https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=${AppConstants.firebaseWebKey}';
-
-    final dataShare = {
-      "dynamicLinkInfo": {
-        "domainUriPrefix": AppConstants.uriPrefix,
-        "link": productLink,
-        "androidInfo": {
-          "androidPackageName": AppConstants.androidPackageName,
-          "androidFallbackLink":
-              "${AppConstants.webUrl}/group/${state.cart?.shopId}?g=${state.cart?.id}&o=${state.cart?.ownerId}&t=${type ?? 'shop'}"
-        },
-        "iosInfo": {
-          "iosBundleId": AppConstants.iosPackageName,
-          "iosFallbackLink":
-              "${AppConstants.webUrl}/group/${state.cart?.shopId}?g=${state.cart?.id}&o=${state.cart?.ownerId}&t=${type ?? 'shop'}"
-        },
-        "socialMetaTagInfo": {
-          "socialTitle": AppHelpers.getTranslation(TrKeys.groupOrder),
-          "socialDescription": shopName,
-          "socialImageLink": shopLogo,
-        }
+    try {
+      if (state.cart?.shopId == null || state.cart?.id == null) {
+        debugPrint("Missing cart data for share link generation");
+        return;
       }
-    };
 
-    final res =
-        await http.post(Uri.parse(dynamicLink), body: jsonEncode(dataShare));
+      final productLink =
+          "${AppConstants.webUrl}/group/${state.cart?.shopId}?g=${state.cart?.id}&o=${state.cart?.ownerId}&t=${type ?? 'shop'}";
 
-    state = state.copyWith(shareLink: jsonDecode(res.body)['shortLink']);
+      // Create the custom deep link using your domain
+      final customDeepLink = '${AppConstants.uriPrefix}/group/${state.cart?.shopId}?g=${state.cart?.id}&o=${state.cart?.ownerId}&t=${type ?? 'shop'}';
+      
+      // For now, use the custom deep link directly since you're not using Firebase
+      // You can modify this to call your custom deep link service if needed
+      state = state.copyWith(shareLink: customDeepLink);
+      
+      debugPrint("Generated custom deep link: ${state.shareLink}");
+      debugPrint("Group order link: $productLink");
+      
+      // If you have a custom deep link service, you can uncomment and modify this:
+      /*
+      final res = await http.post(
+        Uri.parse('YOUR_CUSTOM_DEEP_LINK_SERVICE_URL'), 
+        body: jsonEncode({
+          "shopId": state.cart?.shopId,
+          "groupId": state.cart?.id,
+          "ownerId": state.cart?.ownerId,
+          "type": type ?? 'shop',
+          "shopName": shopName,
+          "shopLogo": shopLogo,
+        }),
+        headers: {'Content-Type': 'application/json'},
+      );
 
-    debugPrint("share link shop_order_notifier: ${state.shareLink}\n$dataShare");
-
-
-
+      if (res.statusCode == 200) {
+        final responseBody = jsonDecode(res.body);
+        if (responseBody['shortLink'] != null) {
+          state = state.copyWith(shareLink: responseBody['shortLink']);
+          debugPrint("share link shop_order_notifier: ${state.shareLink}");
+        } else {
+          debugPrint("No shortLink in response: $responseBody");
+        }
+      } else {
+        debugPrint("Failed to generate share link. Status: ${res.statusCode}, Body: ${res.body}");
+      }
+      */
+      
+    } catch (e) {
+      debugPrint("Error generating share link: $e");
+      // Fallback to direct group order link
+      if (state.cart?.shopId != null && state.cart?.id != null) {
+        final fallbackLink = "${AppConstants.webUrl}/group/${state.cart?.shopId}?g=${state.cart?.id}&o=${state.cart?.ownerId}&t=${type ?? 'shop'}";
+        state = state.copyWith(shareLink: fallbackLink);
+      }
+    }
   }
 }

@@ -29,7 +29,7 @@ class CategoryScreen extends StatelessWidget {
         : Container(
             height: state.categories.isNotEmpty ? 130.h : 0,
             margin:
-                EdgeInsets.only(bottom: state.categories.isNotEmpty ? 10.h : 0),
+                EdgeInsets.only(bottom: state.categories.isNotEmpty ? 0.h : 0),
             child: SmartRefresher(
               scrollDirection: Axis.horizontal,
               enablePullDown: false,
@@ -52,20 +52,15 @@ class CategoryScreen extends StatelessWidget {
                       child: SlideAnimation(
                         verticalOffset: 50.0,
                         child: FadeInAnimation(
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              left: index == 0 ? 0 : 12.r,
-                            ),
-                            child: CategoryBarItem(
-                              index: index,
-                              image: state.categories[index].img ?? "",
-                              title: state.categories[index].translation?.title ?? "",
-                              isActive: state.selectIndexCategory == index,
-                              onTap: () {
-                                event.setSelectCategory(index, context);
-                                restaurantController.resetNoData();
-                              },
-                            ),
+                          child: CategoryBarItem(
+                            index: index,
+                            image: state.categories[index].img ?? "",
+                            title: state.categories[index].translation?.title ?? "",
+                            isActive: state.selectIndexCategory == index,
+                            onTap: () {
+                              event.setSelectCategory(index, context);
+                              restaurantController.resetNoData();
+                            },
                           ),
                         ),
                       ),

@@ -23,7 +23,7 @@ abstract class AppStyle {
   static const Color textGrey = Color(0xFF898989);
   static const Color recommendBg = Color(0xFFE8C7B0);
   static const Color bannerBg = Color(0xFFF3DED4);
-  static const Color bgGrey = Color(0xFFF4F5F8);
+  static const Color bgGrey = Color(0xFFF7F7F8);
   static const Color outlineButtonBorder = Color(0xFFD2D2D7);
   static const Color bottomNavigationBack = Color.fromRGBO(0, 0, 0, 0.06);
   static const Color unselectedBottomItem = Color(0xFFA1A1A1);

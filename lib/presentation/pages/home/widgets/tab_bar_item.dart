@@ -23,7 +23,7 @@ class CategoryBarItem extends StatelessWidget {
     return Container(
         width: 100.r,
         height: 120.r,
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(0),
         // decoration: BoxDecoration(
         //     shape: BoxShape.circle,
         //     color: isActive ? AppStyle.primary : AppStyle.white),
@@ -42,7 +42,7 @@ class CategoryBarItem extends StatelessWidget {
               6.verticalSpace,
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 6.r),
+                  padding: EdgeInsets.symmetric(horizontal: 0.r),
                   child: Text(
                     title.isNotEmpty ? title : "No Title",
                     style: isActive 

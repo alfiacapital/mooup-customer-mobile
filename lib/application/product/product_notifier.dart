@@ -2,18 +2,28 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:foodyman/infrastructure/services/time_service.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:foodyman/domain/interface/brands.dart';
+import 'package:foodyman/domain/interface/categories.dart';
 import 'package:foodyman/domain/interface/products.dart';
-import 'package:foodyman/infrastructure/models/data/addons_data.dart';
+import 'package:foodyman/domain/interface/shops.dart';
+import 'package:foodyman/domain/interface/cart.dart';
 import 'package:foodyman/infrastructure/models/models.dart';
+import 'package:foodyman/infrastructure/models/data/addons_data.dart';
+import 'package:foodyman/infrastructure/models/request/cart_request.dart';
 import 'package:foodyman/infrastructure/services/app_connectivity.dart';
 import 'package:foodyman/infrastructure/services/app_helpers.dart';
 import 'package:foodyman/infrastructure/services/enums.dart';
-import 'package:foodyman/infrastructure/services/tr_keys.dart';
+import 'package:foodyman/infrastructure/services/local_storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:foodyman/domain/interface/cart.dart';
-import 'package:foodyman/infrastructure/models/request/cart_request.dart';
+import 'package:foodyman/infrastructure/services/marker_image_cropper.dart';
+import 'package:foodyman/domain/interface/draw.dart';
+import 'package:foodyman/infrastructure/models/response/all_products_response.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../app_constants.dart';
+import 'package:foodyman/infrastructure/services/tr_keys.dart';
 import 'product_state.dart';
 
 class ProductNotifier extends StateNotifier<ProductState> {
@@ -382,46 +392,34 @@ class ProductNotifier extends StateNotifier<ProductState> {
         return;
       }
 
-      // Check if Firebase API key is available
-      if (AppConstants.firebaseWebKey.isEmpty) {
-        debugPrint("Firebase API key is not configured, skipping dynamic link generation");
-        return;
-      }
-
-      final productLink =
-          '${AppConstants.webUrl}/shop/$shopId?product=${state.productData?.uuid}/';
-
-      const dynamicLink =
-          'https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=${AppConstants.firebaseWebKey}';
-
-      final dataShare = {
-        "dynamicLinkInfo": {
-          "domainUriPrefix": AppConstants.uriPrefix,
-          "link": productLink,
-          "androidInfo": {
-            "androidPackageName": AppConstants.androidPackageName,
-            "androidFallbackLink":
-                "${AppConstants.webUrl}/shop/$shopId?product=${state.productData?.uuid}"
-          },
-          "iosInfo": {
-            "iosBundleId": AppConstants.iosPackageName,
-            "iosFallbackLink":
-                "${AppConstants.webUrl}/shop/$shopId?product=${state.productData?.uuid}"
-          },
-          "socialMetaTagInfo": {
-            "socialTitle": "${state.productData?.translation?.title}",
-            "socialDescription": "${state.productData?.translation?.description}",
-            "socialImageLink": '${state.productData?.img}',
-          }
-        }
-      };
-
+      // Generate custom deep link for your service
+      final productLink = '${AppConstants.webUrl}/shop/$shopId?product=${state.productData?.uuid}';
+      
+      // Create the custom deep link using your domain
+      final customDeepLink = 'open.mooup.ma/shop/$shopId/product/${state.productData?.uuid}';
+      
+      // For now, use the custom deep link directly since you're not using Firebase
+      // You can modify this to call your custom deep link service if needed
+      shareLink = customDeepLink;
+      
+      debugPrint("Generated custom deep link: $shareLink");
+      debugPrint("Product link: $productLink");
+      
+      // If you have a custom deep link service, you can uncomment and modify this:
+      /*
       final res = await http.post(
-        Uri.parse(dynamicLink), 
-        body: jsonEncode(dataShare),
+        Uri.parse('YOUR_CUSTOM_DEEP_LINK_SERVICE_URL'), 
+        body: jsonEncode({
+          "shopId": shopId,
+          "productId": state.productData?.uuid,
+          "shopType": shopType,
+          "productTitle": state.productData?.translation?.title,
+          "productDescription": state.productData?.translation?.description,
+          "productImage": state.productData?.img,
+        }),
         headers: {'Content-Type': 'application/json'},
       );
-
+      
       if (res.statusCode == 200) {
         final responseBody = jsonDecode(res.body);
         if (responseBody['shortLink'] != null) {
@@ -433,8 +431,14 @@ class ProductNotifier extends StateNotifier<ProductState> {
       } else {
         debugPrint("Failed to generate share link. Status: ${res.statusCode}, Body: ${res.body}");
       }
+      */
+      
     } catch (e) {
       debugPrint("Error generating share link: $e");
+      // Fallback to direct product link
+      if (shopId != null && state.productData?.uuid != null) {
+        shareLink = '${AppConstants.webUrl}/shop/$shopId?product=${state.productData?.uuid}';
+      }
     }
   }
 

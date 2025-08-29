@@ -693,44 +693,79 @@ class ShopNotifier extends StateNotifier<ShopState> {
   }
 
   generateShareLink() async {
-    final productLink = '${AppConstants.webUrl}/shop/${state.shopData?.id}';
-
-    const dynamicLink =
-        'https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=${AppConstants.firebaseWebKey}';
-
-    final dataShare = {
-      "dynamicLinkInfo": {
-        "domainUriPrefix": AppConstants.uriPrefix,
-        "link": productLink,
-        "androidInfo": {
-          "androidPackageName": AppConstants.androidPackageName,
-          "androidFallbackLink":
-              "${AppConstants.webUrl}/shop/${state.shopData?.id}"
-        },
-        "iosInfo": {
-          "iosBundleId": AppConstants.iosPackageName,
-          "iosFallbackLink": "${AppConstants.webUrl}/shop/${state.shopData?.id}"
-        },
-        "socialMetaTagInfo": {
-          "socialTitle": "${state.shopData?.translation?.title}",
-          "socialDescription": "${state.shopData?.translation?.description}",
-          "socialImageLink": '${state.shopData?.logoImg}',
-        }
+    try {
+      if (state.shopData?.id == null) {
+        debugPrint("Missing shop data for share link generation");
+        return;
       }
-    };
-    debugPrint("share link data: $shareLink");
-    final res =
-        await http.post(Uri.parse(dynamicLink), body: jsonEncode(dataShare));
 
-    shareLink = jsonDecode(res.body)['shortLink'];
-    debugPrint("share link: shop_notifier $shareLink \n$dataShare");
+      final productLink = '${AppConstants.webUrl}/shop/${state.shopData?.id}';
+      
+      // Create the custom deep link using your domain
+      final customDeepLink = '${AppConstants.uriPrefix}/shop/${state.shopData?.id}';
+      
+      // For now, use the custom deep link directly since you're not using Firebase
+      // You can modify this to call your custom deep link service if needed
+      shareLink = customDeepLink;
+      
+      debugPrint("Generated custom deep link: $shareLink");
+      debugPrint("Shop link: $productLink");
+      
+      // If you have a custom deep link service, you can uncomment and modify this:
+      /*
+      final res = await http.post(
+        Uri.parse('YOUR_CUSTOM_DEEP_LINK_SERVICE_URL'), 
+        body: jsonEncode({
+          "shopId": state.shopData?.id,
+          "shopTitle": state.shopData?.translation?.title,
+          "shopDescription": state.shopData?.translation?.description,
+          "shopLogo": state.shopData?.logoImg,
+        }),
+        headers: {'Content-Type': 'application/json'},
+      );
+
+      if (res.statusCode == 200) {
+        final responseBody = jsonDecode(res.body);
+        if (responseBody['shortLink'] != null) {
+          shareLink = responseBody['shortLink'];
+          debugPrint("share link: shop_notifier $shareLink");
+        } else {
+          debugPrint("No shortLink in response: $responseBody");
+        }
+      } else {
+        debugPrint("Failed to generate share link. Status: ${res.statusCode}, Body: ${res.body}");
+      }
+      */
+      
+    } catch (e) {
+      debugPrint("Error generating share link: $e");
+      // Fallback to direct shop link
+      if (state.shopData?.id != null) {
+        shareLink = '${AppConstants.webUrl}/shop/${state.shopData?.id}';
+      }
+    }
   }
 
   onShare() async {
-    await Share.share(
-      shareLink ?? '',
-      subject: state.shopData?.translation?.title ?? "Foodyman",
-      // title: state.shopData?.translation?.description ?? "",
-    );
+    try {
+      if (shareLink == null || shareLink!.isEmpty) {
+        debugPrint("No share link available");
+        return;
+      }
+
+      // Use text-only sharing instead of image sharing
+      final shareText = "${state.shopData?.translation?.description ?? ""}\n\nView shop: $shareLink";
+      
+      await Share.share(
+        shareText,
+        subject: state.shopData?.translation?.title ?? "MOOUP",
+      );
+      
+      debugPrint("Shop shared successfully with text only");
+      
+    } catch (e) {
+      debugPrint("Error sharing shop: $e");
+    }
   }
+
 }
