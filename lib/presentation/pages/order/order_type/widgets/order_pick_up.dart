@@ -3,13 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:foodyman/application/order/order_provider.dart';
-import 'package:foodyman/app_constants.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/presentation/components/select_item.dart';
-import 'package:foodyman/presentation/components/title_icon.dart';
-import 'package:foodyman/presentation/theme/app_style.dart';
-import 'package:foodyman/infrastructure/services/tr_keys.dart';
+import 'package:upmoo25/application/order/order_provider.dart';
+import 'package:upmoo25/app_constants.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/presentation/components/select_item.dart';
+import 'package:upmoo25/presentation/components/title_icon.dart';
+import 'package:upmoo25/presentation/theme/app_style.dart';
+import 'package:upmoo25/infrastructure/services/tr_keys.dart';
 import 'order_container.dart';
 
 class OrderPickUp extends ConsumerStatefulWidget {

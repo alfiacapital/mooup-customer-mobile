@@ -1,4 +1,4 @@
-import 'package:foodyman/infrastructure/services/app_validators.dart';
+import 'package:upmoo25/infrastructure/services/app_validators.dart';
 
 class LoginModel {
   final String? email;

@@ -2,11 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:foodyman/application/auto_order/auto_order_state.dart';
-import 'package:foodyman/domain/di/dependency_manager.dart';
-import 'package:foodyman/infrastructure/models/data/repeat_data.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/infrastructure/services/tr_keys.dart';
+import 'package:upmoo25/application/auto_order/auto_order_state.dart';
+import 'package:upmoo25/domain/di/dependency_manager.dart';
+import 'package:upmoo25/infrastructure/models/data/repeat_data.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/infrastructure/services/tr_keys.dart';
 
 class AutoOrderNotifier extends StateNotifier<AutoOrderState> {
   AutoOrderNotifier()

@@ -1,6 +1,6 @@
 
 
-import 'package:foodyman/infrastructure/models/data/address_new_data.dart';
+import 'package:upmoo25/infrastructure/models/data/address_new_data.dart';
 
 class SingleAddressResponse {
   SingleAddressResponse({

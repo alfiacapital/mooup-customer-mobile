@@ -1,10 +1,10 @@
-import 'package:foodyman/infrastructure/models/data/order_active_model.dart';
-import 'package:foodyman/infrastructure/models/data/refund_data.dart';
-import 'package:foodyman/infrastructure/models/models.dart';
-import 'package:foodyman/infrastructure/services/enums.dart';
+import 'package:upmoo25/infrastructure/models/data/order_active_model.dart';
+import 'package:upmoo25/infrastructure/models/data/refund_data.dart';
+import 'package:upmoo25/infrastructure/models/models.dart';
+import 'package:upmoo25/infrastructure/services/enums.dart';
 
-import 'package:foodyman/domain/handlers/handlers.dart';
-import 'package:foodyman/infrastructure/models/data/get_calculate_data.dart';
+import 'package:upmoo25/domain/handlers/handlers.dart';
+import 'package:upmoo25/infrastructure/models/data/get_calculate_data.dart';
 
 abstract class OrdersRepositoryFacade {
   Future<ApiResult<GetCalculateModel>> getCalculate(

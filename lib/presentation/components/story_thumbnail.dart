@@ -4,8 +4,8 @@ import 'package:flutter_remix/flutter_remix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
-import 'package:foodyman/infrastructure/models/data/story_data.dart';
-import 'package:foodyman/presentation/theme/app_style.dart';
+import 'package:upmoo25/infrastructure/models/data/story_data.dart';
+import 'package:upmoo25/presentation/theme/app_style.dart';
 import 'dart:io'; // Added for File
 
 class StoryThumbnail extends StatefulWidget {

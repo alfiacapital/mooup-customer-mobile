@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:foodyman/domain/di/dependency_manager.dart';
-import 'package:foodyman/domain/interface/banners.dart';
-import 'package:foodyman/infrastructure/models/models.dart';
-import 'package:foodyman/infrastructure/models/request/banners_request.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/infrastructure/services/local_storage.dart';
-import 'package:foodyman/domain/handlers/handlers.dart';
+import 'package:upmoo25/domain/di/dependency_manager.dart';
+import 'package:upmoo25/domain/interface/banners.dart';
+import 'package:upmoo25/infrastructure/models/models.dart';
+import 'package:upmoo25/infrastructure/models/request/banners_request.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/infrastructure/services/local_storage.dart';
+import 'package:upmoo25/domain/handlers/handlers.dart';
 
 class BannersRepository implements BannersRepositoryFacade {
   @override

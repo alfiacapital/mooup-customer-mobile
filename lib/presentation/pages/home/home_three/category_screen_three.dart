@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:foodyman/application/home/home_notifier.dart';
-import 'package:foodyman/application/home/home_state.dart';
+import 'package:upmoo25/application/home/home_notifier.dart';
+import 'package:upmoo25/application/home/home_state.dart';
 
 import 'shimmer/category_shimmer.dart';
 import 'widgets/category_bar_item_three.dart';

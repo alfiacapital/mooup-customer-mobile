@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:app_links/app_links.dart';
-import 'package:foodyman/presentation/routes/app_router.dart';
+import 'package:upmoo25/presentation/routes/app_router.dart';
 import 'package:flutter/foundation.dart';
 
 class DeepLinksHandler {

@@ -1,6 +1,6 @@
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:foodyman/infrastructure/services/local_storage.dart';
+import 'package:upmoo25/infrastructure/services/local_storage.dart';
 
 import 'main_state.dart';
 

@@ -32,7 +32,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "com.mooup"
+    namespace "com.upmoo.user"
     compileSdkVersion 35
     ndkVersion flutter.ndkVersion
 
@@ -40,6 +40,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
+    
 
     kotlinOptions {
         jvmTarget = '17'
@@ -50,7 +51,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.mooup"
+        applicationId "com.upmoo.user"
         minSdkVersion 23
         multiDexEnabled true
         targetSdkVersion 35

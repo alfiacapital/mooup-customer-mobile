@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:foodyman/presentation/components/title_icon.dart';
+import 'package:upmoo25/presentation/components/title_icon.dart';
 
-import 'package:foodyman/presentation/theme/app_style.dart';
+import 'package:upmoo25/presentation/theme/app_style.dart';
 
 class SearchShopShimmer extends StatelessWidget {
   const SearchShopShimmer({super.key});

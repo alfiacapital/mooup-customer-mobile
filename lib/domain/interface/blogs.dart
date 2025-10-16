@@ -1,5 +1,5 @@
-import 'package:foodyman/infrastructure/models/models.dart';
-import 'package:foodyman/domain/handlers/handlers.dart';
+import 'package:upmoo25/infrastructure/models/models.dart';
+import 'package:upmoo25/domain/handlers/handlers.dart';
 
 abstract class BlogsRepositoryFacade {
   Future<ApiResult<BlogsPaginateResponse>> getBlogs(int page, String type);

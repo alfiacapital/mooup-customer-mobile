@@ -1,6 +1,6 @@
-import 'package:foodyman/infrastructure/models/data/refund_data.dart';
-import 'package:foodyman/infrastructure/models/data/user.dart';
-import 'package:foodyman/infrastructure/models/data/repeat_data.dart';
+import 'package:upmoo25/infrastructure/models/data/refund_data.dart';
+import 'package:upmoo25/infrastructure/models/data/user.dart';
+import 'package:upmoo25/infrastructure/models/data/repeat_data.dart';
 import '../models.dart';
 import 'addons_data.dart';
 

@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:foodyman/domain/di/dependency_manager.dart';
-import 'package:foodyman/domain/interface/gallery.dart';
-import 'package:foodyman/infrastructure/models/models.dart';
-import 'package:foodyman/infrastructure/models/response/multi_gallery_upload_response.dart';
-import 'package:foodyman/domain/handlers/handlers.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/infrastructure/services/enums.dart';
+import 'package:upmoo25/domain/di/dependency_manager.dart';
+import 'package:upmoo25/domain/interface/gallery.dart';
+import 'package:upmoo25/infrastructure/models/models.dart';
+import 'package:upmoo25/infrastructure/models/response/multi_gallery_upload_response.dart';
+import 'package:upmoo25/domain/handlers/handlers.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/infrastructure/services/enums.dart';
 
 class GalleryRepository implements GalleryRepositoryFacade {
   @override

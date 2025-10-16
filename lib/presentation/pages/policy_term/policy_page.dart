@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:foodyman/application/profile/profile_provider.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/infrastructure/services/tr_keys.dart';
-import 'package:foodyman/presentation/components/buttons/pop_button.dart';
-import 'package:foodyman/presentation/theme/theme.dart';
+import 'package:upmoo25/application/profile/profile_provider.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/infrastructure/services/tr_keys.dart';
+import 'package:upmoo25/presentation/components/buttons/pop_button.dart';
+import 'package:upmoo25/presentation/theme/theme.dart';
 
-import 'package:foodyman/presentation/components/loading.dart';
+import 'package:upmoo25/presentation/components/loading.dart';
 
 @RoutePage()
 class PolicyPage extends ConsumerStatefulWidget {

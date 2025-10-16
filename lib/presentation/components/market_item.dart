@@ -2,14 +2,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:foodyman/infrastructure/models/data/shop_data.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/infrastructure/services/tr_keys.dart';
-import 'package:foodyman/presentation/components/bonus_discount_popular.dart';
-import 'package:foodyman/presentation/components/custom_network_image.dart';
-import 'package:foodyman/presentation/routes/app_router.dart';
+import 'package:upmoo25/infrastructure/models/data/shop_data.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/infrastructure/services/tr_keys.dart';
+import 'package:upmoo25/presentation/components/bonus_discount_popular.dart';
+import 'package:upmoo25/presentation/components/custom_network_image.dart';
+import 'package:upmoo25/presentation/routes/app_router.dart';
 
-import 'package:foodyman/presentation/theme/theme.dart';
+import 'package:upmoo25/presentation/theme/theme.dart';
 import 'badge_item.dart';
 import 'shop_avarat.dart';
 

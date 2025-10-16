@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:foodyman/application/home/home_notifier.dart';
-import 'package:foodyman/application/home/home_state.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/presentation/components/buttons/animation_button_effect.dart';
-import 'package:foodyman/presentation/pages/home/filter/filter_page.dart';
-import 'package:foodyman/presentation/theme/app_style.dart';
+import 'package:upmoo25/application/home/home_notifier.dart';
+import 'package:upmoo25/application/home/home_state.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/presentation/components/buttons/animation_button_effect.dart';
+import 'package:upmoo25/presentation/pages/home/filter/filter_page.dart';
+import 'package:upmoo25/presentation/theme/app_style.dart';
 
 import '../../home/home_two/widget/category_two_item.dart';
 

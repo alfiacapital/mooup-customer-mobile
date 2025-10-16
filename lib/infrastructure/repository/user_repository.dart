@@ -1,15 +1,15 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:foodyman/domain/di/dependency_manager.dart';
-import 'package:foodyman/domain/interface/user.dart';
-import 'package:foodyman/infrastructure/models/data/address_new_data.dart';
-import 'package:foodyman/infrastructure/models/data/referral_data.dart';
-import 'package:foodyman/infrastructure/models/models.dart';
-import 'package:foodyman/infrastructure/models/request/edit_profile.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/infrastructure/services/local_storage.dart';
-import 'package:foodyman/domain/handlers/handlers.dart';
+import 'package:upmoo25/domain/di/dependency_manager.dart';
+import 'package:upmoo25/domain/interface/user.dart';
+import 'package:upmoo25/infrastructure/models/data/address_new_data.dart';
+import 'package:upmoo25/infrastructure/models/data/referral_data.dart';
+import 'package:upmoo25/infrastructure/models/models.dart';
+import 'package:upmoo25/infrastructure/models/request/edit_profile.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/infrastructure/services/local_storage.dart';
+import 'package:upmoo25/domain/handlers/handlers.dart';
 
 class UserRepository implements UserRepositoryFacade {
   @override

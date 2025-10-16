@@ -3,13 +3,13 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:foodyman/domain/interface/shops.dart';
-import 'package:foodyman/infrastructure/models/data/filter_model.dart';
-import 'package:foodyman/infrastructure/services/tpying_delay.dart';
+import 'package:upmoo25/domain/interface/shops.dart';
+import 'package:upmoo25/infrastructure/models/data/filter_model.dart';
+import 'package:upmoo25/infrastructure/services/tpying_delay.dart';
 
-import 'package:foodyman/infrastructure/models/data/shop_data.dart';
-import 'package:foodyman/infrastructure/services/app_connectivity.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/infrastructure/models/data/shop_data.dart';
+import 'package:upmoo25/infrastructure/services/app_connectivity.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
 import 'filter_state.dart';
 
 class FilterNotifier extends StateNotifier<FilterState> {

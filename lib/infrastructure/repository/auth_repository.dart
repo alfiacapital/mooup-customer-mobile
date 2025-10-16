@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:foodyman/domain/di/dependency_manager.dart';
-import 'package:foodyman/infrastructure/models/data/login.dart';
-import 'package:foodyman/infrastructure/models/data/user.dart';
-import 'package:foodyman/infrastructure/models/request/sign_up_request.dart';
-import 'package:foodyman/domain/handlers/handlers.dart';
-import 'package:foodyman/domain/interface/auth.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/infrastructure/services/app_validators.dart';
+import 'package:upmoo25/domain/di/dependency_manager.dart';
+import 'package:upmoo25/infrastructure/models/data/login.dart';
+import 'package:upmoo25/infrastructure/models/data/user.dart';
+import 'package:upmoo25/infrastructure/models/request/sign_up_request.dart';
+import 'package:upmoo25/domain/handlers/handlers.dart';
+import 'package:upmoo25/domain/interface/auth.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/infrastructure/services/app_validators.dart';
 import '../models/models.dart';
 
 class AuthRepository implements AuthRepositoryFacade {

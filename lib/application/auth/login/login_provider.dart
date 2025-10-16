@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:foodyman/domain/di/dependency_manager.dart';
+import 'package:upmoo25/domain/di/dependency_manager.dart';
 
 import 'login_notifier.dart';
 import 'login_state.dart';

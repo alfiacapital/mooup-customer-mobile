@@ -1,12 +1,12 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:foodyman/infrastructure/models/data/address_new_data.dart';
-import 'package:foodyman/infrastructure/models/data/filter_model.dart';
-import 'package:foodyman/infrastructure/models/response/branches_response.dart';
+import 'package:upmoo25/infrastructure/models/data/address_new_data.dart';
+import 'package:upmoo25/infrastructure/models/data/filter_model.dart';
+import 'package:upmoo25/infrastructure/models/response/branches_response.dart';
 
-import 'package:foodyman/domain/handlers/handlers.dart';
-import 'package:foodyman/infrastructure/models/data/story_data.dart';
-import 'package:foodyman/infrastructure/models/models.dart';
-import 'package:foodyman/infrastructure/models/response/tag_response.dart';
+import 'package:upmoo25/domain/handlers/handlers.dart';
+import 'package:upmoo25/infrastructure/models/data/story_data.dart';
+import 'package:upmoo25/infrastructure/models/models.dart';
+import 'package:upmoo25/infrastructure/models/response/tag_response.dart';
 
 abstract class ShopsRepositoryFacade {
   Future<ApiResult<ShopsPaginateResponse>> getShopFilter(

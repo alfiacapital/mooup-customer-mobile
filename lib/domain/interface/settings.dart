@@ -1,9 +1,9 @@
-import 'package:foodyman/infrastructure/models/data/help_data.dart';
-import 'package:foodyman/infrastructure/models/data/notification_list_data.dart';
+import 'package:upmoo25/infrastructure/models/data/help_data.dart';
+import 'package:upmoo25/infrastructure/models/data/notification_list_data.dart';
 
-import 'package:foodyman/domain/handlers/handlers.dart';
-import 'package:foodyman/infrastructure/models/data/translation.dart';
-import 'package:foodyman/infrastructure/models/models.dart';
+import 'package:upmoo25/domain/handlers/handlers.dart';
+import 'package:upmoo25/infrastructure/models/data/translation.dart';
+import 'package:upmoo25/infrastructure/models/models.dart';
 
 abstract class SettingsRepositoryFacade {
   Future<ApiResult<GlobalSettingsResponse>> getGlobalSettings();

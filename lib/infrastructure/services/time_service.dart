@@ -1,4 +1,4 @@
-import 'package:foodyman/app_constants.dart';
+import 'package:upmoo25/app_constants.dart';
 import 'package:intl/intl.dart';
 
 abstract class TimeService {

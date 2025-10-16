@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_remix/flutter_remix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/infrastructure/services/enums.dart';
-import 'package:foodyman/presentation/theme/theme.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/infrastructure/services/enums.dart';
+import 'package:upmoo25/presentation/theme/theme.dart';
 
 import 'order_status_item.dart';
 

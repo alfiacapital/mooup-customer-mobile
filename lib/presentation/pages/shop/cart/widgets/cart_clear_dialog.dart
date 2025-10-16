@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/infrastructure/services/tr_keys.dart';
-import 'package:foodyman/presentation/components/buttons/custom_button.dart';
-import 'package:foodyman/presentation/theme/theme.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/infrastructure/services/tr_keys.dart';
+import 'package:upmoo25/presentation/components/buttons/custom_button.dart';
+import 'package:upmoo25/presentation/theme/theme.dart';
 
 class CartClearDialog extends StatelessWidget {
   final VoidCallback cancel;

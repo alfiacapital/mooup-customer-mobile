@@ -3,20 +3,20 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:foodyman/domain/di/dependency_manager.dart';
-import 'package:foodyman/domain/interface/user.dart';
-import 'package:foodyman/infrastructure/models/data/address_new_data.dart';
-import 'package:foodyman/infrastructure/models/data/address_old_data.dart';
-import 'package:foodyman/infrastructure/models/models.dart';
-import 'package:foodyman/infrastructure/services/app_connectivity.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/infrastructure/services/enums.dart';
-import 'package:foodyman/infrastructure/services/local_storage.dart';
-import 'package:foodyman/presentation/routes/app_router.dart';
+import 'package:upmoo25/domain/di/dependency_manager.dart';
+import 'package:upmoo25/domain/interface/user.dart';
+import 'package:upmoo25/infrastructure/models/data/address_new_data.dart';
+import 'package:upmoo25/infrastructure/models/data/address_old_data.dart';
+import 'package:upmoo25/infrastructure/models/models.dart';
+import 'package:upmoo25/infrastructure/services/app_connectivity.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/infrastructure/services/enums.dart';
+import 'package:upmoo25/infrastructure/services/local_storage.dart';
+import 'package:upmoo25/presentation/routes/app_router.dart';
 
-import 'package:foodyman/domain/interface/gallery.dart';
-import 'package:foodyman/domain/interface/shops.dart';
-import 'package:foodyman/infrastructure/services/tr_keys.dart';
+import 'package:upmoo25/domain/interface/gallery.dart';
+import 'package:upmoo25/domain/interface/shops.dart';
+import 'package:upmoo25/infrastructure/services/tr_keys.dart';
 import 'profile_state.dart';
 
 class ProfileNotifier extends StateNotifier<ProfileState> {

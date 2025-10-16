@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:foodyman/application/order/order_provider.dart';
-import 'package:foodyman/application/promo_code/promo_code_state.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/infrastructure/services/enums.dart';
-import 'package:foodyman/infrastructure/services/tr_keys.dart';
-import 'package:foodyman/presentation/components/buttons/custom_button.dart';
-import 'package:foodyman/presentation/components/text_fields/outline_bordered_text_field.dart';
-import 'package:foodyman/presentation/components/title_icon.dart';
-import 'package:foodyman/presentation/theme/theme.dart';
+import 'package:upmoo25/application/order/order_provider.dart';
+import 'package:upmoo25/application/promo_code/promo_code_state.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/infrastructure/services/enums.dart';
+import 'package:upmoo25/infrastructure/services/tr_keys.dart';
+import 'package:upmoo25/presentation/components/buttons/custom_button.dart';
+import 'package:upmoo25/presentation/components/text_fields/outline_bordered_text_field.dart';
+import 'package:upmoo25/presentation/components/title_icon.dart';
+import 'package:upmoo25/presentation/theme/theme.dart';
 
-import 'package:foodyman/application/promo_code/promo_code_notifier.dart';
-import 'package:foodyman/application/promo_code/promo_code_provider.dart';
-import 'package:foodyman/application/shop_order/shop_order_provider.dart';
+import 'package:upmoo25/application/promo_code/promo_code_notifier.dart';
+import 'package:upmoo25/application/promo_code/promo_code_provider.dart';
+import 'package:upmoo25/application/shop_order/shop_order_provider.dart';
 import '../../../../../app_constants.dart';
-import 'package:foodyman/infrastructure/services/local_storage.dart';
-import 'package:foodyman/infrastructure/services/tpying_delay.dart';
+import 'package:upmoo25/infrastructure/services/local_storage.dart';
+import 'package:upmoo25/infrastructure/services/tpying_delay.dart';
 
 class PromoCodeScreen extends ConsumerStatefulWidget {
   const PromoCodeScreen({

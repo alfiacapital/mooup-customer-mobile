@@ -5,17 +5,17 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:foodyman/application/language/language_provider.dart';
-import 'package:foodyman/application/main/main_provider.dart';
-import 'package:foodyman/app_constants.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/infrastructure/services/local_storage.dart';
-import 'package:foodyman/infrastructure/services/tr_keys.dart';
-import 'package:foodyman/presentation/components/buttons/custom_button.dart';
-import 'package:foodyman/presentation/pages/auth/register/register_page.dart';
-import 'package:foodyman/presentation/routes/app_router.dart';
-import 'package:foodyman/presentation/theme/theme.dart';
-import 'package:foodyman/application/auth/auth.dart';
+import 'package:upmoo25/application/language/language_provider.dart';
+import 'package:upmoo25/application/main/main_provider.dart';
+import 'package:upmoo25/app_constants.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/infrastructure/services/local_storage.dart';
+import 'package:upmoo25/infrastructure/services/tr_keys.dart';
+import 'package:upmoo25/presentation/components/buttons/custom_button.dart';
+import 'package:upmoo25/presentation/pages/auth/register/register_page.dart';
+import 'package:upmoo25/presentation/routes/app_router.dart';
+import 'package:upmoo25/presentation/theme/theme.dart';
+import 'package:upmoo25/application/auth/auth.dart';
 import '../../profile/language_page.dart';
 import 'login_screen.dart';
 

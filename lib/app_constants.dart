@@ -1,4 +1,4 @@
-import 'package:foodyman/infrastructure/services/tr_keys.dart';
+import 'package:upmoo25/infrastructure/services/tr_keys.dart';
 
 import 'infrastructure/services/enums.dart';
 

@@ -2,15 +2,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:foodyman/infrastructure/models/data/order_active_model.dart';
-import 'package:foodyman/infrastructure/models/data/refund_data.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/infrastructure/services/enums.dart';
-import 'package:foodyman/infrastructure/services/time_service.dart';
-import 'package:foodyman/infrastructure/services/tr_keys.dart';
-import 'package:foodyman/presentation/components/shop_avarat.dart';
-import 'package:foodyman/presentation/routes/app_router.dart';
-import 'package:foodyman/presentation/theme/theme.dart';
+import 'package:upmoo25/infrastructure/models/data/order_active_model.dart';
+import 'package:upmoo25/infrastructure/models/data/refund_data.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/infrastructure/services/enums.dart';
+import 'package:upmoo25/infrastructure/services/time_service.dart';
+import 'package:upmoo25/infrastructure/services/tr_keys.dart';
+import 'package:upmoo25/presentation/components/shop_avarat.dart';
+import 'package:upmoo25/presentation/routes/app_router.dart';
+import 'package:upmoo25/presentation/theme/theme.dart';
 
 class OrdersItem extends StatelessWidget {
   final OrderActiveModel? order;

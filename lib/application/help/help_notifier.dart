@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
 
-import 'package:foodyman/domain/interface/settings.dart';
-import 'package:foodyman/infrastructure/services/app_connectivity.dart';
+import 'package:upmoo25/domain/interface/settings.dart';
+import 'package:upmoo25/infrastructure/services/app_connectivity.dart';
 import 'help_state.dart';
 
 class HelpNotifier extends StateNotifier<HelpState> {

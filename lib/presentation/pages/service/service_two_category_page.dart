@@ -5,10 +5,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:foodyman/application/home/home_provider.dart';
-import 'package:foodyman/presentation/components/app_bars/common_app_bar.dart';
-import 'package:foodyman/presentation/components/buttons/pop_button.dart';
-import 'package:foodyman/presentation/theme/app_style.dart';
+import 'package:upmoo25/application/home/home_provider.dart';
+import 'package:upmoo25/presentation/components/app_bars/common_app_bar.dart';
+import 'package:upmoo25/presentation/components/buttons/pop_button.dart';
+import 'package:upmoo25/presentation/theme/app_style.dart';
 
 import 'filter_category_service.dart';
 

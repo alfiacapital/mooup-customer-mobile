@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:foodyman/domain/di/dependency_manager.dart';
-import 'package:foodyman/domain/handlers/api_result.dart';
-import 'package:foodyman/domain/handlers/network_exceptions.dart';
-import 'package:foodyman/domain/interface/notification.dart';
-import 'package:foodyman/infrastructure/models/data/count_of_notifications_data.dart';
-import 'package:foodyman/infrastructure/models/response/notification_response.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/infrastructure/services/local_storage.dart';
+import 'package:upmoo25/domain/di/dependency_manager.dart';
+import 'package:upmoo25/domain/handlers/api_result.dart';
+import 'package:upmoo25/domain/handlers/network_exceptions.dart';
+import 'package:upmoo25/domain/interface/notification.dart';
+import 'package:upmoo25/infrastructure/models/data/count_of_notifications_data.dart';
+import 'package:upmoo25/infrastructure/models/response/notification_response.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/infrastructure/services/local_storage.dart';
 
 class NotificationRepositoryImpl extends NotificationRepositoryFacade {
   @override

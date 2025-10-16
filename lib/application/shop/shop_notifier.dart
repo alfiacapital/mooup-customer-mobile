@@ -2,24 +2,24 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:foodyman/infrastructure/services/time_service.dart';
+import 'package:upmoo25/infrastructure/services/time_service.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:foodyman/domain/interface/brands.dart';
-import 'package:foodyman/domain/interface/categories.dart';
-import 'package:foodyman/domain/interface/products.dart';
-import 'package:foodyman/domain/interface/shops.dart';
-import 'package:foodyman/infrastructure/models/models.dart';
-import 'package:foodyman/infrastructure/services/app_connectivity.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/infrastructure/services/local_storage.dart';
+import 'package:upmoo25/domain/interface/brands.dart';
+import 'package:upmoo25/domain/interface/categories.dart';
+import 'package:upmoo25/domain/interface/products.dart';
+import 'package:upmoo25/domain/interface/shops.dart';
+import 'package:upmoo25/infrastructure/models/models.dart';
+import 'package:upmoo25/infrastructure/services/app_connectivity.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/infrastructure/services/local_storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:foodyman/infrastructure/services/marker_image_cropper.dart';
-import 'package:foodyman/domain/interface/draw.dart';
-import 'package:foodyman/infrastructure/models/response/all_products_response.dart';
+import 'package:upmoo25/infrastructure/services/marker_image_cropper.dart';
+import 'package:upmoo25/domain/interface/draw.dart';
+import 'package:upmoo25/infrastructure/models/response/all_products_response.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../app_constants.dart';
-import 'package:foodyman/infrastructure/services/tr_keys.dart';
+import 'package:upmoo25/infrastructure/services/tr_keys.dart';
 import 'shop_state.dart';
 
 

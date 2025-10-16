@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:foodyman/domain/di/dependency_manager.dart';
-import 'package:foodyman/domain/interface/settings.dart';
-import 'package:foodyman/infrastructure/models/data/help_data.dart';
-import 'package:foodyman/infrastructure/models/data/notification_list_data.dart';
-import 'package:foodyman/infrastructure/models/models.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/infrastructure/services/local_storage.dart';
-import 'package:foodyman/domain/handlers/handlers.dart';
+import 'package:upmoo25/domain/di/dependency_manager.dart';
+import 'package:upmoo25/domain/interface/settings.dart';
+import 'package:upmoo25/infrastructure/models/data/help_data.dart';
+import 'package:upmoo25/infrastructure/models/data/notification_list_data.dart';
+import 'package:upmoo25/infrastructure/models/models.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/infrastructure/services/local_storage.dart';
+import 'package:upmoo25/domain/handlers/handlers.dart';
 import '../models/data/translation.dart';
 
 class SettingsRepository implements SettingsRepositoryFacade {

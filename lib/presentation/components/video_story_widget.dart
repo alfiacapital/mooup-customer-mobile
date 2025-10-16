@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:foodyman/infrastructure/models/data/story_data.dart';
-import 'package:foodyman/presentation/theme/app_style.dart';
+import 'package:upmoo25/infrastructure/models/data/story_data.dart';
+import 'package:upmoo25/presentation/theme/app_style.dart';
 import 'dart:async';
 
 class VideoStoryWidget extends StatefulWidget {

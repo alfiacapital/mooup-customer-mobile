@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:foodyman/application/help/help_provider.dart';
-import 'package:foodyman/infrastructure/services/local_storage.dart';
-import 'package:foodyman/presentation/components/buttons/custom_button.dart';
-import 'package:foodyman/presentation/components/loading.dart';
+import 'package:upmoo25/application/help/help_provider.dart';
+import 'package:upmoo25/infrastructure/services/local_storage.dart';
+import 'package:upmoo25/presentation/components/buttons/custom_button.dart';
+import 'package:upmoo25/presentation/components/loading.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/infrastructure/services/tr_keys.dart';
-import 'package:foodyman/presentation/components/app_bars/common_app_bar.dart';
-import 'package:foodyman/presentation/components/buttons/pop_button.dart';
-import 'package:foodyman/presentation/theme/app_style.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/infrastructure/services/tr_keys.dart';
+import 'package:upmoo25/presentation/components/app_bars/common_app_bar.dart';
+import 'package:upmoo25/presentation/components/buttons/pop_button.dart';
+import 'package:upmoo25/presentation/theme/app_style.dart';
 
 
 @RoutePage()

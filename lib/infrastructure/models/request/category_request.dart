@@ -1,6 +1,6 @@
-import 'package:foodyman/infrastructure/services/local_storage.dart';
+import 'package:upmoo25/infrastructure/services/local_storage.dart';
 
-import 'package:foodyman/app_constants.dart';
+import 'package:upmoo25/app_constants.dart';
 
 class CategoryModel {
   final int page;

@@ -1,4 +1,4 @@
-import 'package:foodyman/infrastructure/services/enums.dart';
+import 'package:upmoo25/infrastructure/services/enums.dart';
 
 class ChatMessageData {
   final MessageOwner messageOwner;

@@ -1,4 +1,4 @@
-import 'package:foodyman/infrastructure/models/data/parcel_order.dart';
+import 'package:upmoo25/infrastructure/models/data/parcel_order.dart';
 
 import '../data/meta.dart';
 

@@ -1,8 +1,8 @@
 import 'dart:convert';
-import 'package:foodyman/game/models/board.dart';
-import 'package:foodyman/infrastructure/models/data/address_information.dart';
-import 'package:foodyman/infrastructure/models/data/address_old_data.dart';
-import 'package:foodyman/infrastructure/models/models.dart';
+import 'package:upmoo25/game/models/board.dart';
+import 'package:upmoo25/infrastructure/models/data/address_information.dart';
+import 'package:upmoo25/infrastructure/models/data/address_old_data.dart';
+import 'package:upmoo25/infrastructure/models/models.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'storage_keys.dart';
 

@@ -6,24 +6,24 @@ import 'package:flutter_remix/flutter_remix.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
-import 'package:foodyman/application/profile/profile_notifier.dart';
-import 'package:foodyman/application/profile/profile_provider.dart';
-import 'package:foodyman/application/profile/profile_state.dart';
-import 'package:foodyman/app_constants.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/infrastructure/services/img_service.dart';
-import 'package:foodyman/infrastructure/services/input_formatter.dart';
-import 'package:foodyman/infrastructure/services/tr_keys.dart';
-import 'package:foodyman/presentation/components/app_bars/common_app_bar.dart';
-import 'package:foodyman/presentation/components/keyboard_dismisser.dart';
-import 'package:foodyman/presentation/routes/app_router.dart';
+import 'package:upmoo25/application/profile/profile_notifier.dart';
+import 'package:upmoo25/application/profile/profile_provider.dart';
+import 'package:upmoo25/application/profile/profile_state.dart';
+import 'package:upmoo25/app_constants.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/infrastructure/services/img_service.dart';
+import 'package:upmoo25/infrastructure/services/input_formatter.dart';
+import 'package:upmoo25/infrastructure/services/tr_keys.dart';
+import 'package:upmoo25/presentation/components/app_bars/common_app_bar.dart';
+import 'package:upmoo25/presentation/components/keyboard_dismisser.dart';
+import 'package:upmoo25/presentation/routes/app_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:foodyman/presentation/components/blur_wrap.dart';
-import 'package:foodyman/presentation/components/buttons/custom_button.dart';
-import 'package:foodyman/presentation/components/buttons/pop_button.dart';
-import 'package:foodyman/presentation/components/text_fields/outline_bordered_text_field.dart';
-import 'package:foodyman/presentation/theme/app_style.dart';
+import 'package:upmoo25/presentation/components/blur_wrap.dart';
+import 'package:upmoo25/presentation/components/buttons/custom_button.dart';
+import 'package:upmoo25/presentation/components/buttons/pop_button.dart';
+import 'package:upmoo25/presentation/components/text_fields/outline_bordered_text_field.dart';
+import 'package:upmoo25/presentation/theme/app_style.dart';
 
 @RoutePage()
 class CreateShopPage extends ConsumerStatefulWidget {

@@ -2,20 +2,20 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:foodyman/application/filter/filter_notifier.dart';
-import 'package:foodyman/application/filter/filter_state.dart';
-import 'package:foodyman/infrastructure/models/data/take_data.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/infrastructure/services/local_storage.dart';
-import 'package:foodyman/infrastructure/services/tr_keys.dart';
-import 'package:foodyman/presentation/components/buttons/custom_button.dart';
-import 'package:foodyman/presentation/components/custom_toggle.dart';
-import 'package:foodyman/presentation/components/loading.dart';
-import 'package:foodyman/presentation/components/title_icon.dart';
-import 'package:foodyman/presentation/routes/app_router.dart';
-import 'package:foodyman/presentation/theme/theme.dart';
+import 'package:upmoo25/application/filter/filter_notifier.dart';
+import 'package:upmoo25/application/filter/filter_state.dart';
+import 'package:upmoo25/infrastructure/models/data/take_data.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/infrastructure/services/local_storage.dart';
+import 'package:upmoo25/infrastructure/services/tr_keys.dart';
+import 'package:upmoo25/presentation/components/buttons/custom_button.dart';
+import 'package:upmoo25/presentation/components/custom_toggle.dart';
+import 'package:upmoo25/presentation/components/loading.dart';
+import 'package:upmoo25/presentation/components/title_icon.dart';
+import 'package:upmoo25/presentation/routes/app_router.dart';
+import 'package:upmoo25/presentation/theme/theme.dart';
 
-import 'package:foodyman/application/filter/filter_provider.dart';
+import 'package:upmoo25/application/filter/filter_provider.dart';
 import 'widgets/filter_item.dart';
 
 class FilterPage extends ConsumerStatefulWidget {

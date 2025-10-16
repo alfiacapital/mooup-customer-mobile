@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:foodyman/app_constants.dart';
+import 'package:upmoo25/app_constants.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../routes/app_router.dart';

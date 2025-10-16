@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:foodyman/infrastructure/services/enums.dart';
+import 'package:upmoo25/infrastructure/services/enums.dart';
 
-import 'package:foodyman/application/product/product_provider.dart';
-import 'package:foodyman/infrastructure/models/data/typed_extra.dart';
-import 'package:foodyman/presentation/components/extras/color_extras.dart';
-import 'package:foodyman/presentation/components/extras/image_extras.dart';
-import 'package:foodyman/presentation/components/extras/text_extras.dart';
-import 'package:foodyman/presentation/theme/theme.dart';
+import 'package:upmoo25/application/product/product_provider.dart';
+import 'package:upmoo25/infrastructure/models/data/typed_extra.dart';
+import 'package:upmoo25/presentation/components/extras/color_extras.dart';
+import 'package:upmoo25/presentation/components/extras/image_extras.dart';
+import 'package:upmoo25/presentation/components/extras/text_extras.dart';
+import 'package:upmoo25/presentation/theme/theme.dart';
 
 class WProductExtras extends ConsumerWidget {
   const WProductExtras({super.key});

@@ -1,80 +1,164 @@
 {
   "project_info": {
-    "project_number": "272135315042",
-    "project_id": "mooup-web",
-    "storage_bucket": "mooup-web.firebasestorage.app"
+    "project_number": "804207739592",
+    "project_id": "upmoo-2ea10",
+    "storage_bucket": "upmoo-2ea10.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:272135315042:android:966bbf61e5152918343b3b",
+        "mobilesdk_app_id": "1:804207739592:android:7ec2ef332b4baf8d86dbfd",
         "android_client_info": {
-          "package_name": "com.mooup"
+          "package_name": "com.mooup.distribution"
         }
       },
       "oauth_client": [
         {
-          "client_id": "272135315042-1iau8tu8ust6n4q1f71vn23ne1lm7m24.apps.googleusercontent.com",
+          "client_id": "804207739592-vtvhcses889jdm5ot90l7jur7u32qg2g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmtSSsqu4pnlRiOBypeHDOZK6i_p-pzHI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "804207739592-vtvhcses889jdm5ot90l7jur7u32qg2g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "804207739592-s668i5u3umgac1c6d6u3jdt1unpgulo1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.upmoo"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804207739592:android:16fdeaac196516af86dbfd",
+        "android_client_info": {
+          "package_name": "com.mooup.distrubition.delivery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "804207739592-vtvhcses889jdm5ot90l7jur7u32qg2g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmtSSsqu4pnlRiOBypeHDOZK6i_p-pzHI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "804207739592-vtvhcses889jdm5ot90l7jur7u32qg2g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "804207739592-s668i5u3umgac1c6d6u3jdt1unpgulo1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.upmoo"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804207739592:android:37486acd8bf6700f86dbfd",
+        "android_client_info": {
+          "package_name": "com.mooup.distrubition.seller"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "804207739592-vtvhcses889jdm5ot90l7jur7u32qg2g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmtSSsqu4pnlRiOBypeHDOZK6i_p-pzHI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "804207739592-vtvhcses889jdm5ot90l7jur7u32qg2g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "804207739592-s668i5u3umgac1c6d6u3jdt1unpgulo1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.upmoo"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804207739592:android:454ecc9afbaed66d86dbfd",
+        "android_client_info": {
+          "package_name": "com.mooupfood.app2024"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "804207739592-6u9cbjj47ee7v5b7tcu410llbn19l4nq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.mooup",
-            "certificate_hash": "64314633adf9f72602a7d9438664cb4335a6d807"
+            "package_name": "com.mooupfood.app2024",
+            "certificate_hash": "8789d7686bee7717640a3eb84d0e7a967114e8c5"
           }
         },
         {
-          "client_id": "272135315042-27clhna57uorfcdpjajsnr27p2r2kohq.apps.googleusercontent.com",
+          "client_id": "804207739592-c5k2o0easbbten2rqlcvv8112rqsrnmi.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.mooup",
-            "certificate_hash": "22e054c08fb91fcbe3cf09119280e5743a68ecbe"
-          }
-        },
-        {
-          "client_id": "272135315042-9km57ct39co06mc71hpvdot03lchucmt.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.mooup",
-            "certificate_hash": "ba291fad675dcb54bc5bfaa8604b4425ffe06d8c"
-          }
-        },
-        {
-          "client_id": "272135315042-gb9bfcup6f37frslp7dmpj9b2c38db1l.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.mooup",
-            "certificate_hash": "960161a0daa147da451d5313436cb8ae8e7cf1a1"
-          }
-        },
-        {
-          "client_id": "272135315042-j4jkgs3c9phri7eoicjokpqhi7hi1qd6.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.mooup",
+            "package_name": "com.mooupfood.app2024",
             "certificate_hash": "222aee7c43dc4f56b29e89280e8a16465d0a2b7b"
           }
         },
         {
-          "client_id": "272135315042-0anmg5bqj0hkpaekncov5q2ut6alhbtg.apps.googleusercontent.com",
+          "client_id": "804207739592-vtvhcses889jdm5ot90l7jur7u32qg2g.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD0QDCOOpkOWDmCejNBDOkcbm6Yfk8t_Ac"
+          "current_key": "AIzaSyCmtSSsqu4pnlRiOBypeHDOZK6i_p-pzHI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "272135315042-0anmg5bqj0hkpaekncov5q2ut6alhbtg.apps.googleusercontent.com",
+              "client_id": "804207739592-vtvhcses889jdm5ot90l7jur7u32qg2g.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "272135315042-hd253ii2pgs87v8uuj50urhlbp4d3ha7.apps.googleusercontent.com",
+              "client_id": "804207739592-s668i5u3umgac1c6d6u3jdt1unpgulo1.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mooup"
+                "bundle_id": "com.upmoo"
               }
             }
           ]
@@ -83,34 +167,50 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:272135315042:android:bb58bc816f587dc6343b3b",
+        "mobilesdk_app_id": "1:804207739592:android:f603eb23faba92f986dbfd",
         "android_client_info": {
-          "package_name": "com.mooup.deliveryman"
+          "package_name": "com.upmoo"
         }
       },
       "oauth_client": [
         {
-          "client_id": "272135315042-0anmg5bqj0hkpaekncov5q2ut6alhbtg.apps.googleusercontent.com",
+          "client_id": "804207739592-amvcgn2g75koecolisiav52udfs643k3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.upmoo",
+            "certificate_hash": "d4976ee210f11eab0072730fcda621a9a4dd89d6"
+          }
+        },
+        {
+          "client_id": "804207739592-gsr3nqqtv7uj4rcc5csaqhsnqgbgs2or.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.upmoo",
+            "certificate_hash": "155fad11a5c89ee0f637d5842bfac811bebb3311"
+          }
+        },
+        {
+          "client_id": "804207739592-vtvhcses889jdm5ot90l7jur7u32qg2g.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD0QDCOOpkOWDmCejNBDOkcbm6Yfk8t_Ac"
+          "current_key": "AIzaSyCmtSSsqu4pnlRiOBypeHDOZK6i_p-pzHI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "272135315042-0anmg5bqj0hkpaekncov5q2ut6alhbtg.apps.googleusercontent.com",
+              "client_id": "804207739592-vtvhcses889jdm5ot90l7jur7u32qg2g.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "272135315042-hd253ii2pgs87v8uuj50urhlbp4d3ha7.apps.googleusercontent.com",
+              "client_id": "804207739592-s668i5u3umgac1c6d6u3jdt1unpgulo1.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mooup"
+                "bundle_id": "com.upmoo"
               }
             }
           ]
@@ -119,34 +219,130 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:272135315042:android:828d77cbff6f49bc343b3b",
+        "mobilesdk_app_id": "1:804207739592:android:3e3c154aa86e406f86dbfd",
         "android_client_info": {
-          "package_name": "com.mooup.manager"
+          "package_name": "com.upmoo.deliveryman"
         }
       },
       "oauth_client": [
         {
-          "client_id": "272135315042-0anmg5bqj0hkpaekncov5q2ut6alhbtg.apps.googleusercontent.com",
+          "client_id": "804207739592-vtvhcses889jdm5ot90l7jur7u32qg2g.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD0QDCOOpkOWDmCejNBDOkcbm6Yfk8t_Ac"
+          "current_key": "AIzaSyCmtSSsqu4pnlRiOBypeHDOZK6i_p-pzHI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "272135315042-0anmg5bqj0hkpaekncov5q2ut6alhbtg.apps.googleusercontent.com",
+              "client_id": "804207739592-vtvhcses889jdm5ot90l7jur7u32qg2g.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "272135315042-hd253ii2pgs87v8uuj50urhlbp4d3ha7.apps.googleusercontent.com",
+              "client_id": "804207739592-s668i5u3umgac1c6d6u3jdt1unpgulo1.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mooup"
+                "bundle_id": "com.upmoo"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804207739592:android:f0c73ba8147fcd2e86dbfd",
+        "android_client_info": {
+          "package_name": "com.upmoo.manager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "804207739592-vtvhcses889jdm5ot90l7jur7u32qg2g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmtSSsqu4pnlRiOBypeHDOZK6i_p-pzHI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "804207739592-vtvhcses889jdm5ot90l7jur7u32qg2g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "804207739592-s668i5u3umgac1c6d6u3jdt1unpgulo1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.upmoo"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804207739592:android:572e99874639c22c86dbfd",
+        "android_client_info": {
+          "package_name": "com.upmoo.user"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "804207739592-58omka8n4qh4upvtvqdvmof6ddi7qt7f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.upmoo.user",
+            "certificate_hash": "32e9dacc5f86f8b8e5b94db82495fd5f7ad9f356"
+          }
+        },
+        {
+          "client_id": "804207739592-pqdgg9ao6rj38arncub5fctl5s63gmj0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.upmoo.user",
+            "certificate_hash": "6bc39b8a67a47e47944f403c394481d488590145"
+          }
+        },
+        {
+          "client_id": "804207739592-r9h8hi37ch1d57qim5im0u70tvobqp7k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.upmoo.user",
+            "certificate_hash": "222aee7c43dc4f56b29e89280e8a16465d0a2b7b"
+          }
+        },
+        {
+          "client_id": "804207739592-vtvhcses889jdm5ot90l7jur7u32qg2g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmtSSsqu4pnlRiOBypeHDOZK6i_p-pzHI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "804207739592-vtvhcses889jdm5ot90l7jur7u32qg2g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "804207739592-s668i5u3umgac1c6d6u3jdt1unpgulo1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.upmoo"
               }
             }
           ]

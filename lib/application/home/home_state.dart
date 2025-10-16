@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:foodyman/infrastructure/models/data/address_new_data.dart';
-import 'package:foodyman/infrastructure/models/models.dart';
+import 'package:upmoo25/infrastructure/models/data/address_new_data.dart';
+import 'package:upmoo25/infrastructure/models/models.dart';
 
-import 'package:foodyman/infrastructure/models/data/story_data.dart';
+import 'package:upmoo25/infrastructure/models/data/story_data.dart';
 
 part 'home_state.freezed.dart';
 

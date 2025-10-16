@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:foodyman/infrastructure/services/local_storage.dart';
+import 'package:upmoo25/infrastructure/services/local_storage.dart';
 
 class TokenInterceptor extends Interceptor {
   final bool requireAuth;

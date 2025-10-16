@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:foodyman/app_constants.dart';
+import 'package:upmoo25/app_constants.dart';
 
 import 'token_interceptor.dart';
 

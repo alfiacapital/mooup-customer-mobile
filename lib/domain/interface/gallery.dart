@@ -1,7 +1,7 @@
-import 'package:foodyman/infrastructure/models/models.dart';
-import 'package:foodyman/infrastructure/models/response/multi_gallery_upload_response.dart';
-import 'package:foodyman/infrastructure/services/enums.dart';
-import 'package:foodyman/domain/handlers/handlers.dart';
+import 'package:upmoo25/infrastructure/models/models.dart';
+import 'package:upmoo25/infrastructure/models/response/multi_gallery_upload_response.dart';
+import 'package:upmoo25/infrastructure/services/enums.dart';
+import 'package:upmoo25/domain/handlers/handlers.dart';
 
 abstract class GalleryRepositoryFacade {
   Future<ApiResult<GalleryUploadResponse>> uploadImage(

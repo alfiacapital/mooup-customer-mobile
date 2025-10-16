@@ -3,16 +3,16 @@
 // import 'package:flutter/material.dart';
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:foodyman/application/add_card/add_card_provider.dart';
-// import 'package:foodyman/infrastructure/services/app_helpers.dart';
-// import 'package:foodyman/infrastructure/services/local_storage.dart';
+// import 'package:upmoo25/application/add_card/add_card_provider.dart';
+// import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+// import 'package:upmoo25/infrastructure/services/local_storage.dart';
 // import 'package:flutter_masked_text2/flutter_masked_text2.dart';
-// import 'package:foodyman/infrastructure/services/tr_keys.dart';
-// import 'package:foodyman/presentation/components/buttons/custom_button.dart';
-// import 'package:foodyman/presentation/components/keyboard_dismisser.dart';
-// import 'package:foodyman/presentation/components/text_fields/outline_bordered_text_field.dart';
-// import 'package:foodyman/presentation/components/title_icon.dart';
-// import 'package:foodyman/presentation/theme/theme.dart';
+// import 'package:upmoo25/infrastructure/services/tr_keys.dart';
+// import 'package:upmoo25/presentation/components/buttons/custom_button.dart';
+// import 'package:upmoo25/presentation/components/keyboard_dismisser.dart';
+// import 'package:upmoo25/presentation/components/text_fields/outline_bordered_text_field.dart';
+// import 'package:upmoo25/presentation/components/title_icon.dart';
+// import 'package:upmoo25/presentation/theme/theme.dart';
 // import 'widgets/add_card.dart';
 // import 'widgets/card_clear_dialog.dart';
 //

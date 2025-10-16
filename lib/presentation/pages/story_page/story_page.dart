@@ -6,16 +6,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:foodyman/application/home/home_provider.dart';
-import 'package:foodyman/infrastructure/models/data/story_data.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/infrastructure/services/tr_keys.dart';
-import 'package:foodyman/presentation/components/buttons/custom_button.dart';
-import 'package:foodyman/presentation/components/loading.dart';
-import 'package:foodyman/presentation/components/shop_avarat.dart';
-import 'package:foodyman/presentation/components/video_story_widget.dart';
-import 'package:foodyman/presentation/routes/app_router.dart';
-import 'package:foodyman/presentation/theme/app_style.dart';
+import 'package:upmoo25/application/home/home_provider.dart';
+import 'package:upmoo25/infrastructure/models/data/story_data.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/infrastructure/services/tr_keys.dart';
+import 'package:upmoo25/presentation/components/buttons/custom_button.dart';
+import 'package:upmoo25/presentation/components/loading.dart';
+import 'package:upmoo25/presentation/components/shop_avarat.dart';
+import 'package:upmoo25/presentation/components/video_story_widget.dart';
+import 'package:upmoo25/presentation/routes/app_router.dart';
+import 'package:upmoo25/presentation/theme/app_style.dart';
 
 
 @RoutePage()

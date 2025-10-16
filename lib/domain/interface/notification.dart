@@ -1,7 +1,7 @@
 
-import 'package:foodyman/domain/handlers/api_result.dart';
-import 'package:foodyman/infrastructure/models/data/count_of_notifications_data.dart';
-import 'package:foodyman/infrastructure/models/response/notification_response.dart';
+import 'package:upmoo25/domain/handlers/api_result.dart';
+import 'package:upmoo25/infrastructure/models/data/count_of_notifications_data.dart';
+import 'package:upmoo25/infrastructure/models/response/notification_response.dart';
 
 abstract class NotificationRepositoryFacade {
 

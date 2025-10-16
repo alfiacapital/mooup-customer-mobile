@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:foodyman/infrastructure/models/models.dart';
-import 'package:foodyman/presentation/components/buttons/animation_button_effect.dart';
-import 'package:foodyman/presentation/components/custom_network_image.dart';
-import 'package:foodyman/presentation/theme/theme.dart';
+import 'package:upmoo25/infrastructure/models/models.dart';
+import 'package:upmoo25/presentation/components/buttons/animation_button_effect.dart';
+import 'package:upmoo25/presentation/components/custom_network_image.dart';
+import 'package:upmoo25/presentation/theme/theme.dart';
 
 class ShopTabBarItem extends StatelessWidget {
   final String title;

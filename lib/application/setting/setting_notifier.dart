@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:foodyman/domain/interface/settings.dart';
-import 'package:foodyman/domain/interface/user.dart';
-import 'package:foodyman/infrastructure/services/app_connectivity.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/domain/interface/settings.dart';
+import 'package:upmoo25/domain/interface/user.dart';
+import 'package:upmoo25/infrastructure/services/app_connectivity.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
 
-import 'package:foodyman/infrastructure/models/data/notification_list_data.dart';
+import 'package:upmoo25/infrastructure/models/data/notification_list_data.dart';
 import 'setting_state.dart';
 
 class SettingNotifier extends StateNotifier<SettingState> {

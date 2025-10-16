@@ -4,15 +4,15 @@ import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:foodyman/application/app_widget/app_provider.dart';
-import 'package:foodyman/domain/di/dependency_manager.dart';
-import 'package:foodyman/infrastructure/services/local_storage.dart';
-import 'package:foodyman/presentation/theme/app_style.dart';
+import 'package:upmoo25/application/app_widget/app_provider.dart';
+import 'package:upmoo25/domain/di/dependency_manager.dart';
+import 'package:upmoo25/infrastructure/services/local_storage.dart';
+import 'package:upmoo25/presentation/theme/app_style.dart';
 import 'package:app_links/app_links.dart';
 
 import 'components/custom_range_slider.dart';
 import 'routes/app_router.dart';
-import 'package:foodyman/infrastructure/services/deep_links.dart';
+import 'package:upmoo25/infrastructure/services/deep_links.dart';
 
 // Custom route information provider that always starts at splash
 class FixedRouteInformationProvider extends RouteInformationProvider {

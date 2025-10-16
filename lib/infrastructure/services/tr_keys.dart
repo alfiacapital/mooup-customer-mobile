@@ -284,7 +284,7 @@ class TrKeys {
   static const String county = 'country';
   static const String orAccessQuickly = 'or_access_quickly';
   static const String keepLogged = 'keep_me_logged_in';
-  static const String foodyman = 'foodyman';
+  static const String upmoo25 = 'upmoo25';
   static const String shopList = 'shop_list';
   static const String viewMap = 'view_map';
   static const String address = 'address';

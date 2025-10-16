@@ -1,6 +1,6 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:foodyman/infrastructure/models/models.dart';
+import 'package:upmoo25/infrastructure/models/models.dart';
 
 
 part 'search_state.freezed.dart';

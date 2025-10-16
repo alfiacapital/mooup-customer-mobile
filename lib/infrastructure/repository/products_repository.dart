@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:foodyman/domain/di/dependency_manager.dart';
-import 'package:foodyman/domain/interface/products.dart';
-import 'package:foodyman/infrastructure/models/models.dart';
-import 'package:foodyman/infrastructure/models/request/product_request.dart';
-import 'package:foodyman/infrastructure/models/request/search_product.dart';
-import 'package:foodyman/infrastructure/models/response/all_products_response.dart';
-import 'package:foodyman/infrastructure/services/local_storage.dart';
-import 'package:foodyman/domain/handlers/handlers.dart';
+import 'package:upmoo25/domain/di/dependency_manager.dart';
+import 'package:upmoo25/domain/interface/products.dart';
+import 'package:upmoo25/infrastructure/models/models.dart';
+import 'package:upmoo25/infrastructure/models/request/product_request.dart';
+import 'package:upmoo25/infrastructure/models/request/search_product.dart';
+import 'package:upmoo25/infrastructure/models/response/all_products_response.dart';
+import 'package:upmoo25/infrastructure/services/local_storage.dart';
+import 'package:upmoo25/domain/handlers/handlers.dart';
 import '../services/app_helpers.dart';
 
 class ProductsRepository implements ProductsRepositoryFacade {

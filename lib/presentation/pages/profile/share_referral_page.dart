@@ -5,18 +5,18 @@ import 'package:flutter_remix/flutter_remix.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:foodyman/application/profile/profile_provider.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/infrastructure/services/tr_keys.dart';
-import 'package:foodyman/presentation/components/buttons/custom_button.dart';
-import 'package:foodyman/presentation/components/custom_network_image.dart';
-import 'package:foodyman/presentation/components/loading.dart';
-import 'package:foodyman/presentation/routes/app_router.dart';
+import 'package:upmoo25/application/profile/profile_provider.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/infrastructure/services/tr_keys.dart';
+import 'package:upmoo25/presentation/components/buttons/custom_button.dart';
+import 'package:upmoo25/presentation/components/custom_network_image.dart';
+import 'package:upmoo25/presentation/components/loading.dart';
+import 'package:upmoo25/presentation/routes/app_router.dart';
 
-import 'package:foodyman/infrastructure/services/local_storage.dart';
-import 'package:foodyman/presentation/components/app_bars/common_app_bar.dart';
-import 'package:foodyman/presentation/components/buttons/pop_button.dart';
-import 'package:foodyman/presentation/theme/app_style.dart';
+import 'package:upmoo25/infrastructure/services/local_storage.dart';
+import 'package:upmoo25/presentation/components/app_bars/common_app_bar.dart';
+import 'package:upmoo25/presentation/components/buttons/pop_button.dart';
+import 'package:upmoo25/presentation/theme/app_style.dart';
 import 'package:share_plus/share_plus.dart';
 
 @RoutePage()

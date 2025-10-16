@@ -1,16 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:foodyman/application/product/product_notifier.dart';
-import 'package:foodyman/application/product/product_state.dart';
-import 'package:foodyman/application/shop_order/shop_order_notifier.dart';
-import 'package:foodyman/application/shop_order/shop_order_state.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/infrastructure/services/local_storage.dart';
-import 'package:foodyman/infrastructure/services/tr_keys.dart';
-import 'package:foodyman/presentation/components/buttons/custom_button.dart';
-import 'package:foodyman/presentation/routes/app_router.dart';
-import 'package:foodyman/presentation/theme/app_style.dart';
+import 'package:upmoo25/application/product/product_notifier.dart';
+import 'package:upmoo25/application/product/product_state.dart';
+import 'package:upmoo25/application/shop_order/shop_order_notifier.dart';
+import 'package:upmoo25/application/shop_order/shop_order_state.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/infrastructure/services/local_storage.dart';
+import 'package:upmoo25/infrastructure/services/tr_keys.dart';
+import 'package:upmoo25/presentation/components/buttons/custom_button.dart';
+import 'package:upmoo25/presentation/routes/app_router.dart';
+import 'package:upmoo25/presentation/theme/app_style.dart';
 
 class ProductMainButton extends StatelessWidget {
   final ShopOrderNotifier eventOrderShop;

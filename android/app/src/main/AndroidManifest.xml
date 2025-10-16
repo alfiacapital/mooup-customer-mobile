@@ -63,12 +63,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
 
-            <!-- App Links for open.mooup.ma domain -->
+            <!-- App Links for swipe.mooup.ma domain -->
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https" android:host="open.mooup.ma" />
+                <data android:scheme="https" android:host="swipe.mooup.ma" />
             </intent-filter>
             
             <!-- App Links for mooup.ma domain -->
@@ -85,7 +85,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https" android:host="open.mooup.ma" android:pathPrefix="/restaurant" />
+                <data android:scheme="https" android:host="swipe.mooup.ma" android:pathPrefix="/restaurant" />
             </intent-filter>
             -->
 

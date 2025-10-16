@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:foodyman/infrastructure/models/data/count_of_notifications_data.dart';
-import 'package:foodyman/infrastructure/models/response/notification_response.dart';
+import 'package:upmoo25/infrastructure/models/data/count_of_notifications_data.dart';
+import 'package:upmoo25/infrastructure/models/response/notification_response.dart';
 
 part 'notification_state.freezed.dart';
 

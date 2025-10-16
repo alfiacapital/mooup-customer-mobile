@@ -1,11 +1,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:foodyman/infrastructure/models/models.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/presentation/components/custom_network_image.dart';
-import 'package:foodyman/presentation/pages/home/home_three/widgets/banner_screen.dart';
-import 'package:foodyman/presentation/theme/theme.dart';
+import 'package:upmoo25/infrastructure/models/models.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/presentation/components/custom_network_image.dart';
+import 'package:upmoo25/presentation/pages/home/home_three/widgets/banner_screen.dart';
+import 'package:upmoo25/presentation/theme/theme.dart';
 
 class BannerItemThree extends StatelessWidget {
   final BannerData banner;

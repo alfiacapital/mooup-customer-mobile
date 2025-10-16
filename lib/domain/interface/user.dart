@@ -1,8 +1,8 @@
-import 'package:foodyman/infrastructure/models/data/address_new_data.dart';
-import 'package:foodyman/infrastructure/models/data/referral_data.dart';
-import 'package:foodyman/infrastructure/models/request/edit_profile.dart';
-import 'package:foodyman/domain/handlers/handlers.dart';
-import 'package:foodyman/infrastructure/models/models.dart';
+import 'package:upmoo25/infrastructure/models/data/address_new_data.dart';
+import 'package:upmoo25/infrastructure/models/data/referral_data.dart';
+import 'package:upmoo25/infrastructure/models/request/edit_profile.dart';
+import 'package:upmoo25/domain/handlers/handlers.dart';
+import 'package:upmoo25/infrastructure/models/models.dart';
 
 abstract class UserRepositoryFacade {
   Future<ApiResult<ProfileResponse>> getProfileDetails();

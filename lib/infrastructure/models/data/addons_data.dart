@@ -1,4 +1,4 @@
-import 'package:foodyman/infrastructure/models/data/translation.dart';
+import 'package:upmoo25/infrastructure/models/data/translation.dart';
 
 import 'product_data.dart';
 

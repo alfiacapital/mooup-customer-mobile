@@ -4,18 +4,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:foodyman/app_constants.dart';
-import 'package:foodyman/infrastructure/services/time_service.dart';
+import 'package:upmoo25/app_constants.dart';
+import 'package:upmoo25/infrastructure/services/time_service.dart';
 import 'package:jiffy/jiffy.dart';
-import 'package:foodyman/application/auto_order/auto_order_provider.dart';
-import 'package:foodyman/application/order/order_provider.dart';
-import 'package:foodyman/infrastructure/models/data/repeat_data.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/infrastructure/services/tr_keys.dart';
-import 'package:foodyman/presentation/components/title_icon.dart';
-import 'package:foodyman/presentation/theme/app_style.dart';
+import 'package:upmoo25/application/auto_order/auto_order_provider.dart';
+import 'package:upmoo25/application/order/order_provider.dart';
+import 'package:upmoo25/infrastructure/models/data/repeat_data.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/infrastructure/services/tr_keys.dart';
+import 'package:upmoo25/presentation/components/title_icon.dart';
+import 'package:upmoo25/presentation/theme/app_style.dart';
 
-import 'package:foodyman/presentation/components/buttons/custom_button.dart';
+import 'package:upmoo25/presentation/components/buttons/custom_button.dart';
 
 class AutoOrderModal extends ConsumerStatefulWidget {
   final int orderId;

@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:foodyman/infrastructure/models/response/all_products_response.dart';
-import 'package:foodyman/presentation/pages/shop/widgets/shimmer_category_list.dart';
-import 'package:foodyman/presentation/theme/theme.dart';
+import 'package:upmoo25/infrastructure/models/response/all_products_response.dart';
+import 'package:upmoo25/presentation/pages/shop/widgets/shimmer_category_list.dart';
+import 'package:upmoo25/presentation/theme/theme.dart';
 
 import 'tab_search.dart';
 

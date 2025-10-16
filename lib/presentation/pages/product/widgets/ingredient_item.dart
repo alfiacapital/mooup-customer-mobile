@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:foodyman/infrastructure/models/data/addons_data.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/infrastructure/services/vibration.dart';
-import 'package:foodyman/presentation/theme/theme.dart';
+import 'package:upmoo25/infrastructure/models/data/addons_data.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/infrastructure/services/vibration.dart';
+import 'package:upmoo25/presentation/theme/theme.dart';
 
-import 'package:foodyman/presentation/components/custom_checkbox.dart';
+import 'package:upmoo25/presentation/components/custom_checkbox.dart';
 
 class IngredientItem extends ConsumerWidget {
   final VoidCallback onTap;

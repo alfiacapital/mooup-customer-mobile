@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_remix/flutter_remix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:foodyman/infrastructure/services/app_helpers.dart';
-import 'package:foodyman/presentation/components/buttons/animation_button_effect.dart';
-import 'package:foodyman/presentation/components/custom_network_image.dart';
-import 'package:foodyman/presentation/theme/theme.dart';
+import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+import 'package:upmoo25/presentation/components/buttons/animation_button_effect.dart';
+import 'package:upmoo25/presentation/components/custom_network_image.dart';
+import 'package:upmoo25/presentation/theme/theme.dart';
 
-import 'package:foodyman/infrastructure/models/response/all_products_response.dart';
+import 'package:upmoo25/infrastructure/models/response/all_products_response.dart';
 import 'bonus_screen.dart';
 
 class ShopProductItem extends StatelessWidget {

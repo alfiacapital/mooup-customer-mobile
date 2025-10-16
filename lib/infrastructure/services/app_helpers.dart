@@ -3,13 +3,13 @@ import 'dart:math';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:foodyman/infrastructure/services/extension.dart';
+import 'package:upmoo25/infrastructure/services/extension.dart';
 import 'package:intl/intl.dart';
-import 'package:foodyman/infrastructure/models/models.dart';
+import 'package:upmoo25/infrastructure/models/models.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import '../../presentation/theme/app_style.dart';
-import 'package:foodyman/infrastructure/services/local_storage.dart';
+import 'package:upmoo25/infrastructure/services/local_storage.dart';
 import '../../app_constants.dart';
 import 'enums.dart';
 

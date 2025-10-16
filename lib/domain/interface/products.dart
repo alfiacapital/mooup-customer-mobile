@@ -1,7 +1,7 @@
-import 'package:foodyman/infrastructure/models/response/all_products_response.dart';
+import 'package:upmoo25/infrastructure/models/response/all_products_response.dart';
 
-import 'package:foodyman/domain/handlers/handlers.dart';
-import 'package:foodyman/infrastructure/models/models.dart';
+import 'package:upmoo25/domain/handlers/handlers.dart';
+import 'package:upmoo25/infrastructure/models/models.dart';
 
 abstract class ProductsRepositoryFacade {
   Future<ApiResult<ProductsPaginateResponse>> searchProducts(

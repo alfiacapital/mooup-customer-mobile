@@ -5,20 +5,20 @@
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
-// import 'package:foodyman/application/shop/shop_notifier.dart';
-// import 'package:foodyman/application/shop/shop_provider.dart';
-// import 'package:foodyman/application/shop_order/shop_order_provider.dart';
-// import 'package:foodyman/infrastructure/services/app_helpers.dart';
-// import 'package:foodyman/infrastructure/services/local_storage.dart';
-// import 'package:foodyman/infrastructure/services/tr_keys.dart';
-// import 'package:foodyman/presentation/components/buttons/animation_button_effect.dart';
-// import 'package:foodyman/presentation/components/buttons/custom_button.dart';
-// import 'package:foodyman/presentation/components/buttons/pop_button.dart';
-// import 'package:foodyman/presentation/pages/shop/cart/cart_order_page.dart';
-// import 'package:foodyman/presentation/pages/shop/widgets/make_tab_bar.dart';
-// import 'package:foodyman/presentation/theme/app_style.dart';
+// import 'package:upmoo25/application/shop/shop_notifier.dart';
+// import 'package:upmoo25/application/shop/shop_provider.dart';
+// import 'package:upmoo25/application/shop_order/shop_order_provider.dart';
+// import 'package:upmoo25/infrastructure/services/app_helpers.dart';
+// import 'package:upmoo25/infrastructure/services/local_storage.dart';
+// import 'package:upmoo25/infrastructure/services/tr_keys.dart';
+// import 'package:upmoo25/presentation/components/buttons/animation_button_effect.dart';
+// import 'package:upmoo25/presentation/components/buttons/custom_button.dart';
+// import 'package:upmoo25/presentation/components/buttons/pop_button.dart';
+// import 'package:upmoo25/presentation/pages/shop/cart/cart_order_page.dart';
+// import 'package:upmoo25/presentation/pages/shop/widgets/make_tab_bar.dart';
+// import 'package:upmoo25/presentation/theme/app_style.dart';
 //
-// import 'package:foodyman/infrastructure/models/models.dart';
+// import 'package:upmoo25/infrastructure/models/models.dart';
 // import 'product_filter.dart';
 // import 'widgets/product_list.dart';
 //

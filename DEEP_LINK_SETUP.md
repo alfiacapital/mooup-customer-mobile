@@ -1,7 +1,7 @@
-# Deep Link Configuration for open.mooup.ma/open-app
+# Deep Link Configuration for swipe.mooup.ma/open-app
 
 ## Overview
-This app has been configured to handle deep links from the domain `open.mooup.ma`. The specific route `/open-app` will open the app and navigate to the main screen.
+This app has been configured to handle deep links from the domain `swipe.mooup.ma`. The specific route `/open-app` will open the app and navigate to the main screen.
 
 ## Configuration Details
 
@@ -14,11 +14,11 @@ The Android manifest (`android/app/src/main/AndroidManifest.xml`) already includ
     <category android:name="android.intent.category.DEFAULT" />
     <category android:name="android.intent.category.BROWSABLE" />
     <data android:scheme="https" android:host="mooup.ma" />
-    <data android:scheme="https" android:host="open.mooup.ma" />
+    <data android:scheme="https" android:host="swipe.mooup.ma" />
 </intent-filter>
 ```
 
-This configuration allows the app to handle all HTTPS links from `open.mooup.ma`, including the `/open-app` path.
+This configuration allows the app to handle all HTTPS links from `swipe.mooup.ma`, including the `/open-app` path.
 
 ### iOS Configuration
 The iOS configuration has been updated in `ios/Runner/Runner.entitlements`:
@@ -26,12 +26,12 @@ The iOS configuration has been updated in `ios/Runner/Runner.entitlements`:
 ```xml
 <key>com.apple.developer.associated-domains</key>
 <array>
-    <string>applinks:foodyman.page.link</string>
-    <string>applinks:open.mooup.ma</string>
+    <string>applinks:upmoo25.page.link</string>
+    <string>applinks:swipe.mooup.ma</string>
 </array>
 ```
 
-This enables Universal Links for the `open.mooup.ma` domain on iOS.
+This enables Universal Links for the `swipe.mooup.ma` domain on iOS.
 
 ### Flutter Code Implementation
 The deep link handling is implemented in `lib/infrastructure/services/deep_links.dart`:
@@ -47,7 +47,7 @@ if (uri.pathSegments.isNotEmpty && uri.pathSegments.first == 'open-app') {
 
 ## How It Works
 
-1. **User clicks link**: When a user clicks on `https://open.mooup.ma/open-app`
+1. **User clicks link**: When a user clicks on `https://swipe.mooup.ma/open-app`
 2. **System recognition**: The operating system recognizes this as a deep link for your app
 3. **App opens**: The app opens and the `DeepLinksHandler` processes the incoming URI
 4. **Route navigation**: The handler detects the `/open-app` path and navigates to the `MainRoute`
@@ -57,12 +57,12 @@ if (uri.pathSegments.isNotEmpty && uri.pathSegments.first == 'open-app') {
 
 ### Android
 - Install the app on an Android device
-- Click on a link like `https://open.mooup.ma/open-app`
+- Click on a link like `https://swipe.mooup.ma/open-app`
 - The app should open and navigate to the main screen
 
 ### iOS
 - Install the app on an iOS device
-- Click on a link like `https://open.mooup.ma/open-app`
+- Click on a link like `https://swipe.mooup.ma/open-app`
 - The app should open and navigate to the main screen
 
 ## Additional Notes
@@ -76,7 +76,7 @@ if (uri.pathSegments.isNotEmpty && uri.pathSegments.first == 'open-app') {
 
 If the deep link is not working:
 
-1. **Verify domain ownership**: Ensure you have control over the `open.mooup.ma` domain
+1. **Verify domain ownership**: Ensure you have control over the `swipe.mooup.ma` domain
 2. **Check SSL certificate**: The domain must have a valid SSL certificate
 3. **App installation**: The app must be installed on the device
 4. **Build and test**: Rebuild the app after making configuration changes
