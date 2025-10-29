@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -20,7 +19,6 @@ import 'package:upmoo25/infrastructure/services/app_helpers.dart';
 import 'package:upmoo25/infrastructure/services/app_validators.dart';
 import 'package:upmoo25/infrastructure/services/tr_keys.dart';
 import 'package:upmoo25/presentation/routes/app_router.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import 'package:upmoo25/infrastructure/models/data/user.dart';
@@ -498,18 +496,13 @@ class RegisterNotifier extends StateNotifier<RegisterState> {
       state = state.copyWith(isLoading: true);
       final fb = FacebookAuth.instance;
       try {
-        TrackingStatus? status;
-        if (Platform.isIOS) {
-          final permission = await Permission.appTrackingTransparency.request();
-          status = await AppTrackingTransparency.trackingAuthorizationStatus;
-          debugPrint("permission $permission");
-          debugPrint("status: $status");
-        }
+        // Default to limited tracking on iOS, enabled elsewhere
+        final loginTracking = Platform.isIOS
+            ? LoginTracking.limited
+            : LoginTracking.enabled;
 
         final user = await fb.login(
-          loginTracking: status == TrackingStatus.authorized
-              ? LoginTracking.enabled
-              : LoginTracking.limited,
+          loginTracking: loginTracking,
           loginBehavior: LoginBehavior.nativeWithFallback,
         );
         debugPrint(
