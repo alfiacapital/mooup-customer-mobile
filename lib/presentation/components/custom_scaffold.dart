@@ -36,9 +36,13 @@ class _CustomScaffoldState extends ConsumerState<CustomScaffold>
   ValueNotifier<bool> isNetworkDisabled = ValueNotifier(false);
 
   void _checkCurrentNetworkState() {
-    Connectivity().checkConnectivity().then((connectivityResult) {
-      isNetworkDisabled.value = connectivityResult.contains(ConnectivityResult.none);
-    });
+    try {
+      Connectivity().checkConnectivity().then((connectivityResult) {
+        isNetworkDisabled.value = connectivityResult.contains(ConnectivityResult.none);
+      });
+    } catch (_) {
+      isNetworkDisabled.value = false;
+    }
   }
 
   initStateFunc() {
@@ -53,7 +57,11 @@ class _CustomScaffoldState extends ConsumerState<CustomScaffold>
   @override
   void initState() {
     WidgetsBinding.instance.addObserver(this);
-    initStateFunc();
+    // Defer to avoid plugin calls during launch on iOS 18
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await Future<void>.delayed(const Duration(milliseconds: 300));
+      if (mounted) initStateFunc();
+    });
     super.initState();
   }
 

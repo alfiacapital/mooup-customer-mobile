@@ -41,10 +41,19 @@ class AppWidget extends ConsumerWidget {
   }
 
   Future fetchSetting() async {
-    final connect = await Connectivity().checkConnectivity();
-    if (connect.contains(ConnectivityResult.mobile) ||
-        connect.contains(ConnectivityResult.ethernet) ||
-        connect.contains(ConnectivityResult.wifi)) {
+    try {
+      // Avoid touching connectivity at launch time on iOS 18
+      await Future<void>.delayed(const Duration(milliseconds: 300));
+      final connect = await Connectivity().checkConnectivity();
+      if (connect.contains(ConnectivityResult.mobile) ||
+          connect.contains(ConnectivityResult.ethernet) ||
+          connect.contains(ConnectivityResult.wifi)) {
+        settingsRepository.getGlobalSettings();
+        await settingsRepository.getLanguages();
+        await settingsRepository.getMobileTranslations();
+      }
+    } catch (_) {
+      // Fail open to avoid startup crashes
       settingsRepository.getGlobalSettings();
       await settingsRepository.getLanguages();
       await settingsRepository.getMobileTranslations();
