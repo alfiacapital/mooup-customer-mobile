@@ -23,7 +23,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.6</string>
+	<string>1.0.7</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -43,7 +43,7 @@
 		<dict/>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>9</string>
+	<string>10</string>
 	<key>FacebookAppID</key>
 	<string>3416398941970171</string>
 	<key>FacebookClientToken</key>
@@ -73,19 +73,19 @@
 		<true/>
 	</dict>
 	<key>NSUserTrackingUsageDescription</key>
-	<string>Your reason, why you want to track the user</string>
+	<string>MOOUP requests permission to track your device for personalized ads and analytics. You can opt out anytime in Settings.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Allowing the access to your camera helps us to show you the media files to upload to Shop app</string>
+	<string>MOOUP needs access to the camera to let you take photos for listings and your profile.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Allowing the access to your camera helps us to show you the media files to upload to Shop app</string>
+	<string>MOOUP uses your location in the background for delivery tracking and timely location-based notifications. You can disable background location at any time.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This app needs access to location when in the background.</string>
+	<string>MOOUP uses your location in the background for delivery tracking and timely location-based notifications.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app needs access to location when open.</string>
+	<string>MOOUP uses your location while the app is open to show nearby offers and provide accurate delivery information.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>This app requires access to the Microphone.</string>
+	<string>MOOUP needs access to the microphone to record audio for messages and media uploads.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Allowing the access to your photo library helps us to show you the media files to upload to Shop app</string>
+	<string>MOOUP needs access to your photo library so you can select images for listings and your profile.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>
