@@ -8,7 +8,6 @@ import 'package:upmoo25/presentation/theme/theme.dart';
 import 'domain/di/dependency_manager.dart';
 import 'presentation/app_widget.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:flutter_uxcam/flutter_uxcam.dart';
 import 'package:app_links/app_links.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -33,12 +32,12 @@ void main() async {
     debugPrint('Main: Error checking initial deep link: $e');
   }
 
-  FlutterUxcam.optIntoSchematicRecordings(); /* Confirm that you have user 
-  permission for screen recording */
-  FlutterUxConfig config = FlutterUxConfig(
-    userAppKey: "bt15m9ef61j13lx-eu",
-    enableAutomaticScreenNameTagging: false);
-  FlutterUxcam.startWithConfiguration(config);
+  // FlutterUxcam.optIntoSchematicRecordings(); /* Confirm that you have user 
+  // permission for screen recording */
+  // FlutterUxConfig config = FlutterUxConfig(
+  //   userAppKey: "bt15m9ef61j13lx-eu",
+  //   enableAutomaticScreenNameTagging: false);
+  // FlutterUxcam.startWithConfiguration(config);
 
 
 
