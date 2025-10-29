@@ -1,0 +1,24 @@
+workflows:
+  ios_release:
+    name: iOS Release
+    instance_type: mac_mini_m1
+    environment:
+      flutter: stable
+      xcode: 16.4
+    scripts:
+      - name: Pre-build (clean + pods)
+        script: |
+          flutter --version
+          flutter clean
+          flutter pub get
+          cd ios
+          rm -rf Pods Podfile.lock
+          pod repo update
+          pod install
+          cd ..
+      - name: Build iOS
+        script: |
+          flutter build ipa --release -t lib/main.dart
+    publishing:
+      app_store_connect:
+        submit_to_testflight: true
